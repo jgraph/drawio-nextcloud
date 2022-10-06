@@ -27,7 +27,7 @@ To make Draw.io work properly, you need to add a new mimetypes in the `mimetypem
 Go to `Admin settings > Additional settings` ( `/index.php/settings/admin/additional` ) and click the `Save` button to register MIME types.
 
 Or you can do it manually:
-- Download [mimetypemapping.json](https://github.com/pawelrojek/nextcloud-drawio/raw/master/mimetypemapping.json) and save it in `config` folder
+- Download [mimetypemapping.json](https://raw.githubusercontent.com/jgraph/drawio-nextcloud/dev/mimetypemapping.json) and save it in `config` folder
 or 
 - Copy `/resources/config/mimetypemapping.dist.json` to `/config/mimetypemapping.json` 
 (in the `config/` folder at Nextcloud’s root directory; the file should be stored next to the `config.php` file). 
@@ -39,25 +39,8 @@ following command:
 
     sudo -u www-data php occ files:scan --all
 
-## Download ##
-Current release: [zip](https://github.com/pawelrojek/nextcloud-drawio/releases/download/v.1.0.3/drawio-v1.0.3.zip) or [tar.gz](https://github.com/pawelrojek/nextcloud-drawio/releases/download/v.1.0.3/drawio-v1.0.3.tar.gz)
-
-
-
 ## Changelog ##
-
-## 1.0.3
-- NC24 compatibility
-- (Note) This is the last release maintained by [Pawel Rojek](https://github.com/pawelrojek)
-
-## 1.0.2
-- NC23 compatibility
-- Added Finnish translation (#157)
-- Added Czech translation (#152)
-- Various bug fixes
-
-
-[Complete changelog](https://github.com/pawelrojek/nextcloud-drawio/blob/master/drawio/CHANGELOG.md)
+[Changelog](https://github.com/jgraph/drawio-nextcloud/blob/dev/CHANGELOG.md)
 
 
 ## Installation ##
@@ -104,12 +87,4 @@ If you would like to self-host Draw.io, you might want to consider https://githu
 - [teemue] (https://github.com/teemue)
 - [p-bo] (https://github.com/p-bo)
 
-[View all](https://github.com/pawelrojek/nextcloud-drawio/graphs/contributors)
-
-
-
-## Support ##
- * Any feedback and code is greatly appreciated!
- * It's all free, but please consider making a donation if you use it (and you can afford it) - it takes a lot of time to maintain/test/review/release. Thanks!
-
- [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/pawelrojek/4usd)
+[View all](https://github.com/jgraph/drawio-nextcloud/graphs/contributors)
