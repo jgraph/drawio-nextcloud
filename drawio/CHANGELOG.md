@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.0.4
+- NC25 compatibility
+- (Note) The app is now maintained by JGraph and moved to [drawio-nextcloud](https://github.com/jgraph/drawio-nextcloud). Thanks to Pawel Rojek and all contributors for their work on this app.
+
 ## 1.0.3
 - NC24 compatibility
 - (Note) This is the last release maintained by [Pawel Rojek](https://github.com/pawelrojek)
