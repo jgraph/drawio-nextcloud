@@ -1,0 +1,25 @@
+name: Create Release Archive
+on:
+  push:
+    tags:
+      - 'v*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set filename
+      id: vars
+      run: echo ::set-output name=file_name::drawio${GITHUB_REF##*/}.zip
+    - uses: actions/checkout@master
+    - name: Archive Release
+      uses: thedoctor0/zip-release@main
+      with:
+        type: 'zip'
+        filename: ${{ steps.vars.outputs.file_name }}
+        path: drawio
+        exclusions: '*.git* /*node_modules/* .editorconfig'
+    - name: Upload Release
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: ${{ steps.vars.outputs.file_name }}
+        token: ${{ secrets.GITHUB_TOKEN }}
