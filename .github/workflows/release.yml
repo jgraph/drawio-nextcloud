@@ -9,17 +9,26 @@ jobs:
     steps:
     - name: Set filename
       id: vars
-      run: echo ::set-output name=file_name::drawio${GITHUB_REF##*/}.zip
+      run: |
+        echo "zip_file_name=drawio-${GITHUB_REF##*/}.zip" >> $GITHUB_OUTPUT
+        echo "tar_file_name=drawio-${GITHUB_REF##*/}.tar.gz" >> $GITHUB_OUTPUT
     - uses: actions/checkout@master
-    - name: Archive Release
+    - name: Archive Release (zip)
       uses: thedoctor0/zip-release@main
       with:
         type: 'zip'
-        filename: ${{ steps.vars.outputs.file_name }}
+        filename: ${{ steps.vars.outputs.zip_file_name }}
+        path: drawio
+        exclusions: '*.git* /*node_modules/* .editorconfig'
+    - name: Archive Release (tar.gz)
+      uses: thedoctor0/zip-release@main
+      with:
+        type: 'tar'
+        filename: ${{ steps.vars.outputs.tar_file_name }}
         path: drawio
         exclusions: '*.git* /*node_modules/* .editorconfig'
     - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: ${{ steps.vars.outputs.file_name }}
+        artifacts: ${{ steps.vars.outputs.zip_file_name }},${{ steps.vars.outputs.tar_file_name }}
         token: ${{ secrets.GITHUB_TOKEN }}

@@ -7,7 +7,7 @@
     <description>Integrates Draw.io with Nextcloud</description>
     <version>1.0.4</version>
     <licence>agpl</licence>
-    <author>Paweł Rojek</author>
+    <author>JGraph Ltd</author>
     <namespace>Drawio</namespace>
     <types>
         <filesystem />
@@ -15,10 +15,10 @@
     <category>files</category>
     <category>integration</category>
     <category>tools</category>
-    <website>https://github.com/pawelrojek/nextcloud-drawio/</website>
-    <bugs>https://github.com/pawelrojek/nextcloud-drawio/issues</bugs>
-    <repository type="git">https://github.com/pawelrojek/nextcloud-drawio.git</repository>
-    <screenshot small-thumbnail="https://raw.githubusercontent.com/pawelrojek/nextcloud-drawio/master/screenshots/drawio_integration_sm.png">https://raw.githubusercontent.com/pawelrojek/nextcloud-drawio/master/screenshots/drawio_integration.png</screenshot>
+    <website>https://github.com/jgraph/drawio-nextcloud</website>
+    <bugs>https://github.com/jgraph/drawio-nextcloud/issues</bugs>
+    <repository type="git">https://github.com/jgraph/drawio-nextcloud.git</repository>
+    <screenshot small-thumbnail="https://raw.githubusercontent.com/jgraph/drawio-nextcloud/release/screenshots/drawio_integration_sm.png">https://raw.githubusercontent.com/jgraph/drawio-nextcloud/release/screenshots/drawio_integration.png</screenshot>
     <dependencies>
         <nextcloud min-version="11" max-version="25"/>
     </dependencies>
