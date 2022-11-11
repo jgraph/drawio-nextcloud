@@ -45,7 +45,7 @@ following command:
 
 ## Changelog ##
 
-[Changelog](https://github.com/jgraph/drawio-nextcloud/blob/release/CHANGELOG.md)
+[Changelog](https://github.com/jgraph/drawio-nextcloud/blob/release/drawio/CHANGELOG.md)
 
 ## Installation ##
 1. Copy Nextcloud draw.io integration app ("drawio" directory) to your Nextcloud server into the /apps/ directory
