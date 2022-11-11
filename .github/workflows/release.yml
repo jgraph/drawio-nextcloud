@@ -19,14 +19,14 @@ jobs:
         type: 'zip'
         filename: ${{ steps.vars.outputs.zip_file_name }}
         path: drawio
-        exclusions: '*.git* /*node_modules/* .editorconfig'
+        exclusions: '*.git*'
     - name: Archive Release (tar.gz)
       uses: thedoctor0/zip-release@main
       with:
         type: 'tar'
         filename: ${{ steps.vars.outputs.tar_file_name }}
         path: drawio
-        exclusions: '*.git* /*node_modules/* .editorconfig'
+        exclusions: '*.git*'
     - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
