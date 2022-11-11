@@ -5,7 +5,7 @@
     <name>Draw.io</name>
     <summary>Draw.io integration app</summary>
     <description>Integrates Draw.io with Nextcloud</description>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <licence>agpl</licence>
     <author>JGraph Ltd</author>
     <namespace>Drawio</namespace>
