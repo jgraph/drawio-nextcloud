@@ -12,33 +12,13 @@ Once installed, you will see an option to create a Draw.io diagram from the 'cre
 
 
 ## Info ##
-- Requires [Nextcloud](https://nextcloud.com) >11.0.0
+- Requires [Nextcloud](https://nextcloud.com) >=20.0.0
 - Multi language support (l10n)
 - Inspired by the old Draw.io Integration and OnlyOffice
 - Tested with Chrome 58-96 and Firefox 53-89
 - Tested with PHP 5.6/7.1/7.3/8.0/8.1
-- Draw.io Integration tested with NextCloud 11.0.3 / 12.0.2 / 13.0.6 / 14.0.4 / 15.0.0 / 16.0.0 / 17.0.0 / 18.0.0 / 19.0.0 / 20.0.0 / 21.0.0 / 22.0.0 / 23.0.0 / 24.0.1 / v25.0.1
+- Draw.io Integration tested with NextCloud 20.0.0 / 21.0.0 / 22.0.0 / 23.0.0 / 24.0.1 / v25.0.1
   
-
-## Mimetype detection ##
-
-To make Draw.io work properly, you need to add a new mimetypes in the `mimetypemapping.json` file (at Nextcloud level).
-
-Go to `Admin settings > Additional settings` ( `/index.php/settings/admin/additional` ) and click the `Save` button to register MIME types.
-
-Or you can do it manually:
-- Download [mimetypemapping.json](https://raw.githubusercontent.com/jgraph/drawio-nextcloud/release/mimetypemapping.json) and save it in `config` folder
-or 
-- Copy `/resources/config/mimetypemapping.dist.json` to `/config/mimetypemapping.json` 
-(in the `config/` folder at Nextcloud’s root directory; the file should be stored next to the `config.php` file). 
-Afterwards add the two following line just after the “_comment” lines.
-    "drawio": ["application/x-drawio"],
-
-If all other mimetypes are not working properly, just run the
-following command:
-
-    sudo -u www-data php occ files:scan --all
-
 ## Download ##
 
 [Our Github releases page](https://github.com/jgraph/drawio-nextcloud/releases)
@@ -69,8 +49,6 @@ If you would like to self-host Draw.io, you might want to consider https://githu
 
 ## License ##
 - Released under the Affero General Public License version 3 or later.
-- [CC 3.0 BY] File icon made by [DinosoftLabs](http://www.flaticon.com/authors/dinosoftlabs) / [Link](http://www.flaticon.com/free-icon/organization_348440)
-
 
 ## Contributors ##
 - [pawelrojek](https://github.com/pawelrojek)

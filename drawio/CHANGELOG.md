@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.0.0
+
+- Almost a complete rewrite of the app to reduce deprecated code usage
+- Whiteboards support
+- Automatic dark mode
+- Diagrams preview
+- Diagram revisions
+- Dropped older Nextcloud versions support (now 20+)
+- **Real-time collaboration**
+
 ## 1.0.5
 - Fixed v1.0.4 installation issues
 ## 1.0.4
