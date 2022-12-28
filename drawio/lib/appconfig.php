@@ -19,10 +19,12 @@ class AppConfig {
 
     private $predefDrawioUrl = "https://embed.diagrams.net";
     private $predefOfflineMode = "no";
-    private $predefTheme = "kennedy"; //kennedy, min (=minimal), atlas, dark
+    private $predefTheme = "kennedy"; //kennedy, min (=minimal), atlas
     private $predefLang = "auto";
     private $predefAutosave = "yes";
     private $predefLibraries = "no";
+    private $predefDarkMode = "auto";
+    private $predefPreviews = "yes";
 
     private $appName;
 
@@ -37,6 +39,8 @@ class AppConfig {
     private $_lang = "DrawioLang";
     private $_autosave = "DrawioAutosave";
     private $_libraries = "DrawioLibraries";
+    private $_darkmode = "DrawioDarkMode";
+    private $_previews = "DrawioPreviews";
 
     public function __construct($AppName)
     {
@@ -130,6 +134,42 @@ class AppConfig {
         return $val;
     }
 
+    public function SetDarkMode($darkmode)
+    {
+        $this->logger->info("SetDarkMode: " . $darkmode, array("app" => $this->appName));
+        $this->config->setAppValue($this->appName, $this->_darkmode, $darkmode);
+    }
+    
+    public function GetDarkMode()
+    {
+        $val = $this->config->getAppValue($this->appName, $this->_darkmode);
+        if (empty($val))
+        {
+            if ($this->GetTheme() == "dark")
+            {
+                $val = "yes";
+            }
+            else
+            {
+                $val = $this->predefDarkMode;
+            }
+        }
+        return $val;
+    }
+
+    public function SetPreviews($previews)
+    {
+        $this->logger->info("SetPreviews: " . $previews, array("app" => $this->appName));
+        $this->config->setAppValue($this->appName, $this->_previews, $previews);
+    }
+
+    public function GetPreviews()
+    {
+        $val = $this->config->getAppValue($this->appName, $this->_previews);
+        if (empty($val)) $val = $this->predefPreviews;
+        return $val;
+    }
+    
     public function GetAppName()
     {
         return $this->appName;
@@ -141,7 +181,8 @@ class AppConfig {
      * @var array
      */
     public $formats = [
-            "drawio" => [ "mime" => "application/x-drawio", "type" => "text" ]
+            "drawio" => [ "mime" => "application/x-drawio", "type" => "text" ],
+            "dwb" => [ "mime" => "application/x-drawio-wb", "type" => "text" ]
         ];
 
 }

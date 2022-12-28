@@ -1,12 +1,9 @@
-
-.icon-drawio-new-xml
+.icon-drawio
 {
-    background-image: url("../img/new-xml.svg");
+    background-image: url("../img/drawio.svg") !important;
 }
 
-.icon-drawio-xml
+.icon-whiteboard
 {
-    background-image: url("../img/new-xml-big.svg") !important;
+    background-image: url("../img/dwb.svg") !important;
 }
-
-

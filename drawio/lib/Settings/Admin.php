@@ -9,14 +9,14 @@
  *
  **/
 
-namespace OCA\Drawio;
+namespace OCA\Drawio\Settings;
 
 use OCP\Settings\ISettings;
 
 use OCA\Drawio\AppInfo\Application;
 
 
-class AdminSettings implements ISettings {
+class Admin implements ISettings {
 
     public function __construct()
     {

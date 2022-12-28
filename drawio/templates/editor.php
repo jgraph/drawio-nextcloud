@@ -2,7 +2,7 @@
     style("drawio", "editor");
     script("drawio", "editor");
 
-    $frame_params = "?embed=1";
+    $frame_params = "?embed=1&embedRT=1";
     if ($_["drawioOfflineMode"] === "yes")
     {
         $frame_params .= "&offline=1&stealth=1";
@@ -11,10 +11,27 @@
     {
         $frame_params .= "&libraries=1";
     }
-    if (!empty($_["drawioTheme"])) $frame_params .= "&ui=".$_["drawioTheme"];
+
+    if ($_['isWB'] == "true")
+    {
+        $frame_params .= "&ui=sketch";
+    }
+    else if (!empty($_["drawioTheme"]))
+    {
+        $frame_params .= "&ui=".$_["drawioTheme"];
+    }
+    
+    if ($_["drawioDarkMode"] == "on") $frame_params .= "&dark=1";
     if (!empty($_["drawioLang"])) $frame_params .= "&lang=".$_["drawioLang"];
     if (!empty($_["drawioUrlArgs"])) $frame_params .= "&".$_["drawioUrlArgs"];
-    $frame_params .= "&spin=1&proto=json";
+    $finalAutosave = $_['drawioAutosave'];
+
+    if ($_['drawioReadOnly']) {
+        $frame_params .= "&chrome=0"; //read-only viewer
+        $finalAutosave = false;
+    }
+
+    $frame_params .= "&spin=1&proto=json&p=nxtcld&keepmodified=1";
 ?>
 
 <div id="app-content">
@@ -30,11 +47,30 @@
                 var filePath = <?php echo json_encode(urldecode($_['drawioFilePath'])); ?>;
                 var originUrl = "<?php p($_['drawioUrl']); ?>";
                 var drawIoUrl = "<?php p($_['drawioUrl']); print_unescaped($frame_params); ?>"
-                var autosave = "<?php p($_['drawioAutosave']); ?>";
-                OCA.DrawIO.EditFile(iframe.contentWindow, filePath, originUrl, autosave);
+                var autosave = "<?php p($finalAutosave); ?>";
+                var isWB = <?php p($_['isWB']); ?>;
+                var previews = <?php p($_['drawioPreviews'] == 'yes'? 'true' : 'false'); ?>;
+
+                <?php if ($_["drawioDarkMode"] == "auto") { ?>
+                    try
+                    {
+                        var darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                        var themeName = OCA.Theming.enabledThemes[0];
+
+                        if ((!themeName || themeName === 'default') && darkMode)
+                        {
+                            drawIoUrl += '&dark=1';
+                        }
+                        else if (themeName && themeName.indexOf('dark') !== -1)
+                        {
+                            drawIoUrl += '&dark=1';
+                        }
+                    }
+                    catch (e){}
+                <?php } ?>
+                OCA.DrawIO.EditFile(iframe.contentWindow, filePath, originUrl, autosave, isWB, previews);
                 iframe.setAttribute('src', drawIoUrl);
             <?php } ?>
         });
     </script>
-
 </div>

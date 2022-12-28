@@ -13,7 +13,7 @@ OC.L10N.register(
   "No" : "否",
   "Associate XML files with Draw.io?" : "使用 Draw.io 关联 XML文件？",
   "Please note: when you disable the XML association, you need to manually register the MIME type application/x-drawio for the extension \".drawio\"." : "请注意：如果您禁用XML文件关联，您需要手动注册为后缀 '.drawio' 注册MimeType 'application/x-drawio'。",
-  "Kennedy" : "Kennedy",
+  "Default" : "Default",
   "Minimal" : "最简模式",
   "Atlas" : "Atlas",
   "Dark" : "深色模式",
@@ -36,6 +36,7 @@ OC.L10N.register(
   "Activate offline mode in Draw.io?" : "在 Draw.io 中激活离线模式？",
   "When the \"offline mode\" is active, this disables all remote operations and features to protect the users privacy. Draw.io will then also only be in English, even if you set a different language manually." : "当'离线模式'被激活后，为保证用户隐私将禁止所有的远程操作和特性。无论您是否手动设置语言，Draw.io 将仅支持英文。",
   "New Diagram" : "新的图表",
+  "New Whiteboard" : "New Whiteboard",
   "New Diagram.xml" : "新的图表.xml",
   "New Diagram.drawio" : "新的图表.drawio"
 },

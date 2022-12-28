@@ -14,7 +14,7 @@ OC.L10N.register(
   "No" : "Ne",
   "Associate XML files with Draw.io?" : "Asociovat XML soubory s Draw.io?",
   "Please note: when you disable the XML association, you need to manually register the MIME type application/x-drawio for the extension \".drawio\"." : "Upozornění: pokud asociaci s XML vypnete, bude třeba, abyste pro příponu „.drawio“ ručně zaregistrovali MIME typ application/x-drawio.",
-  "Kennedy" : "Kennedy",
+  "Default" : "Default",
   "Minimal" : "Minimální",
   "Atlas" : "Atlas",
   "Dark" : "Tmavý",
