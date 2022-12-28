@@ -22,7 +22,7 @@ class CheckMimeType
         if (file_exists($mappingFile)) {
             $mapping = json_decode(file_get_contents($mappingFile), true);
             if (json_last_error() === JSON_ERROR_NONE) {
-                if (isset($mapping['drawio'])) return true;
+                if (isset($mapping['dwb'])) return true;
             }
         }
 

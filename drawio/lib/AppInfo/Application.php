@@ -13,12 +13,20 @@ namespace OCA\Drawio\AppInfo;
 
 use OCP\AppFramework\App;
 use OCP\Util;
+use OCP\IPreview;
+use OCP\Files\IMimeTypeDetector;
 
 use OCA\Drawio\AppConfig;
 use OCA\Drawio\Controller\DisplayController;
 use OCA\Drawio\Controller\EditorController;
 use OCA\Drawio\Controller\ViewerController;
 use OCA\Drawio\Controller\SettingsController;
+use OCA\Drawio\Preview\DrawioPreview;
+use OCA\Drawio\Listeners\FileDeleteListener;
+
+use OCP\EventDispatcher\IEventDispatcher;
+use OCP\Files\Events\Node\NodeDeletedEvent;
+use OCP\Files\IAppData;
 
 class Application extends App {
 
@@ -103,7 +111,10 @@ class Application extends App {
                 $c->query("Logger"),
                 $this->appConfig,
                 $c->query("IManager"),
-                $c->query("Session")
+                $c->query("Session"),
+                \OC::$server->getLockingProvider(),
+                \OC::$server->get(IVersionManager::class),
+                \OC::$server->get(IAppData::class)
             );
         });
         
@@ -121,6 +132,21 @@ class Application extends App {
                 $c->query("IManager"),
                 $c->query("Session")
             );
-        });        
+        }); 
+        
+        $previewManager = $container->query(IPreview::class);
+        $previewManager->registerProvider(DrawioPreview::getMimeTypeRegex(), function() use ($container) {
+            return $container->query(DrawioPreview::class);
+        });
+
+        $detector = $container->query(IMimeTypeDetector::class);
+        $detector->getAllMappings();
+        $detector->registerType("drawio", "application/x-drawio");
+        $detector->registerType("dwb", "application/x-drawio-wb");
+
+        $server = $container->getServer();
+        /** @var IEventDispatcher $eventDispatcher */
+		$newEventDispatcher = $server->query(IEventDispatcher::class);
+        $newEventDispatcher->addServiceListener(NodeDeletedEvent::class, FileDeleteListener::class);
     }
 }

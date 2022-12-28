@@ -21,8 +21,6 @@ use OCP\IRequest;
 use OCA\Drawio\AppConfig;
 use OCA\Drawio\Migration;
 
-
-
 class SettingsController extends Controller
 {
 
@@ -65,7 +63,9 @@ class SettingsController extends Controller
             "drawioTheme" => $this->config->GetTheme(),
             "drawioLang" => $this->config->GetLang(),
             "drawioAutosave" => $this->config->GetAutosave(),
-            "drawioLibraries" => $this->config->GetLibraries()
+            "drawioLibraries" => $this->config->GetLibraries(),
+            "drawioDarkMode" => $this->config->GetDarkMode(),
+            "drawioPreviews" => $this->config->GetPreviews(),
         ];
         return new TemplateResponse($this->appName, "settings", $data, "blank");
     }
@@ -80,6 +80,8 @@ class SettingsController extends Controller
         $lang = trim($_POST['lang']);
         $autosave = trim($_POST['autosave']);
         $libraries = trim($_POST['libraries']);
+        $darkmode = trim($_POST['darkMode']);
+        $previews = trim($_POST['previews']);
 
         $this->config->SetDrawioUrl($drawio);
         $this->config->SetOfflineMode($offlinemode);
@@ -87,16 +89,19 @@ class SettingsController extends Controller
         $this->config->SetLang($lang);
         $this->config->SetAutosave($autosave);
         $this->config->SetLibraries($libraries);
+        $this->config->SetDarkMode($darkmode);
+        $this->config->SetPreviews($previews);
 
         if (version_compare(implode(".", \OCP\Util::getVersion()), "13", ">=")) {
             $checkmime = new \OCA\Drawio\Migration\CheckMimeType();
             $registered = $checkmime->run();
 
             if ($registered == false) {
-            $mimeTypeLoader = \OC::$server->getMimeTypeLoader();
-            $mime = new \OCA\Drawio\Migration\RegisterMimeType($mimeTypeLoader);
-            $output = new \OC\Migration\SimpleOutput($this->logger, $this->appName);
-            $mime->run($output);
+                $mimeTypeLoader = \OC::$server->getMimeTypeLoader();
+                $updaetJS = new \OC\Core\Command\Maintenance\Mimetype\UpdateJS(\OC::$server->getMimeTypeDetector());
+                $mime = new \OCA\Drawio\Migration\RegisterMimeType($mimeTypeLoader, $updaetJS);
+                $output = new \OC\Migration\SimpleOutput(\OC::$server->get(\Psr\Log\LoggerInterface::class), $this->appName);
+                $mime->run($output);
             }
         }
 
@@ -106,27 +111,10 @@ class SettingsController extends Controller
             "theme" => $this->config->GetTheme(),
             "lang" => $this->config->GetLang(),
             "drawioAutosave" =>$this->config->GetAutosave(),
-            "drawioLibraries" =>$this->config->GetLibraries()
-            ];
-    }
-
-
-    /**
-     * Get supported formats
-     *
-     * @return array
-     *
-     * @NoAdminRequired
-     * @PublicPage
-     * @NoCSRFRequired
-     */
-    public function getsettings()
-    {
-         $data = array();
-         $data['formats'] = $this->config->formats;
-         $data['settings'] = array();
-         $data['settings']['offlineMode'] = $this->config->GetOfflineMode();
-         return $data;
+            "drawioLibraries" =>$this->config->GetLibraries(),
+            "drawioDarkMode" =>$this->config->GetDarkMode(),
+            "drawioPreviews" =>$this->config->GetPreviews()
+        ];
     }
 
 }

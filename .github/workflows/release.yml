@@ -32,3 +32,10 @@ jobs:
       with:
         artifacts: ${{ steps.vars.outputs.zip_file_name }},${{ steps.vars.outputs.tar_file_name }}
         token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Upload App Release
+      run: |
+        sleep 60
+        echo "${{ secrets.NEXTCLOUD_KEY }}" > drawio.key
+        export signature=`openssl dgst -sha512 -sign drawio.key ${{ steps.vars.outputs.tar_file_name }} | openssl base64`
+        export requestJSON="{\"download\":\"https://github.com/jgraph/drawio-nextcloud/releases/download/${GITHUB_REF##*/}/drawio-${GITHUB_REF##*/}.tar.gz\", \"signature\": \"${signature//$'\n'/\\n}\"}"
+        curl -X POST https://apps.nextcloud.com/api/v1/apps/releases -H "Authorization: Token ${{ secrets.NEXTCLOUD_TOKEN }}" -H "Content-Type: application/json" -d "${requestJSON}"
