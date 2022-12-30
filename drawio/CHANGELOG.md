@@ -10,6 +10,8 @@
 - Dropped older Nextcloud versions support (now 20+)
 - **Real-time collaboration**
 
+**NOTE** Requires version 20.7.5 of diagrams.net (draw.io)
+
 ## 1.0.5
 - Fixed v1.0.4 installation issues
 ## 1.0.4
