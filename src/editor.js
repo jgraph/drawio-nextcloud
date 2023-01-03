@@ -159,6 +159,7 @@ import '@nextcloud/dialogs/styles/toast.scss'
 
     OCA.DrawIO.getCurrentUser = function ()
     {
+        OCA.DrawIO.pluginLoaded = true;
         return getCurrentUser();
     }
     
@@ -248,13 +249,36 @@ import '@nextcloud/dialogs/styles/toast.scss'
                         await OCA.DrawIO.savePreview(filePath, imageData);
                         OCA.DrawIO.Cleanup(receiver, filePath);
                     } 
-                    else if (payload.event === 'autosave')
+                    else if (payload.event === 'autosave' || payload.event === 'save')
                     {
-                        // Not used
-                    }
-                    else if (payload.event === 'save')
-                    {
-                        OCA.DrawIO.fileSaved = true;
+                        if (!OCA.DrawIO.pluginLoaded)
+                        {
+                            try
+                            {
+                                var resp = await OCA.DrawIO.saveFile(filePath, payload.xml, currentFile.etag);
+                                currentFile.etag = resp.etag;
+
+                                editWindow.postMessage(JSON.stringify({
+                                    action: 'status',
+                                    message: (payload.event === 'save'? 'Saved' : 'Autosaved') + 
+                                        ' successfully at ' + (new Date()).toLocaleTimeString(),
+                                    modified: false
+                                }), '*');
+                            }
+                            catch (error)
+                            {
+                                console.log(error);
+                                var errMsg = 'Error: ' + (error.response && error.response.data ? 
+                                                error.response.data.message : error.message) + 
+                                                '\nUse Export to save changes';
+                                showError(errMsg, { timeout: 2500 });
+                                editWindow.postMessage(JSON.stringify({
+                                    action: 'status',
+                                    message: errMsg,
+                                    modified: true
+                                }), '*');
+                            }
+                        }
                     }
                     else if (payload.event === 'exit')
                     {
@@ -345,7 +369,7 @@ import '@nextcloud/dialogs/styles/toast.scss'
                             {
                                 OCA.DrawIO.NewFileMode = true; //[workaround] 'loading' file without content, to display 'template' later in 'load' callback event without another filename prompt
                                 editWindow.postMessage(JSON.stringify({
-                                    action: 'load', autosave: 0, title: currentFile.name,
+                                    action: 'load', autosave: autosaveEnabled, title: currentFile.name,
                                     desc: currentFile, disableAutoSave: !autosaveEnabled
                                 }), '*');
                             } 
@@ -354,7 +378,7 @@ import '@nextcloud/dialogs/styles/toast.scss'
                                 OCA.DrawIO.NewFileMode = false;
                                 editWindow.postMessage(JSON.stringify({
                                     action: 'load',
-                                    autosave: 0, title: currentFile.name,
+                                    autosave: autosaveEnabled, title: currentFile.name,
                                     xml: contents,
                                     desc: currentFile, disableAutoSave: !autosaveEnabled
                                 }), '*');
