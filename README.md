@@ -13,7 +13,8 @@ Once installed, you will see an option to create a Draw.io diagram/whiteboard fr
 
 ## Info ##
 - Requires [Nextcloud](https://nextcloud.com) >=20.0.0
-- Requires version 20.8.0+ of diagrams.net (draw.io)
+- Version 20.8.0+ of diagrams.net (draw.io) is recommended.
+- Real-time collaboration only works with the official online version of draw.io (https://embed.diagrams.net)
 - Multi language support (l10n)
 - Inspired by the old Draw.io Integration and OnlyOffice
 - Tested with Chrome 58-96 and Firefox 53-89
@@ -45,7 +46,7 @@ Go to Admin page and change the settings you want:
 
 Click "Save" when you're done.
 
-If you would like to self-host Draw.io, you might want to consider https://github.com/jgraph/docker-drawio (version 20.8.0+).
+If you would like to self-host Draw.io, you might want to consider https://github.com/jgraph/docker-drawio (version 20.8.0+ recommended).
 
 
 ## License ##

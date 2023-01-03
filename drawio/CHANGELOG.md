@@ -1,5 +1,9 @@
 # Change Log
 
+## 2.0.1
+
+- Fixed saving in offline mode and draw.io versions < 20.8.0
+
 ## 2.0.0
 
 - Almost a complete rewrite of the app to reduce deprecated code usage
