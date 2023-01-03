@@ -4,7 +4,7 @@ This app allows users to create and edit diagrams in [Nextcloud](https://nextclo
 
 App Store link: https://apps.nextcloud.com/apps/drawio
 
-Once installed, you will see an option to create a Draw.io diagram from the 'create file' menu.  Note: this app does not produce an app icon.
+Once installed, you will see an option to create a Draw.io diagram/whiteboard from the 'create file' menu.  Note: this app does not produce an app icon.
 
 ![](screenshots/drawio_add.png)
 
@@ -13,6 +13,7 @@ Once installed, you will see an option to create a Draw.io diagram from the 'cre
 
 ## Info ##
 - Requires [Nextcloud](https://nextcloud.com) >=20.0.0
+- Requires version 20.8.0+ of diagrams.net (draw.io)
 - Multi language support (l10n)
 - Inspired by the old Draw.io Integration and OnlyOffice
 - Tested with Chrome 58-96 and Firefox 53-89
@@ -44,29 +45,12 @@ Go to Admin page and change the settings you want:
 
 Click "Save" when you're done.
 
-If you would like to self-host Draw.io, you might want to consider https://github.com/jgraph/docker-drawio from the creators of Draw.io (now [diagrams.net](https://www.diagrams.net/)).
+If you would like to self-host Draw.io, you might want to consider https://github.com/jgraph/docker-drawio (version 20.8.0+).
 
 
 ## License ##
 - Released under the Affero General Public License version 3 or later.
 
 ## Contributors ##
-- [pawelrojek](https://github.com/pawelrojek)
-- [geiseri](https://github.com/geiseri)
-- [arnowelzel](https://github.com/arnowelzel)
-- [githubkoma](https://github.com/githubkoma)
-- [schizophrene](https://github.com/schizophrene)
-- [xlyz](https://github.com/xlyz)
-- [cuthulino](https://github.com/cuthulino)
-- [tavinus](https://github.com/tavinus)
-- [LEDfan](https://github.com/LEDfan)
-- [mario](https://github.com/mario)
-- [ColdSphinX](https://github.com/ColdSphinX)
-- [acidhunter](https://github.com/acidhunter)
-- [janLo](https://github.com/janLo)
-- [Irillit](https://github.com/Irillit/)
-- [Luckyvb](https://github.com/Luckyvb)
-- [teemue] (https://github.com/teemue)
-- [p-bo] (https://github.com/p-bo)
 
-[View all](https://github.com/jgraph/drawio-nextcloud/graphs/contributors)
+[Contributors](https://github.com/jgraph/drawio-nextcloud/graphs/contributors)
