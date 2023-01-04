@@ -1,5 +1,10 @@
 # Change Log
 
+## 2.0.2
+
+- Fixed preview bug (issue #14 and #16)
+- Added draw.io own section to the admin settings (issue #15)
+
 ## 2.0.1
 
 - Fixed saving in offline mode and draw.io versions < 20.8.0

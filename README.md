@@ -32,7 +32,7 @@ Once installed, you will see an option to create a Draw.io diagram/whiteboard fr
 ## Installation ##
 1. Copy Nextcloud draw.io integration app ("drawio" directory) to your Nextcloud server into the /apps/ directory
 2. Go to "Apps" > "+ Apps" > "Not Enabled" and _Enable_ the **Draw.io** application
-3. Go to "Admin settings > Additional settings" ( /index.php/settings/admin/additional ) and click the "Save" button to register MIME types.
+3. Go to "Admin settings > Draw.io" ( /index.php/settings/admin/drawio ) and click the "Save" button to register MIME types.
 
 
 ## Known Issues ##

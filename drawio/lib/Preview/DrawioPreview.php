@@ -65,7 +65,7 @@ class DrawioPreview extends Provider
     public function isAvailable(FileInfo $file): bool
     {
         $prevFile = $this->getPreviewFile($file->getId());
-        return ($this->appConfig->getPreviews() === 'yes') && $prevFile !== false &&
+        return ($this->appConfig->GetPreviews() === 'yes') && $prevFile !== false &&
             $prevFile->getMtime() >= $file->getMtime();
     }
 
@@ -73,7 +73,7 @@ class DrawioPreview extends Provider
     {
         $thumbnail = $this->getPreviewFile($view->getFileInfo($path)->getId());
 
-        if ($this->appConfig->getPreviews() === 'no' || $thumbnail === false) {
+        if ($this->appConfig->GetPreviews() === 'no' || $thumbnail === false) {
             return false;
         }
 

@@ -32,7 +32,7 @@ class Admin implements ISettings {
 
     public function getSection()
     {
-        return "additional";
+        return "drawio";
     }
 
     public function getPriority()
