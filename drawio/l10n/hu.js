@@ -10,11 +10,12 @@ OC.L10N.register(
   "File created" : "A fájl létrehozva",
   "Diagram" : "Diagram",
   "New Diagram" : "Új diagram",
+  "New Whiteboard" : "Új rajztábla",
   "Yes" : "Igen",
   "No" : "Nem",
   "Associate XML files with Draw.io?" : "Társítja az XML-fájlokat a Draw.io-val?",
   "Please note: when you disable the XML association, you need to manually register the MIME type application/x-drawio for the extension \".drawio\"." : "Ne feledje: ha letiltja az XML-társítást, akkor kézzel kell regisztrálnia az „application/x-drawio” MIME-típust a „.drawio” kiterjesztéshez.",
-  "Kennedy" : "Kennedy",
+  "Default" : "Alapértelmezett",
   "Minimal" : "Minimalista",
   "Atlas" : "Atlasz",
   "Dark" : "Sötét",
@@ -36,6 +37,9 @@ OC.L10N.register(
   "You do not have enough permissions to view the file" : "Nincs elegendő jogosultsága megtekinteni a fájlt",
   "Activate offline mode in Draw.io?" : "Aktiválja a kapcsolat nélküli módot a Draw.io-ban?",
   "When the \"offline mode\" is active, this disables all remote operations and features to protect the users privacy. Draw.io will then also only be in English, even if you set a different language manually." : "Ha a „kapcsolat nélküli mód” aktív, akkor ez letiltja az összes távoli műveletet és funkciót a felhasználók adatainak védelme érdekében. A Draw.io ezután is csak angol nyelven fog működni, még akkor is, ha kézzel más nyelvet állít be.",
-  "Activate autosave?" : "Aktiválja az automatikus mentést?"
+  "Activate autosave?" : "Aktiválja az automatikus mentést?",
+  "Enable libraries?" : "Engedélyezi a programkönyvtárakat?",
+  "Enable diagram previews?" : "Engedélyezi a diagram-előnézeteket?",
+  "Note: Disable previews to save storage space used to store diagram preview images" : "Megjegyzés: tiltsa le az előnézeteket, hogy megtakarítsa a diagram előnézeti képeinek tárolásához használt tárhelyet."
 },
 "nplurals=2; plural=(n != 1);");
