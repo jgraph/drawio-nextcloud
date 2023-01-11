@@ -37,9 +37,11 @@ class FileDeleteListener implements IEventListener {
         try 
         {
             $prevFolder = $this->appData->getFolder('previews');
-            $prevFolder->getFile($node->getId() . '.png')->delete();
-            $this->logger->error('File preview deleted for: ' . $node->getPath(),
-                    ['app' => 'drawio']);
+            
+            if ($prevFolder->fileExists($node->getId() . '.png')) 
+            { 
+                $prevFolder->getFile($node->getId() . '.png')->delete();
+            }
         }
         catch (\Exception $e)
         {

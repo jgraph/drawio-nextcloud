@@ -14,7 +14,7 @@ Once installed, you will see an option to create a Draw.io diagram/whiteboard fr
 ## Info ##
 - Requires [Nextcloud](https://nextcloud.com) >=20.0.0
 - Version 20.8.0+ of diagrams.net (draw.io) is recommended.
-- Real-time collaboration only works with the official online version of draw.io (https://embed.diagrams.net)
+- Real-time collaboration only works with the official online version of draw.io (https://embed.diagrams.net) and Autosave enabled in draw.io settings (/index.php/settings/admin/drawio).
 - Multi language support (l10n)
 - Inspired by the old Draw.io Integration and OnlyOffice
 - Tested with Chrome 58-96 and Firefox 53-89
@@ -34,6 +34,9 @@ Once installed, you will see an option to create a Draw.io diagram/whiteboard fr
 2. Go to "Apps" > "+ Apps" > "Not Enabled" and _Enable_ the **Draw.io** application
 3. Go to "Admin settings > Draw.io" ( /index.php/settings/admin/drawio ) and click the "Save" button to register MIME types.
 
+## Real-time collaboration ##
+
+Realtime collaboration is only possible with **Autosave enabled** and using the official diagrams.net server (https://embed.diagrams.net). Self hosted servers won't work.
 
 ## Known Issues ##
 - If you're experiencing problems while updating your Nextcloud intance, try to disable/delete Draw.io integration app (/apps/drawio/) and then install/copy it again after the NC update is completed.

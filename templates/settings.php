@@ -7,6 +7,7 @@
 
     <p class="drawio-header"><?php p($l->t("Draw.io URL")) ?></p>
     <input id="drawioUrl" value="<?php p($_["drawioUrl"]) ?>" placeholder="https://<drawio-url>" type="text">
+    <?php p($l->t("Note: To enable realtime collaboration, leave blank or enter (https://embed.diagrams.net)")) ?>
 
     <p class="drawio-header">
       <label for='theme'><?php p($l->t("Theme:")) ?></label>
@@ -45,6 +46,7 @@
         <option value="yes"<?php if ($_["drawioAutosave"] === "yes") echo ' selected'; ?>><?php p($l->t("Yes")) ?></option>
         <option value="no"<?php if ($_["drawioAutosave"] === "no") echo ' selected'; ?>><?php p($l->t("No")) ?></option>
       </select>
+      <?php p($l->t("Note: To enable realtime collaboration, autosave must be active.")) ?>
     </p>
 
     <p class="drawio-header">

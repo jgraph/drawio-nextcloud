@@ -9,7 +9,7 @@ module.exports = {
     },
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, 'drawio/js')
+        path: path.resolve(__dirname, 'js')
     },
     module: {
         rules: [
