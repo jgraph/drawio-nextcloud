@@ -28,7 +28,7 @@ $(function () {
         var f_drawioUrl = $('#drawioUrl').val().trim();
         var f_offlineMode = $('#offlineMode option:selected').val();
         var f_theme = $('#theme option:selected').val();
-        var f_lang = $('#lang').val().trim();
+        var f_lang = $('#lang').val();
         var f_autosave = $('#drawioAutosave option:selected').val();
         var f_libraries = $('#drawioLibraries option:selected').val();
         var f_darkMode = $('#darkMode option:selected').val();
@@ -67,9 +67,72 @@ $(function () {
         }
     });
 
-    $('#drawioUrl, #lang').keypress(function (e)
+    var mxLanguageMap =
     {
-        var code = e.keyCode || e.which;
-        if (code === 13) $('#drawioSave').click();
-    });
+        'id' : 'Bahasa Indonesia',
+        'ms' : 'Bahasa Melayu',
+        'bs' : 'Bosanski',
+        'bg' : 'Bulgarian',
+        'ca' : 'Català',
+        'cs' : 'Čeština',
+        'da' : 'Dansk',
+        'de' : 'Deutsch',
+        'et' : 'Eesti',
+        'en' : 'English',
+        'es' : 'Español',
+        'eu' : 'Euskara',
+        'fil' : 'Filipino',
+        'fr' : 'Français',
+        'gl' : 'Galego',
+        'it' : 'Italiano',
+        'hu' : 'Magyar',
+        'lt' : 'Lietuvių',
+        'lv' : 'Latviešu',
+        'nl' : 'Nederlands',
+        'no' : 'Norsk',
+        'pl' : 'Polski',
+        'pt-br' : 'Português (Brasil)',
+        'pt' : 'Português (Portugal)',
+        'ro' : 'Română',
+        'fi' : 'Suomi',
+        'sv' : 'Svenska',
+        'vi' : 'Tiếng Việt',
+        'tr' : 'Türkçe',
+        'el' : 'Ελληνικά',
+        'ru' : 'Русский',
+        'sr' : 'Српски',
+        'uk' : 'Українська',
+        'he' : 'עברית',
+        'ar' : 'العربية',
+        'fa' : 'فارسی',
+        'th' : 'ไทย',
+        'ko' : '한국어',
+        'ja' : '日本語',
+        'zh' : '简体中文',
+        'zh-tw' : '繁體中文'
+    };
+
+    var curLang = $('#curLang').val();
+    var langSelect = document.getElementById('lang');
+
+    function addLang(key, name)
+    {
+        var option = document.createElement('option');
+        option.setAttribute('value', key);
+        option.innerHTML = name;
+
+        if (curLang == key)
+        {
+            option.setAttribute('selected', 'selected');
+        }
+        
+        langSelect.appendChild(option);
+    }
+
+    addLang('auto', t(OCA.DrawIO.AppName, 'Auto'));
+
+    for (var key in mxLanguageMap)
+    {
+        addLang(key, mxLanguageMap[key]);
+    }
 });

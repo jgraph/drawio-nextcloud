@@ -27,7 +27,8 @@
 
     <p class="drawio-header">
       <label for='lang'><?php p($l->t("Language")) ?></label>
-      <input id="lang" value="<?php p($_["drawioLang"]) ?>" placeholder="<?php p($l->t("auto or en,fr,de,es,ru,pl,zh,jp...")) ?>" type="text">
+      <select name="lang" id="lang"></select>
+      <input type="hidden" id="curLang" value="<?php p($_["drawioLang"]) ?>">
     </p>
 
     <p class="drawio-header">
