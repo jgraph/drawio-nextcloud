@@ -18,13 +18,13 @@ jobs:
       with:
         type: 'zip'
         filename: ${{ steps.vars.outputs.zip_file_name }}
-        exclusions: '*.git* /*node_modules/* .tx/* screenshots/* src/* package* webpack.config.js'
+        exclusions: '*.git* .tx/* screenshots/* src/* package* webpack.config.js'
     - name: Archive Release (tar.gz)
       uses: thedoctor0/zip-release@main
       with:
         type: 'tar'
         filename: ${{ steps.vars.outputs.tar_file_name }}
-        exclusions: '*.git* /*node_modules/* .tx/* screenshots/* src/* package* webpack.config.js'
+        exclusions: '*.git* .tx/* screenshots/* src/* package* webpack.config.js'
     - name: Upload Release
       uses: ncipollo/release-action@v1
       with:

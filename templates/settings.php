@@ -12,7 +12,8 @@
     <p class="drawio-header">
       <label for='theme'><?php p($l->t("Theme:")) ?></label>
       <select id="theme">
-        <option value="kennedy"<?php if ($_["drawioTheme"] === "kennedy") echo ' selected'; ?>><?php p($l->t("Default")) ?></option>
+        <option value="kennedy"<?php if ($_["drawioTheme"] === "kennedy") echo ' selected'; ?>><?php p($l->t("Classic")) ?></option>
+        <option value="simple"<?php if ($_["drawioTheme"] === "simple") echo ' selected'; ?>><?php p($l->t("Modern")) ?></option>
         <option value="min"<?php if ($_["drawioTheme"] === "min") echo ' selected'; ?>><?php p($l->t("Minimal")) ?></option>
         <option value="atlas"<?php if ($_["drawioTheme"] === "atlas") echo ' selected'; ?>><?php p($l->t("Atlas")) ?></option>
       </select>
