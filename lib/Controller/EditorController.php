@@ -111,7 +111,6 @@ class EditorController extends Controller
                                 IManager $shareManager,
                                 ISession $session,
                                 ILockingProvider $lockingProvider,
-                                IVersionManager $versionManager,
                                 IAppData $appData
                                 )
     {
@@ -126,8 +125,16 @@ class EditorController extends Controller
         $this->shareManager = $shareManager;
         $this->session = $session;
         $this->lockingProvider = $lockingProvider;
-        $this->versionManager = $versionManager;
         $this->appData = $appData;
+
+        try
+        {
+            $this->versionManager = \OC::$server->get(IVersionManager::class);
+        }
+        catch (\Exception $e)
+        {
+            $this->logger->info('VersionManager not found, Versions plugin may not be enabled.', ['app' => $this->appName]);
+        }
     }
 
     /**
@@ -140,6 +147,11 @@ class EditorController extends Controller
 	public function loadFileVersion($path, $revId) 
     {
         try {
+            if (!isset($this->versionManager))
+            {
+                return new DataResponse(['message' => $this->trans->t('Versions plugin is not enabled')], Http::STATUS_BAD_REQUEST);
+            }
+
 			if (!empty($path) && !empty($revId))
             {
                 $user = $this->userSession->getUser();
@@ -176,6 +188,11 @@ class EditorController extends Controller
 	public function getFileRevisions($path) 
     {
         try {
+            if (!isset($this->versionManager))
+            {
+                return new DataResponse(['message' => $this->trans->t('Versions plugin is not enabled')], Http::STATUS_BAD_REQUEST);
+            }
+
 			if (!empty($path)) 
             {
                 $user = $this->userSession->getUser();
@@ -260,7 +277,8 @@ class EditorController extends Controller
                             'owner' => $file->getOwner()->getUID(),
                             'etag' => $file->getEtag(),
                             'mtime' => $file->getMTime(),
-                            'created' => $file->getCreationTime() + $file->getUploadTime()
+                            'created' => $file->getCreationTime() + $file->getUploadTime(),
+                            'versionsEnabled' => isset($this->versionManager)
 						],
 						Http::STATUS_OK
 					);

@@ -113,7 +113,6 @@ class Application extends App {
                 $c->query("IManager"),
                 $c->query("Session"),
                 \OC::$server->getLockingProvider(),
-                \OC::$server->get(IVersionManager::class),
                 \OC::$server->get(IAppData::class)
             );
         });
