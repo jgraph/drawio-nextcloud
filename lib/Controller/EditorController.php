@@ -12,8 +12,10 @@
 namespace OCA\Drawio\Controller;
 
 use OCP\AppFramework\Http\TemplateResponse;
+use OCP\AppFramework\Http\Template\PublicTemplateResponse;
 use OCP\AppFramework\Http\DataDownloadResponse;
 use OCP\AppFramework\Http\JSONResponse;
+use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\ContentSecurityPolicy;
 use OCP\AppFramework\Controller;
 use OCP\AutoloadNotAllowedException;
@@ -53,6 +55,7 @@ use OCP\Files\ForbiddenException;
 use OCP\Files\GenericFileException;
 use OCP\Files\NotFoundException;
 use OCP\Lock\LockedException;
+use OCP\Federation\Exceptions\BadRequestException;
 
 
 class EditorController extends Controller
@@ -141,10 +144,11 @@ class EditorController extends Controller
      *
      * @NoAdminRequired
      *
-     * @param string $path
+     * @param string $fileId
+     * @param string $revId
      * @return DataResponse
      */
-	public function loadFileVersion($path, $revId) 
+	public function loadFileVersion($fileId, $revId) 
     {
         try {
             if (!isset($this->versionManager))
@@ -152,13 +156,11 @@ class EditorController extends Controller
                 return new DataResponse(['message' => $this->trans->t('Versions plugin is not enabled')], Http::STATUS_BAD_REQUEST);
             }
 
-			if (!empty($path) && !empty($revId))
+			if (!empty($fileId) && !empty($revId))
             {
                 $user = $this->userSession->getUser();
-                $userId = $user->getUID();
-                $userFolder = $this->root->getUserFolder($userId);
 				/** @var File $file */
-				$file = $userFolder->get($path);
+                $file = $this->getFileById($fileId);
 
 				if ($file instanceof Folder) 
                 {
@@ -169,10 +171,10 @@ class EditorController extends Controller
                     Http::STATUS_OK
                 );
 			} else {
-				return new DataResponse(['message' => (string)$this->l->t('Invalid file path/revId supplied.')], Http::STATUS_BAD_REQUEST);
+				return new DataResponse(['message' => (string)$this->trans->t('Invalid fileId/revId supplied.')], Http::STATUS_BAD_REQUEST);
 			}
 		} catch (\Exception $e) {
-            $this->logger->logException($e, ["message" => "Can't load file version: $path, $revId", "app" => $this->appName]);
+            $this->logger->logException($e, ["message" => "Can't load file version: $fileId, $revId", "app" => $this->appName]);
 			$message = (string)$this->trans->t('An internal server error occurred.');
 			return new DataResponse(['message' => $message], Http::STATUS_INTERNAL_SERVER_ERROR);
 		}
@@ -182,10 +184,10 @@ class EditorController extends Controller
      *
      * @NoAdminRequired
      *
-     * @param string $path
+     * @param string $fileId
      * @return DataResponse
      */
-	public function getFileRevisions($path) 
+	public function getFileRevisions($fileId) 
     {
         try {
             if (!isset($this->versionManager))
@@ -193,13 +195,11 @@ class EditorController extends Controller
                 return new DataResponse(['message' => $this->trans->t('Versions plugin is not enabled')], Http::STATUS_BAD_REQUEST);
             }
 
-			if (!empty($path)) 
+			if (!empty($fileId)) 
             {
                 $user = $this->userSession->getUser();
-                $userId = $user->getUID();
-                $userFolder = $this->root->getUserFolder($userId);
 				/** @var File $file */
-				$file = $userFolder->get($path);
+                $file = $this->getFileById($fileId);
 
 				if ($file instanceof Folder) 
                 {
@@ -218,10 +218,10 @@ class EditorController extends Controller
                     Http::STATUS_OK
                 );
 			} else {
-				return new DataResponse(['message' => (string)$this->l->t('Invalid file path supplied.')], Http::STATUS_BAD_REQUEST);
+				return new DataResponse(['message' => (string)$this->trans->t('Invalid fileId supplied.')], Http::STATUS_BAD_REQUEST);
 			}
 		} catch (\Exception $e) {
-            $this->logger->logException($e, ["message" => "Can't get file versions: $path", "app" => $this->appName]);
+            $this->logger->logException($e, ["message" => "Can't get file versions: $fileId", "app" => $this->appName]);
 			$message = (string)$this->trans->t('An internal server error occurred.');
 			return new DataResponse(['message' => $message], Http::STATUS_INTERNAL_SERVER_ERROR);
 		}
@@ -230,65 +230,72 @@ class EditorController extends Controller
     /**
      *
      * @NoAdminRequired
+     * @PublicPage
      *
-     * @param string $path
+     * @param string $fileId
+     * @param string $shareToken
      * @return DataResponse
      */
-	public function load($path) {
+	public function load($fileId, $shareToken) 
+    {
         $locked = false;
-        $fileId = null;
 
-		try {
-			if (!empty($path)) 
+		try 
+        {
+            list ($file, $writeable, $relativePath) = $this->getFile($fileId, $shareToken);
+            
+            if ($file instanceof Folder) 
             {
-                $userId = $this->userSession->getUser()->getUID();
-                $userFolder = $this->root->getUserFolder($userId);
-				/** @var File $file */
-				$file = $userFolder->get($path);
+                return new DataResponse(['message' => $this->trans->t('You can not open a folder')], Http::STATUS_BAD_REQUEST);
+            }
 
-				if ($file instanceof Folder) 
-                {
-					return new DataResponse(['message' => $this->trans->t('You can not open a folder')], Http::STATUS_BAD_REQUEST);
-				}
+            // default of 100MB. TODO Review this
+            $maxSize = 104857600;
+            if ($file->getSize() > $maxSize) 
+            {
+                return new DataResponse(['message' => (string)$this->trans->t('This file is too big to be opened. Please download the file instead.')], Http::STATUS_BAD_REQUEST);
+            }
 
-				// default of 100MB. TODO Review this
-				$maxSize = 104857600;
-				if ($file->getSize() > $maxSize) 
-                {
-					return new DataResponse(['message' => (string)$this->trans->t('This file is too big to be opened. Please download the file instead.')], Http::STATUS_BAD_REQUEST);
-				}
+            $fileId = $file->getId();
+            $this->lockingProvider->acquireLock('drawio_'.$fileId, ILockingProvider::LOCK_SHARED);
+            $locked = true;
+            $fileContents = $file->getContent();
 
-                $fileId = $file->getId();
-                $this->lockingProvider->acquireLock('drawio_'.$fileId, ILockingProvider::LOCK_SHARED);
-                $locked = true;
-				$fileContents = $file->getContent();
-
-				if ($fileContents !== false) 
-                {
-					return new DataResponse(
-						[
-							'xml' => $fileContents,
-                            'id' => $fileId,
-                            'size' => $file->getSize(),
-							'writeable' => $file->isUpdateable(),
-							'mime' => $file->getMimeType(),
-                            'path' => $path,
-                            'name' => $file->getName(),
-                            'owner' => $file->getOwner()->getUID(),
-                            'etag' => $file->getEtag(),
-                            'mtime' => $file->getMTime(),
-                            'created' => $file->getCreationTime() + $file->getUploadTime(),
-                            'versionsEnabled' => isset($this->versionManager)
-						],
-						Http::STATUS_OK
-					);
-				} else {
-					return new DataResponse(['message' => (string)$this->trans->t('Cannot read the file.')], Http::STATUS_FORBIDDEN);
-				}
-			} else {
-				return new DataResponse(['message' => (string)$this->l->t('Invalid file path supplied.')], Http::STATUS_BAD_REQUEST);
-			}
-
+            if ($fileContents !== false) 
+            {
+                return new DataResponse(
+                    [
+                        'xml' => $fileContents,
+                        'id' => $fileId,
+                        'size' => $file->getSize(),
+                        'writeable' => $file->isUpdateable(),
+                        'mime' => $file->getMimeType(),
+                        'path' => $relativePath,
+                        'name' => $file->getName(),
+                        'owner' => $file->getOwner()->getUID(),
+                        'etag' => $file->getEtag(),
+                        'mtime' => $file->getMTime(),
+                        'created' => $file->getCreationTime() + $file->getUploadTime(),
+                        'shareToken' => $shareToken,
+                        'versionsEnabled' => empty($shareToken) && isset($this->versionManager),
+                        'ver' => 2,
+                        'instanceId' => \OC_Util::getInstanceId()
+                    ],
+                    Http::STATUS_OK
+                );
+            }
+            else
+            {
+                return new DataResponse(['message' => (string)$this->trans->t('Cannot read the file.')], Http::STATUS_FORBIDDEN);
+            }
+        }
+        catch (BadRequestException $e)
+        {
+            return new DataResponse(['message' => (string)$this->trans->t('Invalid fileId/shareToken supplied.')], Http::STATUS_BAD_REQUEST);
+        }
+        catch (NotFoundException $e)
+        {
+            return new DataResponse(['message' => $this->trans->t('File not found.')], Http::STATUS_NOT_FOUND);
 		} catch (LockedException $e) {
 			$message = (string) $this->trans->t('The file is locked.');
 			return new DataResponse(['message' => $message], Http::STATUS_CONFLICT);
@@ -298,6 +305,7 @@ class EditorController extends Controller
 			$message = (string)$e->getHint();
 			return new DataResponse(['message' => $message], Http::STATUS_INTERNAL_SERVER_ERROR);
 		} catch (\Exception $e) {
+            $this->logger->logException($e, ["message" => "Can't load file: $fileId , $shareToken", "app" => $this->appName]);
 			$message = (string)$this->trans->t('An internal server error occurred.');
 			return new DataResponse(['message' => $message], Http::STATUS_INTERNAL_SERVER_ERROR);
 		}
@@ -313,42 +321,50 @@ class EditorController extends Controller
     /**
      *
      * @NoAdminRequired
+     * @PublicPage
      *
-     * @param string $path
+     * @param string $fileId
+     * @param string $shareToken
      * @return DataResponse
      */
-	public function getFileInfo($path) {
-		try {
-			if (!empty($path)) {
-                $userId = $this->userSession->getUser()->getUID();
-                $userFolder = $this->root->getUserFolder($userId);
-				/** @var File $file */
-				$file = $userFolder->get($path);
+	public function getFileInfo($fileId, $shareToken) 
+    {
+		try 
+        {
+            list ($file, $writeable, $relativePath) = $this->getFile($fileId, $shareToken);
 
-				if ($file instanceof Folder) {
-					return new DataResponse(['message' => $this->trans->t('You can not open a folder')], Http::STATUS_BAD_REQUEST);
-				}
+            if ($file instanceof Folder) {
+                return new DataResponse(['message' => $this->trans->t('You can not open a folder')], Http::STATUS_BAD_REQUEST);
+            }
 
-                return new DataResponse(
-                    [
-                        'id' => $file->getId(),
-                        'size' => $file->getSize(),
-                        'writeable' => $file->isUpdateable(),
-                        'mime' => $file->getMimeType(),
-                        'path' => $path,
-                        'name' => $file->getName(),
-                        'owner' => $file->getOwner()->getUID(),
-                        'etag' => $file->getEtag(),
-                        'mtime' => $file->getMTime(),
-                        'created' => $file->getCreationTime() + $file->getUploadTime()
-                    ],
-                    Http::STATUS_OK
-                );
-			} else {
-				return new DataResponse(['message' => (string)$this->l->t('Invalid file path supplied.')], Http::STATUS_BAD_REQUEST);
-			}
-
-		} catch (LockedException $e) {
+            return new DataResponse(
+                [
+                    'id' => $file->getId(),
+                    'size' => $file->getSize(),
+                    'writeable' => $writeable,
+                    'mime' => $file->getMimeType(),
+                    'path' => $relativePath,
+                    'name' => $file->getName(),
+                    'owner' => $file->getOwner()->getUID(),
+                    'etag' => $file->getEtag(),
+                    'mtime' => $file->getMTime(),
+                    'created' => $file->getCreationTime() + $file->getUploadTime(),
+                    'shareToken' => $shareToken,
+                    'versionsEnabled' => empty($shareToken) && isset($this->versionManager),
+                    'ver' => 2,
+                    'instanceId' => \OC_Util::getInstanceId()
+                ],
+                Http::STATUS_OK
+            );
+        }
+        catch (BadRequestException $e)
+        {
+            return new DataResponse(['message' => (string)$this->trans->t('Invalid fileId/shareToken supplied.')], Http::STATUS_BAD_REQUEST);
+        }
+        catch (NotFoundException $e)
+        {
+            return new DataResponse(['message' => $this->trans->t('File not found.')], Http::STATUS_NOT_FOUND);
+        } catch (LockedException $e) {
 			$message = (string) $this->trans->t('The file is locked.');
 			return new DataResponse(['message' => $message], Http::STATUS_CONFLICT);
 		} catch (ForbiddenException $e) {
@@ -357,6 +373,7 @@ class EditorController extends Controller
 			$message = (string)$e->getHint();
 			return new DataResponse(['message' => $message], Http::STATUS_INTERNAL_SERVER_ERROR);
 		} catch (\Exception $e) {
+            $this->logger->logException($e, ["message" => "Can't get file info: $fileId , $shareToken", "app" => $this->appName]);
 			$message = (string)$this->trans->t('An internal server error occurred.');
 			return new DataResponse(['message' => $message], Http::STATUS_INTERNAL_SERVER_ERROR);
 		}
@@ -365,24 +382,27 @@ class EditorController extends Controller
     /**
      *
      * @NoAdminRequired
+     * @PublicPage
      *
-     * @param string $path
+     * @param string $fileId
+     * @param string $shareToken
      * @param string $fileContents
+     * @param string $etag
      * @return DataResponse
      */
-	public function save($path, $fileContents, $etag) {
-		try {
-			if (!empty($path) && !empty($fileContents) && !empty($etag)) {
-                $userId = $this->userSession->getUser()->getUID();
-                $userFolder = $this->root->getUserFolder($userId);
-				/** @var File $file */
-				$file = $userFolder->get($path);
+	public function save($fileId, $shareToken, $fileContents, $etag) 
+    {
+		try
+        {
+			if (!empty($fileContents) && !empty($etag))
+            {
+                list ($file, $writeable) = $this->getFile($fileId, $shareToken);
 
 				if ($file instanceof Folder) {
 					return new DataResponse(['message' => $this->trans->t('You can not write to a folder')], Http::STATUS_BAD_REQUEST);
 				}
 			
-				if($file->isUpdateable()) 
+				if($writeable) 
                 {
                     $locked = false;
                     $fileId = $file->getId();
@@ -431,14 +451,11 @@ class EditorController extends Controller
 					return new DataResponse(['etag' => $newEtag, 'size' => $newSize, 'mtime' => $newMtime], Http::STATUS_OK);
 				} else {
 					// Not writeable!
-					$this->logger->error('User does not have permission to write to file: ' . $path,
+					$this->logger->error('User does not have permission to write to file: ' . $fileId . ', ' . $shareToken,
 						['app' => $this->appName]);
 					return new DataResponse([ 'message' => $this->trans->t('Insufficient permissions')],
 						Http::STATUS_FORBIDDEN);
 				}
-			} else if (!empty($path)) {
-				$this->logger->error('No file path supplied');
-				return new DataResponse(['message' => $this->trans->t('File path not supplied')], Http::STATUS_BAD_REQUEST);
 			} else if (!empty($fileContents)) {
 				$this->logger->error('No file content supplied');
 				return new DataResponse(['message' => $this->trans->t('File content not supplied')], Http::STATUS_BAD_REQUEST);
@@ -446,14 +463,22 @@ class EditorController extends Controller
 				$this->logger->error('No file etag supplied', ['app' => $this->appName]);
 				return new DataResponse(['message' => $this->trans->t('File etag not supplied')], Http::STATUS_BAD_REQUEST);
 			}
-		} catch (HintException $e) {
+		}
+        catch (BadRequestException $e)
+        {
+            return new DataResponse(['message' => (string)$this->trans->t('Invalid fileId/shareToken supplied.')], Http::STATUS_BAD_REQUEST);
+        }
+        catch (NotFoundException $e)
+        {
+            return new DataResponse(['message' => $this->trans->t('File not found.')], Http::STATUS_NOT_FOUND);
+		}
+        catch (HintException $e)
+        {
 			$message = (string)$e->getHint();
 			return new DataResponse(['message' => $message], Http::STATUS_INTERNAL_SERVER_ERROR);
 		} catch (\Exception $e) {
-            $this->logger->logException($e, ["message" => "Can't save file: $path", "app" => $this->appName]);
-            //$this->logger->error("Download Not permitted: $fileId " . $e->getMessage(), array("app" => $this->appName));
+            $this->logger->logException($e, ["message" => "Can't save file: $fileId , $shareToken", "app" => $this->appName]);
 			$message = (string)$this->trans->t('An internal server error occurred.');
-			//$message = $path;
 			return new DataResponse(['message' => $message], Http::STATUS_INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -461,17 +486,21 @@ class EditorController extends Controller
     /**
      * 
      * @NoAdminRequired
+     * @PublicPage
      *
-     * @param string $path
+     * @param string $fileId
+     * @param string $shareToken
      * @param string $previewContents
      * @return DataResponse
      */
-    public function savePreview($path, $previewContents) 
+    public function savePreview($fileId, $shareToken, $previewContents) 
     {
-        try {
-			if (!empty($path) && !empty($previewContents)) 
+        try
+        {
+			if (!empty($previewContents)) 
             {
-                $this->logger->debug("Saving preview for file: $path", array("app" => $this->appName));
+                list ($file, $writeable) = $this->getFile($fileId, $shareToken);
+                $this->logger->debug("Saving preview for file: $fileId , $shareToken", array("app" => $this->appName));
 
                 $prevFolder = null;
 
@@ -484,12 +513,8 @@ class EditorController extends Controller
                     $prevFolder = $this->appData->newFolder('previews');
                 }
 
-                $userId = $this->userSession->getUser()->getUID();
-                $userFolder = $this->root->getUserFolder($userId);
-                /** @var File $file */
-                $file = $userFolder->get($path);
-
-                if ($file instanceof Folder || !$file->isUpdateable()) {
+                if ($file instanceof Folder || !$writeable) 
+                {
                     return new DataResponse(['message' => $this->trans->t('You can not write to this path')], Http::STATUS_FORBIDDEN);
                 }
 
@@ -505,9 +530,8 @@ class EditorController extends Controller
         }
         catch (\Exception $e) 
         {
-            $this->logger->logException($e, ["message" => "Can't save preview for file: $path", "app" => $this->appName]);
+            $this->logger->logException($e, ["message" => "Can't save preview for file: $fileId , $shareToken", "app" => $this->appName]);
 			$message = (string)$this->trans->t('An internal server error occurred.');
-			//$message = $path;
 			return new DataResponse(['message' => $message], Http::STATUS_INTERNAL_SERVER_ERROR);
 		}
     }
@@ -515,63 +539,57 @@ class EditorController extends Controller
     /**
      * @NoAdminRequired
      */
-    public function create($name, $dir, $shareToken = NULL)
+    public function create($name, $dir)
     {
-       //[todo] shareToken support for new files
-       //if (empty($shareToken)) {
-       $userId = $this->userSession->getUser()->getUID();
-       $userFolder = $this->root->getUserFolder($userId);
-       //} else { .. }
+        $userId = $this->userSession->getUser()->getUID();
+        $userFolder = $this->root->getUserFolder($userId);
+        $folder = $userFolder->get($dir);
 
+        if ($folder === NULL)
+        {
+            $this->logger->info("Folder for file creation was not found: " . $dir, array("app" => $this->appName));
+            return ["error" => $this->trans->t("The required folder was not found")];
+        }
 
-       $folder = $userFolder->get($dir);
+        if (!$folder->isCreatable())
+        {
+            $this->logger->info("Folder for file creation without permission: " . $dir, array("app" => $this->appName));
+            return ["error" => $this->trans->t("You don't have enough permission to create file")];
+        }
 
-       if ($folder === NULL)
-       {
-           $this->logger->info("Folder for file creation was not found: " . $dir, array("app" => $this->appName));
-           return ["error" => $this->trans->t("The required folder was not found")];
-       }
-       if (!$folder->isCreatable())
-       {
-           $this->logger->info("Folder for file creation without permission: " . $dir, array("app" => $this->appName));
-           return ["error" => $this->trans->t("You don't have enough permission to create file")];
-       }
+        $name = $userFolder->getNonExistingName($name);
 
-       $name = $userFolder->getNonExistingName($name);
+        $template = " "; //"space" - empty file for drawio
 
-       $template = " "; //"space" - empty file for drawio
+        try 
+        {
+            $file = $folder->newFile($name, $template);
+        }
+        catch (NotPermittedException $e)
+        {
+            $this->logger->logException($e, ["message" => "Can't create file: $name", "app" => $this->appName]);
+            return ["error" => $this->trans->t("Can't create file")];
+        }
 
-       try {
-           if (\version_compare(\implode(".", \OCP\Util::getVersion()), "19", "<")) {
-               $file = $folder->newFile($name);
-               $file->putContent($template);
-           } else {
-               $file = $folder->newFile($name, $template);
-           }
-       } catch (NotPermittedException $e) {
-           $this->logger->logException($e, ["message" => "Can't create file: $name", "app" => $this->appName]);
-           return ["error" => $this->trans->t("Can't create file")];
-       }
+        $fileInfo = $file->getFileInfo();
+        $result = Helper::formatFileInfo($fileInfo);
+        return $result;
+    }
 
-       $fileInfo = $file->getFileInfo();
-
-       $result = Helper::formatFileInfo($fileInfo);
-       return $result;
-   }
-
-     /**
-     * This comment is very important, CSRF fails without it
+    /**
      *
      * @param integer $fileId - file identifier
      *
      * @return TemplateResponse
      *
+     * @PublicPage
      * @NoAdminRequired
      * @NoCSRFRequired
      */
-    public function index($fileId, $shareToken = NULL, $filePath = NULL, $isWB = false) {
-        //$this->logger->warning("Open: $fileId $shareToken $filePath", array("app" => $this->appName));
-        if (empty($shareToken) && !$this->userSession->isLoggedIn()) {
+    public function index($fileId, $shareToken = NULL, $lightbox = false, $isWB = false) 
+    {
+        if (empty($shareToken) && !$this->userSession->isLoggedIn()) 
+        {
             $redirectUrl = $this->urlGenerator->linkToRoute("core.login.showLoginForm", [
                 "redirect_url" => $this->request->getRequestUri()
             ]);
@@ -600,32 +618,14 @@ class EditorController extends Controller
 
         $drawioUrlArray = explode("?",$drawioUrl);
 
-        if (count($drawioUrlArray) > 1){
+        if (count($drawioUrlArray) > 1)
+        {
             $drawioUrl = $drawioUrlArray[0];
             $drawioUrlArgs = $drawioUrlArray[1];
-        } else {
+        }
+        else
+        {
             $drawioUrlArgs = "";
-        }
-
-        if( $fileId ) 
-        {
-            list ($file, $error) = $this->getFile($fileId);
-
-            if (isset($error))
-            {
-                $this->logger->error("Load: " . $fileId . " " . $error, array("app" => $this->appName));
-                return ["error" => $error];
-            }
-
-            $uid = $this->userSession->getUser()->getUID();
-            $baseFolder = $this->root->getUserFolder($uid);
-            $relativePath = $baseFolder->getRelativePath($file->getPath());
-        }
-        else 
-        {
-            list ($file, $error) = $this->getFileByToken($fileId, $shareToken);
-            $relativePath = $file->getPath();
-            //$relativePath = "/s/$shareToken/download";//$file->getPath();
         }
 
         $params = [
@@ -635,31 +635,24 @@ class EditorController extends Controller
             "drawioDarkMode" => $darkMode,
             "drawioLang" => $lang,
             "drawioOfflineMode" => $offlineMode,
-            "drawioFilePath" => rawurlencode($relativePath),
             "drawioAutosave" =>$this->config->GetAutosave(),
             "drawioLibraries" =>$this->config->GetLibraries(),
             "fileId" => $fileId,
-            "filePath" => $filePath,
             "shareToken" => $shareToken,
             "isWB" => $isWB,
-            "drawioReadOnly" => false,
+            "drawioReadOnly" => $lightbox,
             "drawioPreviews" => $this->config->GetPreviews()
         ];
 
-        //viewer code
-        if (class_exists(LoadViewer::class)) {
-            $eventDispatcher->addListener(LoadViewer::class,
-                function () {
-                        Util::addScript("drawio", "viewer");
-                        $csp = new ContentSecurityPolicy();
-                        $csp->addAllowedFrameDomain("'self'");
-                        $cspManager = $this->getContainer()->getServer()->getContentSecurityPolicyManager();
-                        $cspManager->addDefaultPolicy($csp);
-                });
+        if ($this->userSession->getUser() !== null)
+        {
+            $response = new TemplateResponse($this->appName, "editor", $params);
         }
-        //viewer code
-
-        $response = new TemplateResponse($this->appName, "editor", $params);
+        else
+        {
+            $response = new PublicTemplateResponse($this->appName, "editor", $params);
+            $response->setFooterVisible(false);
+        }
 
         $csp = new ContentSecurityPolicy();
         $csp->allowInlineScript(true);
@@ -678,186 +671,101 @@ class EditorController extends Controller
     }
 
     /**
-     * Print public editor section
+     * Getting file by token
      *
-     * @param integer $fileId - file identifier
      * @param string $shareToken - access token
      *
-     * @return TemplateResponse
-     *
-     * @NoAdminRequired
-     * @NoCSRFRequired
-     * @PublicPage
+     * @return array
      */
-    public function PublicPage($fileId, $shareToken) {
-        return $this->index($fileId, $shareToken);
-    }
-
-    /**
-     * Collecting the file parameters for the DrawIo application
-     *
-     * @param integer $fileId - file identifier
-     * @param string $filePath - file path
-     * @param string $shareToken - access token
-     *
-     * @return DataDownloadResponse
-     *
-     * @NoAdminRequired
-     * @PublicPage
-     */
-    public function PublicFile($fileId, $filePath = NULL, $shareToken = NULL) {
-        if (empty($shareToken)) {
-            return ["error" => $this->trans->t("Not permitted")];
-        }
-
-        $user = $this->userSession->getUser();
-        $userId = NULL;
-        if (!empty($user)) {
-            $userId = $user->getUID();
-        }
-
-        list ($file, $error) = $this->getFileByToken($fileId, $shareToken);;
-
-        if (isset($error)) {
-            $this->logger->error("Config: $fileId $error", array("app" => $this->appName));
-            return ["error" => $error];
-        }
-
-        $fileName = $file->getName();
-        $ext = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-        $format = $this->config->formats[$ext];
-
-        if (!isset($format)) {
-            $this->logger->info("Format is not supported for editing: $fileName", array("app" => $this->appName));
-            return ["error" => $this->trans->t("Format is not supported")];
-        }
-
-        try {
-                return new DataDownloadResponse($file->getContent(), $file->getName(), $file->getMimeType());
-            } catch (NotPermittedException  $e) {
-                $this->logger->error("Download Not permitted: $fileId " . $e->getMessage(), array("app" => $this->appName));
-                return new JSONResponse(["message" => $this->trans->t("Not permitted")], Http::STATUS_FORBIDDEN);
-            }
-            return new JSONResponse(["message" => $this->trans->t("Download failed")], Http::STATUS_INTERNAL_SERVER_ERROR);
-    }
-
-    /**
-     * @NoAdminRequired
-    */
-    private function getFile($fileId)
+    private function getFileByToken($shareToken) 
     {
-        if (empty($fileId))
+        $share = null;
+
+        try 
         {
-            return [null, $this->trans->t("FileId is empty")];
+            $share = $this->shareManager->getShareByToken($shareToken);
+        }
+        catch (ShareNotFound $e)
+        {
+            throw new NotFoundException();
         }
 
+        if ($share === null || $share === false || 
+            ($share->getPassword() !== null && (!$this->session->exists("public_link_authenticated")
+                || $this->session->get("public_link_authenticated") !== (string) $share->getId())) ||
+            !$this->checkPermissions($share, Constants::PERMISSION_READ))
+        {
+            throw new ForbiddenException();
+        }
+
+        return [$share->getNode(), $share];
+    }
+
+
+    /**
+     * Getting file by id
+     *
+     * @param $fileId - file identifier
+     *
+     */
+    private function getFileById($fileId)
+    {
         $files = $this->root->getById($fileId);
+
         if (empty($files))
         {
-            return [null, $this->trans->t("File not found")];
+            throw new NotFoundException();
         }
+
         $file = $files[0];
 
         if (!$file->isReadable())
         {
-            return [null, $this->trans->t("You do not have enough permissions to view the file")];
+            throw new ForbiddenException();
         }
-        return [$file, null];
+
+        return $file;
     }
 
     /**
-     * Getting file by token
+     * Getting file by id or token
      *
-     * @param integer $fileId - file identifier
-     * @param string $shareToken - access token
-     *
-     * @return array
-     */
-    private function getFileByToken($fileId, $shareToken) {
-        list ($node, $error, $share) = $this->getNodeByToken($shareToken);
-
-        if (isset($error)) {
-            return [NULL, $error, NULL];
-        }
-
-        if ($node instanceof Folder) {
-            try {
-                $files = $node->getById($fileId);
-            } catch (\Exception $e) {
-                $this->logger->error("getFileByToken: $fileId " . $e->getMessage(), array("app" => $this->appName));
-                return [NULL, $this->trans->t("Invalid request"), NULL];
-            }
-
-            if (empty($files)) {
-                $this->logger->info("Files not found: $fileId", array("app" => $this->appName));
-                return [NULL, $this->trans->t("File not found"), NULL];
-            }
-            $file = $files[0];
-        } else {
-            $file = $node;
-        }
-
-        return [$file, NULL, $share];
-    }
-
-    /**
-     * Getting file by token
-     *
-     * @param string $shareToken - access token
+     * @param $fileId - file identifier
+     * @param $shareToken - access token
      *
      * @return array
      */
-    private function getNodeByToken($shareToken) {
-        list ($share, $error) = $this->getShare($shareToken);
+    private function getFile($fileId, $shareToken)
+    {
+        /** @var File $file */
+        $file = null;
+        $writeable = false;
+        $relativePath = null;
 
-        if (isset($error)) {
-            return [NULL, $error, NULL];
+        if (!empty($fileId) && $this->userSession->isLoggedIn()) 
+        {
+            $file = $this->getFileById($fileId);
+            $writeable = $file->isUpdateable();
+            $uid = $this->userSession->getUser()->getUID();
+            $baseFolder = $this->root->getUserFolder($uid);
+            $relativePath = $baseFolder->getRelativePath($file->getPath());
+        }
+        else if (!empty($shareToken))
+        {
+            list ($file, $share) = $this->getFileByToken($shareToken);
+            $writeable = $this->checkPermissions($share, Constants::PERMISSION_UPDATE);
+        }
+        else
+        {
+            throw new BadRequestException(['fileId', 'shareToken']);
         }
 
-        if (($share->getPermissions() & Constants::PERMISSION_READ) === 0) {
-            return [NULL, $this->trans->t("You do not have enough permissions to view the file"), NULL];
+        if ($file === null || $file === false)
+        {
+            throw new NotFoundException();
         }
 
-        try {
-            $node = $share->getNode();
-        } catch (NotFoundException $e) {
-            $this->logger->error("getFileByToken error: " . $e->getMessage(), array("app" => $this->appName));
-            return [NULL, $this->trans->t("File not found"), NULL];
-        }
-
-        return [$node, NULL, $share];
-    }
-    /**
-     * Getting share by token
-     *
-     * @param string $shareToken - access token
-     *
-     * @return array
-     */
-    private function getShare($shareToken) {
-        if (empty($shareToken)) {
-            return [NULL, $this->trans->t("FileId is empty")];
-        }
-
-        $share;
-        try {
-            $share = $this->shareManager->getShareByToken($shareToken);
-        } catch (ShareNotFound $e) {
-            $this->logger->error("getShare error: " . $e->getMessage(), array("app" => $this->appName));
-            $share = NULL;
-        }
-
-        if ($share === NULL || $share === false) {
-            return [NULL, $this->trans->t("You do not have enough permissions to view the file")];
-        }
-
-        if ($share->getPassword()
-            && (!$this->session->exists("public_link_authenticated")
-                || $this->session->get("public_link_authenticated") !== (string) $share->getId())) {
-            return [NULL, $this->trans->t("You do not have enough permissions to view the file")];
-        }
-
-        return [$share, NULL];
+        return [$file, $writeable, $relativePath];
     }
 
     /**
@@ -877,4 +785,7 @@ class EditorController extends Controller
         ), "error");
     }
 
+    protected function checkPermissions($share, $permissions) {
+        return ($share->getPermissions() & $permissions) === $permissions;
+    }
 }

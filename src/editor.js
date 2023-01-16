@@ -72,7 +72,8 @@ import '@nextcloud/dialogs/styles/toast.scss'
                         break;
                 }
 
-                var url = generateUrl('/apps/' + OCA.DrawIO.AppName + '/ajax/' + op + '?path={path}' + 
+                var url = generateUrl('/apps/' + OCA.DrawIO.AppName + '/ajax/' + op + 
+                    '?fileId={fileId}' + (fileOp < 3? '&shareToken={shareToken}' : '') + 
                     (fileOp == 4? '&revId={revId}' : ''), params);
                 
                 response = await axios.get(url);
@@ -126,35 +127,35 @@ import '@nextcloud/dialogs/styles/toast.scss'
         }
     };
 
-    OCA.DrawIO.loadFile = async function (path, success, error)
+    OCA.DrawIO.loadFile = async function (fileId, shareToken, success, error)
     {
-        return await fileOpInt({path}, 1, success, error);
+        return await fileOpInt({fileId, shareToken}, 1, success, error);
     };
 
-    OCA.DrawIO.getFileInfo = async function (path, success, error)
+    OCA.DrawIO.getFileInfo = async function (fileId, shareToken, success, error)
     {
-        return await fileOpInt({path}, 2, success, error);
+        return await fileOpInt({fileId, shareToken}, 2, success, error);
     };
 
-    OCA.DrawIO.getFileRevisions = async function (path, success, error)
+    OCA.DrawIO.getFileRevisions = async function (fileId, success, error)
     {
-        return await fileOpInt({path}, 3, success, error);
+        return await fileOpInt({fileId}, 3, success, error);
     };
 
-    OCA.DrawIO.loadFileVersion = async function (path, revId, success, error)
+    OCA.DrawIO.loadFileVersion = async function (fileId, revId, success, error)
     {
-        return await fileOpInt({path, revId}, 4, success, error);
+        return await fileOpInt({fileId, revId}, 4, success, error);
     };
 
-    OCA.DrawIO.saveFile = async function (path, fileContents, etag, success, error)
+    OCA.DrawIO.saveFile = async function (fileId, shareToken, fileContents, etag, success, error)
     {
         OCA.DrawIO.fileSaved = true;
-        return await fileOpInt({path, fileContents, etag}, 5, success, error);
+        return await fileOpInt({fileId, shareToken, fileContents, etag}, 5, success, error);
     };
 
-    OCA.DrawIO.savePreview = async function (path, previewContents, success, error)
+    OCA.DrawIO.savePreview = async function (fileId, shareToken, previewContents, success, error)
     {
-        return await fileOpInt({path, previewContents}, 6, success, error);
+        return await fileOpInt({fileId, shareToken, previewContents}, 6, success, error);
     };
 
     OCA.DrawIO.getCurrentUser = function ()
@@ -163,18 +164,32 @@ import '@nextcloud/dialogs/styles/toast.scss'
         return getCurrentUser();
     }
     
-    OCA.DrawIO.Cleanup = async function (receiver, filePath) 
+    OCA.DrawIO.Cleanup = async function (receiver, fileId, shareToken, delayed) 
     {
+        if (delayed)
+        {
+            await new Promise(r => setTimeout(r, 5000));
+        }
+
         window.removeEventListener('message', receiver);
 
         try
         {
-            var data = await OCA.DrawIO.getFileInfo(filePath);
+            var data = await OCA.DrawIO.getFileInfo(fileId, shareToken);
+            var filePath = data.path, url;
 
-            var url = generateUrl('/apps/files/?dir={currentDirectory}&fileid={fileId}', {
-                currentDirectory: filePath.substring(0, filePath.lastIndexOf('/')),
-                fileId: data.id
-            });
+            if (filePath)
+            {
+                url = generateUrl('/apps/files/?dir={currentDirectory}&fileid={fileId}', {
+                    currentDirectory: filePath.substring(0, filePath.lastIndexOf('/')),
+                    fileId: data.id
+                });
+            }
+            else // ShareToken case
+            {
+                url = generateUrl('/s/{shareToken}', data);
+            }
+
             window.location.href = url;
         }
         catch (error)
@@ -185,7 +200,7 @@ import '@nextcloud/dialogs/styles/toast.scss'
         }
     };
 
-    OCA.DrawIO.EditFile = function (editWindow, filePath, origin, autosave, isWB, previews) 
+    OCA.DrawIO.EditFile = function (editWindow, origin, autosave, isWB, previews) 
     {
         var autosaveEnabled = autosave === 'yes';
         var fileId = $('#iframeEditor').data('id');
@@ -196,27 +211,6 @@ import '@nextcloud/dialogs/styles/toast.scss'
         {
             displayError(t(OCA.DrawIO.AppName, 'FileId is empty'));
             return;
-        }
-
-        if (shareToken) 
-        {
-            var fileUrl = generateUrl('apps/' + OCA.DrawIO.AppName + '/ajax/shared/{fileId}', { fileId: fileId || 0 });
-            var params = [];
-
-            if (filePath) 
-            {
-                params.push('filePath=' + encodeURIComponent(filePath));
-            }
-
-            if (shareToken) 
-            {
-                params.push('shareToken=' + encodeURIComponent(shareToken));
-            }
-
-            if (params.length) 
-            {
-                fileUrl += '?' + params.join('&');
-            }
         }
 
         function startEditor() 
@@ -246,8 +240,8 @@ import '@nextcloud/dialogs/styles/toast.scss'
                         var imageData = payload.data.substring(payload.data.indexOf(',') + 1);
                         editWindow.postMessage(JSON.stringify({action: 'spinner',
                             show: true, messageKey: 'updatingPreview'}), '*');
-                        await OCA.DrawIO.savePreview(filePath, imageData);
-                        OCA.DrawIO.Cleanup(receiver, filePath);
+                        await OCA.DrawIO.savePreview(fileId, shareToken, imageData);
+                        OCA.DrawIO.Cleanup(receiver, fileId, shareToken);
                     } 
                     else if (payload.event === 'autosave' || payload.event === 'save')
                     {
@@ -255,7 +249,7 @@ import '@nextcloud/dialogs/styles/toast.scss'
                         {
                             try
                             {
-                                var resp = await OCA.DrawIO.saveFile(filePath, payload.xml, currentFile.etag);
+                                var resp = await OCA.DrawIO.saveFile(fileId, shareToken, payload.xml, currentFile.etag);
                                 currentFile.etag = resp.etag;
 
                                 editWindow.postMessage(JSON.stringify({
@@ -290,7 +284,7 @@ import '@nextcloud/dialogs/styles/toast.scss'
                         }
                         else
                         {
-                            OCA.DrawIO.Cleanup(receiver, filePath);
+                            OCA.DrawIO.Cleanup(receiver, fileId, shareToken);
                         }
                     }
                     else if (payload.event == 'remoteInvoke')
@@ -348,42 +342,26 @@ import '@nextcloud/dialogs/styles/toast.scss'
                 {
                     try
                     {
-                        if(!fileId) 
+                        var data = await OCA.DrawIO.loadFile(fileId, shareToken);
+
+                        var contents = data.xml;
+                        currentFile = data;
+                        delete currentFile.xml;
+
+                        //[workaround] 'loading' file without content, to display 'template' later in 'load' callback event without another filename prompt
+                        if (contents === ' ') 
                         {
-                            var response = await axios.get(fileUrl);
-
-                            editWindow.postMessage(JSON.stringify({
-                                action: 'load',
-                                xml: response.data
-                            }), '*');
+                            OCA.DrawIO.NewFileMode = true;
+                            // Empty diagram XML
+                            contents = '<mxGraphModel><root><mxCell id="0"/><mxCell id="1" parent="0"/></root></mxGraphModel>'; 
                         }
-                        else
-                        {
-                            var data = await OCA.DrawIO.loadFile(filePath);
-
-                            var contents = data.xml;
-                            currentFile = data;
-                            delete currentFile.xml;
-
-                            if (contents === ' ') 
-                            {
-                                OCA.DrawIO.NewFileMode = true; //[workaround] 'loading' file without content, to display 'template' later in 'load' callback event without another filename prompt
-                                editWindow.postMessage(JSON.stringify({
-                                    action: 'load', autosave: autosaveEnabled, title: currentFile.name,
-                                    desc: currentFile, disableAutoSave: !autosaveEnabled
-                                }), '*');
-                            } 
-                            else
-                            {
-                                OCA.DrawIO.NewFileMode = false;
-                                editWindow.postMessage(JSON.stringify({
-                                    action: 'load',
-                                    autosave: autosaveEnabled, title: currentFile.name,
-                                    xml: contents,
-                                    desc: currentFile, disableAutoSave: !autosaveEnabled
-                                }), '*');
-                            }
-                        }
+                        
+                        editWindow.postMessage(JSON.stringify({
+                            action: 'load',
+                            autosave: autosaveEnabled, title: currentFile.name,
+                            xml: contents,
+                            desc: currentFile, disableAutoSave: !autosaveEnabled
+                        }), '*');
 
                         window.removeEventListener('message', initHandler);
                         document.body.style.backgroundImage = 'none';
@@ -393,7 +371,7 @@ import '@nextcloud/dialogs/styles/toast.scss'
                     {
                         showError(t(OCA.DrawIO.AppName, 'Error loading the file') + ' (' + (error.data || error.message) + ')', { timeout: 2500 });
                         console.log('Status Error: ' + error.status);
-                        OCA.DrawIO.Cleanup(initHandler, filePath);
+                        OCA.DrawIO.Cleanup(initHandler, fileId, shareToken, true);
                     }
                     finally
                     {
