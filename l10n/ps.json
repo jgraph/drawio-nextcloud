@@ -1,4 +1,7 @@
 { "translations": {
-    "No" : "نه"
+    "File not found" : "فایل نشته",
+    "Yes" : "هو",
+    "No" : "نه",
+    "Save" : "ساتل"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

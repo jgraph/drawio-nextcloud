@@ -1,5 +1,9 @@
 { "translations": {
+    "File not found" : "File not found",
     "Saving..." : "Saqlanmoqda...",
-    "No" : "No"
+    "Yes" : "Yes",
+    "No" : "No",
+    "Language" : "Language",
+    "Save" : "Save"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

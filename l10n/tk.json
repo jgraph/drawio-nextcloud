@@ -1,5 +1,9 @@
 { "translations": {
+    "Download failed" : "ýüklemek şowsuz",
+    "File not found" : "Faýl tapylmady",
     "Dark" : "Garaňky",
-    "No" : "Ýok"
+    "Yes" : "Hawa",
+    "No" : "Ýok",
+    "Save" : "Saklamak"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

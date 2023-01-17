@@ -1,7 +1,25 @@
 OC.L10N.register(
     "drawio",
     {
+    "You can not open a folder" : "Jūs negalite atverti aplanko",
+    "An internal server error occurred." : "Įvyko vidinė serverio klaida.",
+    "Invalid file path supplied." : "Pateiktas neteisingas failo kelias.",
+    "This file is too big to be opened. Please download the file instead." : "Šis failas yra per didelis, kad būtų atvertas. Vietoj to, prašome jį atsisiųsti.",
+    "Cannot read the file." : "Nepavyko perskaityti failo.",
+    "The file is locked." : "Failas užrakintas.",
+    "You can not write to a folder" : "Negalite rašyti į aplanką",
+    "Could not write to file." : "Nepavyko rašyti į failą.",
+    "Insufficient permissions" : "Nepakanka leidimų",
+    "File path not supplied" : "Nepateiktas failo kelias",
+    "Download failed" : "Atsiuntimas nepavyko",
+    "File not found" : "Failas nerastas",
+    "Invalid request" : "Neteisinga užklausa",
+    "Saving..." : "Įrašoma...",
+    "Auto" : "Automatiškai",
     "Dark" : "Tamsus",
-    "No" : "Ne"
+    "Yes" : "Taip",
+    "No" : "Ne",
+    "Language" : "Kalba",
+    "Save" : "Įrašyti"
 },
 "nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);");

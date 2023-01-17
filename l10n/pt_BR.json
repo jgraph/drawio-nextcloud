@@ -1,7 +1,23 @@
 { "translations": {
+    "You can not open a folder" : "Você não pode abrir uma pasta",
+    "An internal server error occurred." : "Ocorreu um erro interno do servidor.",
+    "Invalid file path supplied." : "O caminho do arquivo que foi fornecido é inválido.",
     "This file is too big to be opened. Please download the file instead." : "Este arquivo é muito grande para ser aberto. Por favor baixe o arquivo ao invés de abri-lo.",
+    "Cannot read the file." : "Não é possível ler o arquivo.",
+    "The file is locked." : "O arquivo está bloqueado.",
+    "You can not write to a folder" : "Você não pode escrever em uma pasta",
     "Could not write to file." : "Não foi possível escrever o arquivo.",
+    "Insufficient permissions" : "Permissões insuficientes",
+    "File path not supplied" : "Caminho do arquivo não fornecido",
+    "Download failed" : "A transferência falhou",
+    "File not found" : "Arquivo não encontrado",
+    "Invalid request" : "Solicitação inválida",
+    "Saving..." : "Salvando...",
+    "Auto" : "Automático",
     "Dark" : "Escuro",
-    "No" : "Não"
+    "Yes" : "Sim",
+    "No" : "Não",
+    "Language" : "Idioma",
+    "Save" : "Salvar"
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

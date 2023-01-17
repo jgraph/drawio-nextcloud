@@ -1,5 +1,9 @@
 { "translations": {
+    "Invalid request" : "ئىناۋەتسىز ئىلتىماس",
     "Saving..." : "ساقلاۋاتىدۇ…",
-    "No" : "No"
+    "Yes" : "Yes",
+    "No" : "No",
+    "Language" : "تىل",
+    "Save" : "ساقلا"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

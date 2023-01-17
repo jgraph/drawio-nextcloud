@@ -1,4 +1,10 @@
 { "translations": {
-    "No" : "No"
+    "Download failed" : "Erofluede feelgeschloen",
+    "Invalid request" : "Ongülteg Requête",
+    "Saving..." : "Speicheren...",
+    "Yes" : "Yes",
+    "No" : "No",
+    "Language" : "Sprooch",
+    "Save" : "Späicheren"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

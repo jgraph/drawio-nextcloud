@@ -1,4 +1,9 @@
 { "translations": {
-    "No" : "No"
+    "Invalid request" : "Permintaan tidak sah",
+    "Saving..." : "Sedang menyimpan...",
+    "Yes" : "Yes",
+    "No" : "No",
+    "Language" : "Bahasa",
+    "Save" : "Simpan"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

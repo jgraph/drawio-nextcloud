@@ -1,9 +1,23 @@
 { "translations": {
+    "You can not open a folder" : "Bir klasör açamazsınız",
+    "An internal server error occurred." : "Sunucuda bir sorun çıktı.",
+    "Invalid file path supplied." : "Belirtilen dosya yolu geçersiz.",
     "This file is too big to be opened. Please download the file instead." : "Bu dosya açmak için çok büyük. Bunun yerine lütfen dosyayı indirin.",
     "Cannot read the file." : "Dosya okunamadı.",
+    "The file is locked." : "Dosya kilitli.",
+    "You can not write to a folder" : "Bir klasöre yazamazsınız",
     "Could not write to file." : "Dosyaya yazılamadı.",
+    "Insufficient permissions" : "İzinler yetersiz",
+    "File path not supplied" : "Dosya yolu belirtilmemiş",
+    "Download failed" : "İndirilemedi",
+    "File not found" : "Dosya bulunamadı",
+    "Invalid request" : "İstek geçersiz",
     "Saving..." : "Kaydediliyor...",
+    "Auto" : "Otomatik",
     "Dark" : "Koyu",
-    "No" : "Hayır"
+    "Yes" : "Evet",
+    "No" : "Hayır",
+    "Language" : "Dil",
+    "Save" : "Kaydet"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

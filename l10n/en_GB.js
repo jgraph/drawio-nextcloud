@@ -1,0 +1,25 @@
+OC.L10N.register(
+    "drawio",
+    {
+    "You can not open a folder" : "You cannot open a folder",
+    "An internal server error occurred." : "An internal server error occurred.",
+    "Invalid file path supplied." : "Invalid file path supplied.",
+    "This file is too big to be opened. Please download the file instead." : "This file is too big to be opened. Please download the file instead.",
+    "Cannot read the file." : "Cannot read the file.",
+    "The file is locked." : "The file is locked.",
+    "You can not write to a folder" : "You cannot write to a folder",
+    "Could not write to file." : "Could not write to file",
+    "Insufficient permissions" : "Insufficient permissions",
+    "File path not supplied" : "File path not supplied",
+    "Download failed" : "Download failed",
+    "File not found" : "File not found",
+    "Invalid request" : "Invalid request",
+    "Saving..." : "Saving...",
+    "Auto" : "Auto",
+    "Dark" : "Dark",
+    "Yes" : "Yes",
+    "No" : "No",
+    "Language" : "Language",
+    "Save" : "Save"
+},
+"nplurals=2; plural=(n != 1);");

@@ -1,0 +1,25 @@
+OC.L10N.register(
+    "drawio",
+    {
+    "You can not open a folder" : "Ne možete otvoriti mapu",
+    "An internal server error occurred." : "Došlo je do unutarnje pogreške poslužitelja.",
+    "Invalid file path supplied." : "Dostavljen nevažeći put datoteke.",
+    "This file is too big to be opened. Please download the file instead." : "Ova je datoteka prevelika za otvaranje. Umjesto toga preuzmite datoteku.",
+    "Cannot read the file." : "Datoteku nije moguće pročitati.",
+    "The file is locked." : "Datoteka je zaključana.",
+    "You can not write to a folder" : "Ne možete pisati u mapu",
+    "Could not write to file." : "Nije moguće pisati u datoteku.",
+    "Insufficient permissions" : "Nedovoljna dopuštenja",
+    "File path not supplied" : "Nije isporučen put datoteke",
+    "Download failed" : "Preuzimanje nije uspjelo",
+    "File not found" : "Datoteka nije pronađena",
+    "Invalid request" : "Zahtjev neispravan",
+    "Saving..." : "Spremanje...",
+    "Auto" : "Auto",
+    "Dark" : "Tamno",
+    "Yes" : "Da",
+    "No" : "Ne",
+    "Language" : "Jezik",
+    "Save" : "Spremi"
+},
+"nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;");
