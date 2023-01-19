@@ -20,8 +20,8 @@ OCA.DrawIO = {
     frameSelector: null,
     AppSettings: null,
     Mimes: {
-        'drawio': { 'mime': 'application/x-drawio', 'type': 'text', 'css': 'icon-drawio', 'icon': 'drawio', 'newStr': 'New Diagram' },
-        'dwb': { 'mime': 'application/x-drawio-wb', 'type': 'text', 'css': 'icon-whiteboard', 'icon': 'dwb', 'newStr': 'New Whiteboard' }
+        'drawio': { 'mime': 'application/x-drawio', 'type': 'text', 'css': 'icon-drawio', 'icon': 'drawio', 'newStr': t(OCA.DrawIO.AppName, 'New Diagram') },
+        'dwb': { 'mime': 'application/x-drawio-wb', 'type': 'text', 'css': 'icon-whiteboard', 'icon': 'dwb', 'newStr': t(OCA.DrawIO.AppName, 'New Whiteboard') }
     },
 
     OpenEditor: function (fileId, isWB)
@@ -137,8 +137,8 @@ OCA.DrawIO = {
             {
                 menu.addMenuEntry({
                     id: 'drawIoDiagram_' + ext,
-                    displayName: t(OCA.DrawIO.AppName, attr.newStr),
-                    templateName: t(OCA.DrawIO.AppName, attr.newStr) + '.' + ext,
+                    displayName: attr.newStr,
+                    templateName: attr.newStr + '.' + ext,
                     iconClass: attr.css,
                     fileType: attr.mime,
                     actionHandler: function (fileName) 
