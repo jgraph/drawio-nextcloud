@@ -20,8 +20,8 @@ OCA.DrawIO = {
     frameSelector: null,
     AppSettings: null,
     Mimes: {
-        'drawio': { 'mime': 'application/x-drawio', 'type': 'text', 'css': 'icon-drawio', 'icon': 'drawio', 'newStr': t('drawio', 'New Diagram') },
-        'dwb': { 'mime': 'application/x-drawio-wb', 'type': 'text', 'css': 'icon-whiteboard', 'icon': 'dwb', 'newStr': t('drawio', 'New Whiteboard') }
+        'drawio': { 'mime': 'application/x-drawio', 'type': 'text', 'css': 'icon-drawio', 'icon': 'drawio', 'newStr': t('drawio', 'New draw.io Diagram') },
+        'dwb': { 'mime': 'application/x-drawio-wb', 'type': 'text', 'css': 'icon-whiteboard', 'icon': 'dwb', 'newStr': t('drawio', 'New draw.io Whiteboard') }
     },
 
     OpenEditor: function (fileId, isWB)
