@@ -1,8 +1,6 @@
 OC.L10N.register(
     "drawio",
     {
-    "Download failed" : "Preuzimanje nije uspelo",
-    "File not found" : "Fajl nije nađen",
     "Saving..." : "Upisujem...",
     "Dark" : "Tamna",
     "Yes" : "Da",

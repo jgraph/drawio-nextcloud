@@ -1,8 +1,6 @@
 OC.L10N.register(
     "drawio",
     {
-    "Download failed" : "Dh’fhàillig an luchdadh a-nuas",
-    "File not found" : "Cha deach am faidhle a lorg",
     "Dark" : "Dorcha",
     "Yes" : "Tha",
     "No" : "Chan eil",

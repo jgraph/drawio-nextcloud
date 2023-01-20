@@ -1,8 +1,6 @@
 OC.L10N.register(
     "drawio",
     {
-    "Download failed" : "Pellgargañ c'hwitet",
-    "File not found" : "N'eo ket bet kavet ar restr",
     "Saving..." : "Oc'h enroliñ ...",
     "Dark" : "Teñval",
     "Yes" : "Ya",

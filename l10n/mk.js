@@ -3,10 +3,8 @@ OC.L10N.register(
     {
     "You can not open a folder" : "Не можете да отворите папка",
     "Cannot read the file." : "Неможе да се прочита датотеката.",
+    "File not found." : "Датотеката не е пронајдена.",
     "Could not write to file." : "Не може да се запише во датотеката",
-    "Download failed" : "Преземањето не беше успешно",
-    "File not found" : "Датотеката не е пронајдена",
-    "Invalid request" : "Неправилно барање",
     "Saving..." : "Зачувува ...",
     "Auto" : "Автоматски",
     "Dark" : "Темна",

@@ -1,7 +1,6 @@
 OC.L10N.register(
     "drawio",
     {
-    "Invalid request" : "ئىناۋەتسىز ئىلتىماس",
     "Saving..." : "ساقلاۋاتىدۇ…",
     "Yes" : "Yes",
     "No" : "No",

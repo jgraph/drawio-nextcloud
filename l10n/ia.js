@@ -1,7 +1,6 @@
 OC.L10N.register(
     "drawio",
     {
-    "Invalid request" : "Requesta non valide",
     "Saving..." : "Salveguardante...",
     "Yes" : "Si",
     "No" : "No",

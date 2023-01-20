@@ -1,7 +1,6 @@
 OC.L10N.register(
     "drawio",
     {
-    "File not found" : "File not found",
     "Saving..." : "Saqlanmoqda...",
     "Yes" : "Yes",
     "No" : "No",

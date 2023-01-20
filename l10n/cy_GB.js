@@ -1,8 +1,6 @@
 OC.L10N.register(
     "drawio",
     {
-    "Download failed" : "Methwyd llwytho i lawr",
-    "Invalid request" : "Cais annilys",
     "Saving..." : "Yn cadw...",
     "Auto" : "Awto",
     "Dark" : "Tywyll",

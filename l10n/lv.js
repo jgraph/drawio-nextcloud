@@ -1,9 +1,6 @@
 OC.L10N.register(
     "drawio",
     {
-    "Download failed" : "Neizdevās lejupielādēt",
-    "File not found" : "Datne nav atrasta",
-    "Invalid request" : "Nederīgs vaicājums",
     "Saving..." : "Saglabā...",
     "Auto" : "Automātiski",
     "Dark" : "Tumšs",

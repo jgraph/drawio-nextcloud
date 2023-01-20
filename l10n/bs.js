@@ -1,8 +1,6 @@
 OC.L10N.register(
     "drawio",
     {
-    "File not found" : "Datoteka nije pronađena",
-    "Invalid request" : "Neispravan zahtjev",
     "Saving..." : "Spremanje...",
     "Yes" : "Yes",
     "No" : "No",
