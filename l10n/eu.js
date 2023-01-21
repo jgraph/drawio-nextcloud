@@ -28,6 +28,7 @@ OC.L10N.register(
     "Yes" : "Bai",
     "No" : "Ez",
     "Language" : "Hizkuntza",
+    "Enable libraries?" : "Gaitu liburutegiak?",
     "Save" : "Gorde"
 },
 "nplurals=2; plural=(n != 1);");

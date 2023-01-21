@@ -26,6 +26,7 @@
     "Yes" : "Bai",
     "No" : "Ez",
     "Language" : "Hizkuntza",
+    "Enable libraries?" : "Gaitu liburutegiak?",
     "Save" : "Gorde"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
