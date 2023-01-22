@@ -3,9 +3,12 @@ OC.L10N.register(
     {
     "Versions plugin is not enabled" : "版本插件未啟用",
     "You can not open a folder" : "你無法打開文件夾",
+    "Invalid fileId/revId supplied." : "提供了無效的檔案 ID / 修訂 ID。",
     "An internal server error occurred." : "發生伺服器內部錯誤",
+    "Invalid fileId supplied." : "提供了無效的檔案 ID。",
     "This file is too big to be opened. Please download the file instead." : "這個檔案太大以致於無法開啟，請您下載此檔案代替線上開啟。",
     "Cannot read the file." : "無法讀取檔案。",
+    "Invalid fileId/shareToken supplied." : "提供了無效的檔案 ID / 分享權杖（share token）。",
     "File not found." : "未找到文件",
     "The file is locked." : "這個檔案被鎖住了。",
     "You can not write to a folder" : "您無法寫入資料夾",
