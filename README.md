@@ -13,13 +13,13 @@ Once installed, you will see an option to create a Draw.io diagram/whiteboard fr
 
 ## Info ##
 - Requires [Nextcloud](https://nextcloud.com) >=20.0.0
-- Version 20.8.0+ of diagrams.net (draw.io) is recommended.
+- Version 20.8.6+ of diagrams.net (draw.io) is required.
 - Real-time collaboration only works with the official online version of draw.io (https://embed.diagrams.net) and Autosave enabled in draw.io settings (/index.php/settings/admin/drawio).
 - Multi language support (l10n)
 - Inspired by the old Draw.io Integration and OnlyOffice
 - Tested with Chrome 58-96 and Firefox 53-89
 - Tested with PHP 5.6/7.1/7.3/8.0/8.1
-- Draw.io Integration tested with NextCloud 20.0.0 / 21.0.0 / 22.0.0 / 23.0.0 / 24.0.1 / v25.0.1
+- Draw.io Integration tested with NextCloud 20.0.0 / 21.0.0 / 22.0.0 / 23.0.0 / 24.0.1 / v25.0.1 / v26.0.0
   
 ## Download ##
 
@@ -40,7 +40,8 @@ Realtime collaboration is only possible with **Autosave enabled** and using the 
 
 ## Known Issues ##
 - If you're experiencing problems while updating your Nextcloud intance, try to disable/delete Draw.io integration app (/apps/drawio/) and then install/copy it again after the NC update is completed.
-
+- Clear PHP cache after updating the app if you have undefined method/classes errors.
+- Integrity check of Nextcloud core fails as we add our new MIME types and icons. This is expected and safe to ignore (issue #26)[https://github.com/jgraph/drawio-nextcloud/issues/26].
 
 ## Configuration ##
 Go to Admin page and change the settings you want:
@@ -49,7 +50,7 @@ Go to Admin page and change the settings you want:
 
 Click "Save" when you're done.
 
-If you would like to self-host Draw.io, you might want to consider https://github.com/jgraph/docker-drawio (version 20.8.0+ recommended).
+If you would like to self-host Draw.io, you might want to consider https://github.com/jgraph/docker-drawio (requires version 20.8.6+).
 
 
 ## License ##

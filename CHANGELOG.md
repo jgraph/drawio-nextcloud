@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.1.0
+
+- Requires draw.io v20.8.6+.
+- Support editing shared files via sharing tokens without login (#19 and others).
+- Use Transifex for translations (#1). Some previous translations are lost, please help us restore them via (Transifex)[https://www.transifex.com/nextcloud/nextcloud/dashboard/].
+- Added "Modern" new theme.
+- Some bugs fixed and improvements (#5, #17, #23, #24, #25)
+
 ## 2.0.2
 
 - Fixed preview bug (issue #14 and #16)
