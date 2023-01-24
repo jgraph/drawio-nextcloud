@@ -27,7 +27,7 @@ Once installed, you will see an option to create a Draw.io diagram/whiteboard fr
 
 ## Changelog ##
 
-[Changelog](https://github.com/jgraph/drawio-nextcloud/blob/release/drawio/CHANGELOG.md)
+[Changelog](https://github.com/jgraph/drawio-nextcloud/blob/release/CHANGELOG.md)
 
 ## Installation ##
 1. Copy Nextcloud draw.io integration app ("drawio" directory) to your Nextcloud server into the /apps/ directory
@@ -41,7 +41,7 @@ Realtime collaboration is only possible with **Autosave enabled** and using the 
 ## Known Issues ##
 - If you're experiencing problems while updating your Nextcloud intance, try to disable/delete Draw.io integration app (/apps/drawio/) and then install/copy it again after the NC update is completed.
 - Clear PHP cache after updating the app if you have undefined method/classes errors.
-- Integrity check of Nextcloud core fails as we add our new MIME types and icons. This is expected and safe to ignore (issue #26)[https://github.com/jgraph/drawio-nextcloud/issues/26].
+- Integrity check of Nextcloud core fails as we add our new MIME types and icons. This is expected and safe to ignore ([issue #26](https://github.com/jgraph/drawio-nextcloud/issues/26)).
 
 ## Configuration ##
 Go to Admin page and change the settings you want:

@@ -1,10 +1,5 @@
-
-#app > iframe
-{
-    vertical-align: top;
-}
-
-#iframeEditor.error
+#app-content.error
 {
     color: red;
+    padding: 20px;
 }

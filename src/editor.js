@@ -42,7 +42,7 @@ import '@nextcloud/dialogs/styles/toast.scss'
 
     OCA.DrawIO.DisplayError = function (error) 
     {
-        $('#app').text(error).addClass('error');
+        $('#app-content').text(error).addClass('error');
     };
 
     // fileOp: 1 = load, 2 = getInfo, 3 = getFileRevisions, 4 = loadFileVer, 5 = save
@@ -207,9 +207,9 @@ import '@nextcloud/dialogs/styles/toast.scss'
         var shareToken = $('#iframeEditor').data('sharetoken');
         var currentFile = null;
 
-        if (!fileId && !shareToken) 
+        if (!fileId && !shareToken)
         {
-            displayError(t(OCA.DrawIO.AppName, 'FileId is empty'));
+            OCA.DrawIO.DisplayError(t(OCA.DrawIO.AppName, 'FileId is empty'));
             return;
         }
 
