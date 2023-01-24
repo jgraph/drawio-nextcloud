@@ -29,6 +29,7 @@ OC.L10N.register(
     "No" : "Ez",
     "Language" : "Hizkuntza",
     "Enable libraries?" : "Gaitu liburutegiak?",
+    "Enable diagram previews?" : "Gaitu diagramen aurreikuspenak?",
     "Save" : "Gorde"
 },
 "nplurals=2; plural=(n != 1);");

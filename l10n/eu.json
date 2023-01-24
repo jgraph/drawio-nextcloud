@@ -27,6 +27,7 @@
     "No" : "Ez",
     "Language" : "Hizkuntza",
     "Enable libraries?" : "Gaitu liburutegiak?",
+    "Enable diagram previews?" : "Gaitu diagramen aurreikuspenak?",
     "Save" : "Gorde"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
