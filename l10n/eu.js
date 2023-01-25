@@ -16,6 +16,7 @@ OC.L10N.register(
     "Loading, please wait." : "Kargatzen, itxaron mesedez.",
     "Error loading the file" : "Errorea fitxategia kargatzen",
     "Open in Draw.io" : "Ireki Draw.io-n",
+    "Edit in Draw.io" : "Editatu Draw.io-n",
     "Saving..." : "Gordetzen...",
     "Auto" : "Auto",
     "Draw.io URL" : "Draw.io URLa",
