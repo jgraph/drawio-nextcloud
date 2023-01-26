@@ -1,5 +1,5 @@
 { "translations": {
-    "An internal server error occurred." : "มีข้อผิดพลาดเกิดขึ้นภายในเซิร์ฟเวอร์",
+    "An internal server error occurred." : "เกิดข้อผิดพลาดภายในเซิร์ฟเวอร์",
     "This file is too big to be opened. Please download the file instead." : "เปิดไฟล์นี้ไม่ได้ เพราะมีขนาดใหญ่เกินไป กรุณาดาวน์โหลดไฟล์แทน",
     "Cannot read the file." : "ไม่สามารถอ่านไฟล์",
     "The file is locked." : "ไฟล์ถูกล็อก",

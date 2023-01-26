@@ -6,7 +6,7 @@ OC.L10N.register(
     "Invalid fileId/revId supplied." : "Ungültige Datei-ID/revID angegeben.",
     "An internal server error occurred." : "Es ist ein interner Fehler aufgetreten.",
     "Invalid fileId supplied." : "Ungültiges Feld angegeben.",
-    "This file is too big to be opened. Please download the file instead." : "Die Datei ist zu groß zum Öffnen. Bitte laden Sie stattdessen die Datei herunter.",
+    "This file is too big to be opened. Please download the file instead." : "Die Datei ist zu groß zum Öffnen. Bitte laden Sie sie stattdessen herunter.",
     "Cannot read the file." : "Datei kann nicht gelesen werden.",
     "Invalid fileId/shareToken supplied." : "Ungültige Datei-ID/ShareToken angegeben.",
     "File not found." : "Datei nicht gefunden.",
