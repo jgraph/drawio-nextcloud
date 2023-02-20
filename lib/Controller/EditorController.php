@@ -171,7 +171,7 @@ class EditorController extends Controller
                     Http::STATUS_OK
                 );
 			} else {
-				return new DataResponse(['message' => (string)$this->trans->t('Invalid fileId/revId supplied.')], Http::STATUS_BAD_REQUEST);
+				return new DataResponse(['message' => (string)$this->trans->t('Invalid fileID/revID supplied.')], Http::STATUS_BAD_REQUEST);
 			}
 		} catch (\Exception $e) {
             $this->logger->logException($e, ["message" => "Can't load file version: $fileId, $revId", "app" => $this->appName]);
@@ -218,7 +218,7 @@ class EditorController extends Controller
                     Http::STATUS_OK
                 );
 			} else {
-				return new DataResponse(['message' => (string)$this->trans->t('Invalid fileId supplied.')], Http::STATUS_BAD_REQUEST);
+				return new DataResponse(['message' => (string)$this->trans->t('Invalid fileID supplied.')], Http::STATUS_BAD_REQUEST);
 			}
 		} catch (\Exception $e) {
             $this->logger->logException($e, ["message" => "Can't get file versions: $fileId", "app" => $this->appName]);
@@ -291,7 +291,7 @@ class EditorController extends Controller
         }
         catch (BadRequestException $e)
         {
-            return new DataResponse(['message' => (string)$this->trans->t('Invalid fileId/shareToken supplied.')], Http::STATUS_BAD_REQUEST);
+            return new DataResponse(['message' => (string)$this->trans->t('Invalid fileID/ShareToken supplied.')], Http::STATUS_BAD_REQUEST);
         }
         catch (NotFoundException $e)
         {
@@ -359,7 +359,7 @@ class EditorController extends Controller
         }
         catch (BadRequestException $e)
         {
-            return new DataResponse(['message' => (string)$this->trans->t('Invalid fileId/shareToken supplied.')], Http::STATUS_BAD_REQUEST);
+            return new DataResponse(['message' => (string)$this->trans->t('Invalid fileID/ShareToken supplied.')], Http::STATUS_BAD_REQUEST);
         }
         catch (NotFoundException $e)
         {
@@ -466,7 +466,7 @@ class EditorController extends Controller
 		}
         catch (BadRequestException $e)
         {
-            return new DataResponse(['message' => (string)$this->trans->t('Invalid fileId/shareToken supplied.')], Http::STATUS_BAD_REQUEST);
+            return new DataResponse(['message' => (string)$this->trans->t('Invalid fileID/ShareToken supplied.')], Http::STATUS_BAD_REQUEST);
         }
         catch (NotFoundException $e)
         {
