@@ -209,7 +209,7 @@ import '@nextcloud/dialogs/styles/toast.scss'
 
         if (!fileId && !shareToken)
         {
-            OCA.DrawIO.DisplayError(t(OCA.DrawIO.AppName, 'FileId is empty'));
+            OCA.DrawIO.DisplayError(t(OCA.DrawIO.AppName, 'FileID is empty'));
             return;
         }
 
