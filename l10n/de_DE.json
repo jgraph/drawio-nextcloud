@@ -3,7 +3,7 @@
     "You can not open a folder" : "Sie können keinen Ordner öffnen",
     "Invalid fileId/revId supplied." : "Ungültige Datei-ID/revID angegeben.",
     "An internal server error occurred." : "Es ist ein interner Fehler aufgetreten.",
-    "Invalid fileId supplied." : "Ungültiges Feld angegeben.",
+    "Invalid fileId supplied." : "Ungültige Datei-ID angegeben.",
     "This file is too big to be opened. Please download the file instead." : "Die Datei ist zu groß zum Öffnen. Bitte laden Sie sie stattdessen herunter.",
     "Cannot read the file." : "Datei kann nicht gelesen werden.",
     "Invalid fileId/shareToken supplied." : "Ungültige Datei-ID/ShareToken angegeben.",

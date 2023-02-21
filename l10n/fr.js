@@ -26,7 +26,7 @@ OC.L10N.register(
     "Draw.io" : "Draw.io",
     "Draw.io integration app" : "Application d'intégration de Draw.io",
     "Integrates draw.io diagrams editor with Nextcloud" : "Intègre l'éditeur de diagrammes draw.io avec Nextcloud",
-    "FileId is empty" : "fileId est vide",
+    "FileId is empty" : "FileId est vide",
     "Loading, please wait." : "Chargement, veuillez patienter.",
     "Error loading the file" : "Erreur de chargement du fichier",
     "New draw.io Diagram" : "Nouveau diagramme Draw.io",
