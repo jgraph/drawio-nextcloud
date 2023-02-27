@@ -1,7 +1,7 @@
 OC.L10N.register(
     "drawio",
     {
-    "Versions plugin is not enabled" : "Version-Plugin ist deaktiviert",
+    "Versions plugin is not enabled" : "Versions-Plugin ist deaktiviert",
     "You can not open a folder" : "Sie können keinen Ordner öffnen",
     "Invalid fileId/revId supplied." : "Ungültige Datei-ID/revID angegeben.",
     "An internal server error occurred." : "Es ist ein interner Fehler aufgetreten.",
