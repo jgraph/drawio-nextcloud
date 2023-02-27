@@ -55,10 +55,10 @@ If you would like to self-host Draw.io, you might want to consider https://githu
 
 ## Licensing and Costs ##
 - How do I license the draw.io integration for NextCloud?
-- The draw.io for NextCloud app is free and licensed under the AGPL 3.0 license, which means it is free to use and distribute. There is no need to purchase a license or pay any fees to use the app.
+The draw.io for NextCloud app is free and licensed under the AGPL 3.0 license, which means it is free to use and distribute. There is no need to purchase a license or pay any fees to use the app.
 
 - What is the cost of the draw.io integration for NextCloud?
-- The draw.io for NextCloud app is free (libre et gratuit) and there are no costs associated with its use. It is licensed under the AGPL 3.0 license, which allows anyone to use and distribute the app without paying any fees.
+The draw.io for NextCloud app is free (libre et gratuit) and there are no costs associated with its use. It is licensed under the AGPL 3.0 license, which allows anyone to use and distribute the app without paying any fees.
 
 ## Contributors ##
 
