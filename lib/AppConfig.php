@@ -52,7 +52,7 @@ class AppConfig {
 
     public function SetDrawioUrl($drawio)
     {
-        $drawio = strtolower(rtrim(trim($drawio), "/"));
+        $drawio = strtolower(trim($drawio));
         if (strlen($drawio) > 0 && !preg_match("/^https?:\/\//i", $drawio)) $drawio = "http://" . $drawio;
         $this->logger->info("SetDrawioUrl: " . $drawio, array("app" => $this->appName));
         $this->config->setAppValue($this->appName, $this->_drawioUrl, $drawio);
