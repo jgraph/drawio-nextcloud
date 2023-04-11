@@ -42,7 +42,7 @@ import '@nextcloud/dialogs/styles/toast.scss'
 
     OCA.DrawIO.DisplayError = function (error) 
     {
-        $('#app').text(error).addClass('error');
+        $('#app-content').text(error).addClass('error');
     };
 
     // fileOp: 1 = load, 2 = getInfo, 3 = getFileRevisions, 4 = loadFileVer, 5 = save
@@ -200,16 +200,16 @@ import '@nextcloud/dialogs/styles/toast.scss'
         }
     };
 
-    OCA.DrawIO.EditFile = function (editWindow, origin, autosave, isWB, previews) 
+    OCA.DrawIO.EditFile = function (editWindow, origin, autosave, isWB, previews, configObj) 
     {
         var autosaveEnabled = autosave === 'yes';
         var fileId = $('#iframeEditor').data('id');
         var shareToken = $('#iframeEditor').data('sharetoken');
         var currentFile = null;
 
-        if (!fileId && !shareToken) 
+        if (!fileId && !shareToken)
         {
-            displayError(t(OCA.DrawIO.AppName, 'FileId is empty'));
+            OCA.DrawIO.DisplayError(t(OCA.DrawIO.AppName, 'FileId is empty'));
             return;
         }
 
@@ -331,12 +331,10 @@ import '@nextcloud/dialogs/styles/toast.scss'
                 
                 if (msg.event == 'configure')
                 {
-                    /* TODO Add later if needed
                     // Configure must be sent even if JSON invalid
                     configObj = configObj || {};
-                    editor.contentWindow.postMessage(JSON.stringify({action: 'configure',
+                    editWindow.postMessage(JSON.stringify({action: 'configure',
                         config: configObj}), '*');
-                    */
                 }
                 else if (msg.event == 'init')
                 {

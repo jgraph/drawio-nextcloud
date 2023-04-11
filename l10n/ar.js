@@ -4,6 +4,7 @@ OC.L10N.register(
     "An internal server error occurred." : "حدث خطأ داخلي في الخادم.",
     "This file is too big to be opened. Please download the file instead." : "هذا الملف كبير جدًا بحيث لا يمكن فتحه. يرجى تنزيل الملف بدلاً من ذلك.",
     "Cannot read the file." : "لا يمكن قراءة الملف.",
+    "File not found." : "الملف غير موجود",
     "The file is locked." : "الملف مقفل.",
     "Could not write to file." : "لا يمكن الكتابة إلى الملف.",
     "Saving..." : "جاري الحفظ...",

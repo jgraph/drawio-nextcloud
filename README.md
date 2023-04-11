@@ -27,7 +27,7 @@ Once installed, you will see an option to create a Draw.io diagram/whiteboard fr
 
 ## Changelog ##
 
-[Changelog](https://github.com/jgraph/drawio-nextcloud/blob/release/drawio/CHANGELOG.md)
+[Changelog](https://github.com/jgraph/drawio-nextcloud/blob/release/CHANGELOG.md)
 
 ## Installation ##
 1. Copy Nextcloud draw.io integration app ("drawio" directory) to your Nextcloud server into the /apps/ directory
@@ -41,7 +41,7 @@ Realtime collaboration is only possible with **Autosave enabled** and using the 
 ## Known Issues ##
 - If you're experiencing problems while updating your Nextcloud intance, try to disable/delete Draw.io integration app (/apps/drawio/) and then install/copy it again after the NC update is completed.
 - Clear PHP cache after updating the app if you have undefined method/classes errors.
-- Integrity check of Nextcloud core fails as we add our new MIME types and icons. This is expected and safe to ignore (issue #26)[https://github.com/jgraph/drawio-nextcloud/issues/26].
+- Integrity check of Nextcloud core fails as we add our new MIME types and icons. This is expected and safe to ignore ([issue #26](https://github.com/jgraph/drawio-nextcloud/issues/26)).
 
 ## Configuration ##
 Go to Admin page and change the settings you want:
@@ -53,8 +53,12 @@ Click "Save" when you're done.
 If you would like to self-host Draw.io, you might want to consider https://github.com/jgraph/docker-drawio (requires version 20.8.6+).
 
 
-## License ##
-- Released under the Affero General Public License version 3 or later.
+## Licensing and Costs ##
+- How do I license the draw.io integration for NextCloud?
+The draw.io for NextCloud app is free and licensed under the AGPL 3.0 license, which means it is free to use and distribute. There is no need to purchase a license or pay any fees to use the app.
+
+- What is the cost of the draw.io integration for NextCloud?
+The draw.io for NextCloud app is free (libre et gratuit) and there are no costs associated with its use. It is licensed under the AGPL 3.0 license, which allows anyone to use and distribute the app without paying any fees.
 
 ## Contributors ##
 

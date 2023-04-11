@@ -41,6 +41,7 @@ class AppConfig {
     private $_libraries = "DrawioLibraries";
     private $_darkmode = "DrawioDarkMode";
     private $_previews = "DrawioPreviews";
+    private $_drawioConfig = "DrawioConfig";
 
     public function __construct($AppName)
     {
@@ -52,7 +53,7 @@ class AppConfig {
 
     public function SetDrawioUrl($drawio)
     {
-        $drawio = strtolower(rtrim(trim($drawio), "/"));
+        $drawio = strtolower(trim($drawio));
         if (strlen($drawio) > 0 && !preg_match("/^https?:\/\//i", $drawio)) $drawio = "http://" . $drawio;
         $this->logger->info("SetDrawioUrl: " . $drawio, array("app" => $this->appName));
         $this->config->setAppValue($this->appName, $this->_drawioUrl, $drawio);
@@ -170,6 +171,28 @@ class AppConfig {
         return $val;
     }
     
+    public function SetDrawioConfig($drawioConfig)
+    {
+        $this->logger->info("SetDrawioConfig: " . $drawioConfig, array("app" => $this->appName));
+        // Check if the json is valid
+        $val = json_decode($drawioConfig);
+        $this->config->setAppValue($this->appName, $this->_drawioConfig, empty($val)? "" : $drawioConfig);
+    }
+
+    public function GetDrawioConfig()
+    {
+        $val = $this->config->getAppValue($this->appName, $this->_drawioConfig);
+        
+        if (empty(json_decode($val)))
+        {
+            return "{}";
+        }
+        else
+        {
+            return $val;
+        }
+    }
+
     public function GetAppName()
     {
         return $this->appName;
