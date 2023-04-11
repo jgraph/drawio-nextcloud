@@ -66,6 +66,7 @@ class SettingsController extends Controller
             "drawioLibraries" => $this->config->GetLibraries(),
             "drawioDarkMode" => $this->config->GetDarkMode(),
             "drawioPreviews" => $this->config->GetPreviews(),
+            "drawioConfig" => $this->config->GetDrawioConfig(),
         ];
         return new TemplateResponse($this->appName, "settings", $data, "blank");
     }
@@ -82,6 +83,7 @@ class SettingsController extends Controller
         $libraries = trim($_POST['libraries']);
         $darkmode = trim($_POST['darkMode']);
         $previews = trim($_POST['previews']);
+        $drawioConfig = trim($_POST['drawioConfig']);
 
         $this->config->SetDrawioUrl($drawio);
         $this->config->SetOfflineMode($offlinemode);
@@ -91,6 +93,7 @@ class SettingsController extends Controller
         $this->config->SetLibraries($libraries);
         $this->config->SetDarkMode($darkmode);
         $this->config->SetPreviews($previews);
+        $this->config->SetDrawioConfig($drawioConfig);
 
         if (version_compare(implode(".", \OCP\Util::getVersion()), "13", ">=")) {
             $checkmime = new \OCA\Drawio\Migration\CheckMimeType();
@@ -113,7 +116,8 @@ class SettingsController extends Controller
             "drawioAutosave" =>$this->config->GetAutosave(),
             "drawioLibraries" =>$this->config->GetLibraries(),
             "drawioDarkMode" =>$this->config->GetDarkMode(),
-            "drawioPreviews" =>$this->config->GetPreviews()
+            "drawioPreviews" =>$this->config->GetPreviews(),
+            "drawioConfig" =>$this->config->GetDrawioConfig(),
         ];
     }
 

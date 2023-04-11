@@ -641,7 +641,8 @@ class EditorController extends Controller
             "shareToken" => $shareToken,
             "isWB" => $isWB,
             "drawioReadOnly" => $lightbox,
-            "drawioPreviews" => $this->config->GetPreviews()
+            "drawioPreviews" => $this->config->GetPreviews(),
+            "drawioConfig" => $this->config->GetDrawioConfig(),
         ];
 
         if ($this->userSession->getUser() !== null)

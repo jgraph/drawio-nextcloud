@@ -33,6 +33,21 @@ $(function () {
         var f_libraries = $('#drawioLibraries option:selected').val();
         var f_darkMode = $('#darkMode option:selected').val();
         var f_previews = $('#drawioPreviews option:selected').val();
+        var f_drawioConfig = $('#drawioConfig').val().trim();
+
+        if (f_drawioConfig)
+        {
+            try
+            {
+                var tmp = JSON.parse(f_drawioConfig);
+                f_drawioConfig = JSON.stringify(tmp); // convert to a single line
+            }
+            catch (e)
+            {
+                showError(t(OCA.DrawIO.AppName, 'draw.io Configuration error:') + ' ' + e.message, { timeout: 2500 });
+                return;
+            }
+        }
 
         var saving = showInfo(t(OCA.DrawIO.AppName, 'Saving...'));
 
@@ -44,7 +59,8 @@ $(function () {
             autosave: f_autosave,
             libraries: f_libraries,
             darkMode: f_darkMode,
-            previews: f_previews
+            previews: f_previews,
+            drawioConfig: f_drawioConfig
         };
 
         const params = new URLSearchParams();
@@ -135,4 +151,10 @@ $(function () {
     {
         addLang(key, mxLanguageMap[key]);
     }
+
+    try
+    {
+        $('#drawioConfig').val(JSON.stringify(JSON.parse($('#drawioConfig').val()), null, 2));
+    }
+    catch (e){}
 });

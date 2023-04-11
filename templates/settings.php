@@ -69,5 +69,11 @@
     <p><?php p($l->t("Note: Disable previews to save storage space used to store diagram preview images")) ?></p>
 
     <br />
+
+    <p class="drawio-header">
+      <label for='drawioConfig'><?php p($l->t("draw.io Configuration")) ?></label><br/  >
+      <textarea id="drawioConfig" style="width:75%;height:300px"><?php p($_["drawioConfig"]) ?></textarea>
+    </p>
+    <br />
     <a id="drawioSave" class="button"><?php p($l->t("Save")) ?></a>
 </div>

@@ -200,7 +200,7 @@ import '@nextcloud/dialogs/styles/toast.scss'
         }
     };
 
-    OCA.DrawIO.EditFile = function (editWindow, origin, autosave, isWB, previews) 
+    OCA.DrawIO.EditFile = function (editWindow, origin, autosave, isWB, previews, configObj) 
     {
         var autosaveEnabled = autosave === 'yes';
         var fileId = $('#iframeEditor').data('id');
@@ -331,12 +331,10 @@ import '@nextcloud/dialogs/styles/toast.scss'
                 
                 if (msg.event == 'configure')
                 {
-                    /* TODO Add later if needed
                     // Configure must be sent even if JSON invalid
                     configObj = configObj || {};
-                    editor.contentWindow.postMessage(JSON.stringify({action: 'configure',
+                    editWindow.postMessage(JSON.stringify({action: 'configure',
                         config: configObj}), '*');
-                    */
                 }
                 else if (msg.event == 'init')
                 {

@@ -2,7 +2,7 @@
     style("drawio", "editor");
     script("drawio", "editor");
 
-    $frame_params = "?embed=1&embedRT=1";
+    $frame_params = "?embed=1&embedRT=1&configure=1";
     if ($_["drawioOfflineMode"] === "yes")
     {
         $frame_params .= "&offline=1&stealth=1";
@@ -67,7 +67,13 @@
                     }
                     catch (e){}
                 <?php } ?>
-                OCA.DrawIO.EditFile(iframe.contentWindow, originUrl, autosave, isWB, previews);
+                var config = {};
+                try
+                {
+                    config = JSON.parse('<?php print_unescaped(str_replace("'", "\\'", $_["drawioConfig"])); ?>');
+                }
+                catch (e){}
+                OCA.DrawIO.EditFile(iframe.contentWindow, originUrl, autosave, isWB, previews, config);
                 iframe.setAttribute('src', drawIoUrl);
             <?php } ?>
         });
