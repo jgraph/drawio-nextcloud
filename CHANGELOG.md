@@ -3,7 +3,8 @@
 ## 2.1.1
 
 - Added Editor Configurations to app config (#33)
-- Fixed #33
+- Fixed #31
+- Fixed #37 (requires draw.io v21.1.6+)
 - Added Nextcloud 27 compatibility
 
 ## 2.1.0
