@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.1.1
+
+- Added Editor Configurations to app config (#33)
+- Fixed #33
+- Added Nextcloud 27 compatibility
+
 ## 2.1.0
 
 - Requires draw.io v20.8.6+.

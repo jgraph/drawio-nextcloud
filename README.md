@@ -19,7 +19,7 @@ Once installed, you will see an option to create a Draw.io diagram/whiteboard fr
 - Inspired by the old Draw.io Integration and OnlyOffice
 - Tested with Chrome 58-96 and Firefox 53-89
 - Tested with PHP 5.6/7.1/7.3/8.0/8.1
-- Draw.io Integration tested with NextCloud 20.0.0 / 21.0.0 / 22.0.0 / 23.0.0 / 24.0.1 / v25.0.1 / v26.0.0
+- Draw.io Integration tested with NextCloud 20.0.0 / 21.0.0 / 22.0.0 / 23.0.0 / 24.0.1 / v25.0.1 / v26.0.0 / v27.0.0
   
 ## Download ##
 
