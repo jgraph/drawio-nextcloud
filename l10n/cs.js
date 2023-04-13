@@ -34,6 +34,7 @@ OC.L10N.register(
     "Open in Draw.io" : "Otevřít v Draw.io",
     "Error: Creating a new file failed." : "Chyba: vytváření nového souboru se nezdařilo.",
     "Edit in Draw.io" : "Upravit v Draw.io",
+    "draw.io Configuration error:" : "Chyba v nastavení pro draw.io:",
     "Saving..." : "Ukládá se…",
     "Settings have been successfully saved" : "Nastavení byla úspěšně uložena",
     "Error when trying to connect" : "Chyba při pokusu o připojení",
@@ -56,6 +57,7 @@ OC.L10N.register(
     "Enable libraries?" : "Zapnout knihovny?",
     "Enable diagram previews?" : "Zapnout náhledy diagramů?",
     "Note: Disable previews to save storage space used to store diagram preview images" : "Pozn.: pokud chcete ušetřit prostor na úložišti, zabíraný jinak náhledovými obrázky diagramů, náhledy vypněte",
+    "draw.io Configuration" : "Nastavení pro draw.io:",
     "Save" : "Uložit"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");

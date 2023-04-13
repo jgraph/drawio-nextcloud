@@ -34,6 +34,7 @@ OC.L10N.register(
     "Open in Draw.io" : "Öppna i Draw.io",
     "Error: Creating a new file failed." : "Fel: Det gick inte att skapa en ny fil.",
     "Edit in Draw.io" : "Redigera i Draw.io",
+    "draw.io Configuration error:" : "draw.io Konfigurationsfel:",
     "Saving..." : "Sparar...",
     "Settings have been successfully saved" : "Inställningarna har sparats",
     "Error when trying to connect" : "Fel vid försök att ansluta",
@@ -56,6 +57,7 @@ OC.L10N.register(
     "Enable libraries?" : "Aktivera bibliotek?",
     "Enable diagram previews?" : "Aktivera förhandsgranskningar av diagram?",
     "Note: Disable previews to save storage space used to store diagram preview images" : "Obs! Inaktivera förhandsgranskningar för att spara lagringsutrymme som används för att lagra diagramförhandsvisningsbilder",
+    "draw.io Configuration" : "draw.io Konfiguration",
     "Save" : "Spara"
 },
 "nplurals=2; plural=(n != 1);");

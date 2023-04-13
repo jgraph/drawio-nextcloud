@@ -34,6 +34,7 @@ OC.L10N.register(
     "Open in Draw.io" : "在 Draw.io 中開啟",
     "Error: Creating a new file failed." : "錯誤：建立新檔案失敗。",
     "Edit in Draw.io" : "在 Draw.io 中編輯",
+    "draw.io Configuration error:" : "draw.io 設定錯誤：",
     "Saving..." : "儲存中……",
     "Settings have been successfully saved" : "設定已成功儲存",
     "Error when trying to connect" : "嘗試連線時發生錯誤",
@@ -56,6 +57,7 @@ OC.L10N.register(
     "Enable libraries?" : "啟用媒體庫？",
     "Enable diagram previews?" : "啟用圖表預覽？",
     "Note: Disable previews to save storage space used to store diagram preview images" : "注意：停用預覽以節省用於儲存圖表預覽圖片的儲存空間",
+    "draw.io Configuration" : "draw.io 設定",
     "Save" : "儲存"
 },
 "nplurals=1; plural=0;");

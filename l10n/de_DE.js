@@ -34,6 +34,7 @@ OC.L10N.register(
     "Open in Draw.io" : "In Draw.io öffnen",
     "Error: Creating a new file failed." : "Fehler: Erstellen einer neuen Datei fehlgeschlagen.",
     "Edit in Draw.io" : "In Draw.io bearbeiten",
+    "draw.io Configuration error:" : "draw.io Konfigurationsfehler:",
     "Saving..." : "Speichere…",
     "Settings have been successfully saved" : "Einstellungen wurden gespeichert",
     "Error when trying to connect" : "Fehler beim Verbindungsversuch",
@@ -56,6 +57,7 @@ OC.L10N.register(
     "Enable libraries?" : "Bibliotheken aktivieren?",
     "Enable diagram previews?" : "Diagrammvorschau aktivieren?",
     "Note: Disable previews to save storage space used to store diagram preview images" : "Hinweis: Deaktivieren Sie Vorschauen, um Speicherplatz zu sparen, der zum Speichern von Diagrammvorschaubildern verwendet wird",
+    "draw.io Configuration" : "draw.io Konfiguration:",
     "Save" : "Speichern"
 },
 "nplurals=2; plural=(n != 1);");

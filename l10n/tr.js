@@ -34,6 +34,7 @@ OC.L10N.register(
     "Open in Draw.io" : "Draw.io üzerinde aç",
     "Error: Creating a new file failed." : "Hata: Yeni bir dosya oluşturulamadı.",
     "Edit in Draw.io" : "Draw.io ile düzenle",
+    "draw.io Configuration error:" : "draw.io yapılandırma sorunu:",
     "Saving..." : "Kaydediliyor...",
     "Settings have been successfully saved" : "Ayarlar kaydedildi",
     "Error when trying to connect" : "Bağlantı kurulurken sorun çıktı",
@@ -56,6 +57,7 @@ OC.L10N.register(
     "Enable libraries?" : "Kitaplıklar kullanılsın",
     "Enable diagram previews?" : "Şema ön izlemeleri kullanılsın",
     "Note: Disable previews to save storage space used to store diagram preview images" : "Not: Depolama alanında ön izleme görselleri için kullanılacak alanı geri kazanmak için ön izleme özelliğini kapatabilirsiniz.",
+    "draw.io Configuration" : "draw.io yapılandırması",
     "Save" : "Kaydet"
 },
 "nplurals=2; plural=(n > 1);");

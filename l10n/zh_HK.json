@@ -32,6 +32,7 @@
     "Open in Draw.io" : "在 Draw.io 中開啟",
     "Error: Creating a new file failed." : "錯誤：創建新檔案失敗。",
     "Edit in Draw.io" : "在 Draw.io 中編輯",
+    "draw.io Configuration error:" : "draw.io 配置錯誤︰",
     "Saving..." : "儲存中...",
     "Settings have been successfully saved" : "設定已成功保存",
     "Error when trying to connect" : "嘗試連線時發生錯誤",
@@ -54,6 +55,7 @@
     "Enable libraries?" : "啟用媒體庫？",
     "Enable diagram previews?" : "啟用圖表預覽？",
     "Note: Disable previews to save storage space used to store diagram preview images" : "注意：停用預覽以節省用於儲存圖表預覽圖片的儲存空間",
+    "draw.io Configuration" : "draw.io 配置",
     "Save" : "保存"
 },"pluralForm" :"nplurals=1; plural=0;"
 }
