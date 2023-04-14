@@ -40,7 +40,7 @@ Realtime collaboration is only possible with **Autosave enabled** and using the 
 
 ## Known Issues ##
 - If you're experiencing problems while updating your Nextcloud intance, try to disable/delete Draw.io integration app (/apps/drawio/) and then install/copy it again after the NC update is completed.
-- Clear PHP cache after updating the app if you have undefined method/classes errors.
+- Clear PHP cache after updating the app if you have undefined method/classes errors. For example, if you're using PHP-FPM, you can restart the service `service php7.4-fpm restart`.
 - Integrity check of Nextcloud core fails as we add our new MIME types and icons. This is expected and safe to ignore ([issue #26](https://github.com/jgraph/drawio-nextcloud/issues/26)).
 
 ## Configuration ##
