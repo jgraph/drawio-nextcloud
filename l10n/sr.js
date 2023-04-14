@@ -34,6 +34,7 @@ OC.L10N.register(
     "Open in Draw.io" : "Отвори у Draw.io",
     "Error: Creating a new file failed." : "Грешка: није успело креирање новог фајла.",
     "Edit in Draw.io" : "Уређуј у Draw.io",
+    "draw.io Configuration error:" : "Грешка draw.io подешавања:",
     "Saving..." : "Снимам...",
     "Settings have been successfully saved" : "Подешавања су успешно сачувана",
     "Error when trying to connect" : "Грешка приликом покушаја повезивања",
@@ -56,6 +57,7 @@ OC.L10N.register(
     "Enable libraries?" : "Да укључим библиотеке?",
     "Enable diagram previews?" : "Да укључим прегледе дијаграма?",
     "Note: Disable previews to save storage space used to store diagram preview images" : "Напомена: искључите прегледе да уштедите простор на складишту који се користи за чување слика прегледа дијаграма",
+    "draw.io Configuration" : "draw.io подешавања",
     "Save" : "Сачувај"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);");
