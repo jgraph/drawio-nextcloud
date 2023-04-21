@@ -34,6 +34,7 @@ OC.L10N.register(
     "Open in Draw.io" : "Ireki Draw.io-n",
     "Error: Creating a new file failed." : "Errorea: huts egin du fitxategi berri bat sortzean.",
     "Edit in Draw.io" : "Editatu Draw.io-n",
+    "draw.io Configuration error:" : "draw.io konfigurazio errorea:",
     "Saving..." : "Gordetzen...",
     "Settings have been successfully saved" : "Ezarpenak behar bezala gorde dira",
     "Error when trying to connect" : "Errorea konektatzen saiatzean",
@@ -56,6 +57,7 @@ OC.L10N.register(
     "Enable libraries?" : "Gaitu liburutegiak?",
     "Enable diagram previews?" : "Gaitu diagramen aurreikuspenak?",
     "Note: Disable previews to save storage space used to store diagram preview images" : "Oharra: desgaitu aurrebistak diagramen aurrebista irudiak gordetzeko erabiltzen den biltegiratze tokia aurrezteko",
+    "draw.io Configuration" : "draw.io konfigurazioa",
     "Save" : "Gorde"
 },
 "nplurals=2; plural=(n != 1);");
