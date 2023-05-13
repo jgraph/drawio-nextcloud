@@ -51,7 +51,7 @@ OC.L10N.register(
     "No" : "No",
     "Language" : "Idioma",
     "Activate offline mode in Draw.io?" : "¿Activar modo fuera de línea en Draw.io?",
-    "When the \"offline mode\" is active, this disables all remote operations and features to protect the users privacy. Draw.io will then also only be in English, even if you set a different language manually." : "Cuando el modo \"fuera de línea\" está activo, esto deshabilita todos las operaciones y características para proteger la privacidad del usuario. Draw.io también estará solamente en ingles incluso si ud. asigna un lenguaje diferente manualmente.",
+    "When the \"offline mode\" is active, this disables all remote operations and features to protect the users privacy. Draw.io will then also only be in English, even if you set a different language manually." : "Cuando el modo \"fuera de línea\" está activo, esto deshabilita todos las operaciones y características remotas para proteger la privacidad del usuario. Draw.io también estará entonces solamente en inglés incluso si Ud. asigna un lenguaje diferente manualmente.",
     "Activate autosave?" : "¿Activar autoguardado?",
     "Note: To enable realtime collaboration, autosave must be active." : "Nota: Para habilitar la colaboración en tiempo real, el autoguardado debe estar activo",
     "Enable libraries?" : "¿Habilitar librerías?",

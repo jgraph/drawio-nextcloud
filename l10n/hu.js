@@ -34,6 +34,7 @@ OC.L10N.register(
     "Open in Draw.io" : "Megnyitás a Draw.io-ban",
     "Error: Creating a new file failed." : "Hiba: Nem sikerült az új fájl létrehozása.",
     "Edit in Draw.io" : "Szerkesztés a Draw.io-ban",
+    "draw.io Configuration error:" : "draw.io beállítási hiba:",
     "Saving..." : "Mentés…",
     "Settings have been successfully saved" : "A beállítások sikeresen mentve",
     "Error when trying to connect" : "Hiba történt a kapcsolódás során",
@@ -56,6 +57,7 @@ OC.L10N.register(
     "Enable libraries?" : "Engedélyezi a könyvtárakat?",
     "Enable diagram previews?" : "Engedélyezi a diagramelőnézeteket?",
     "Note: Disable previews to save storage space used to store diagram preview images" : "Megjegyzés: Tiltsa le az előnézeteket, hogy megspórolja a diagramelőnézetek által foglalt tárhelyet",
+    "draw.io Configuration" : "draw.io beállítások",
     "Save" : "Mentés"
 },
 "nplurals=2; plural=(n != 1);");
