@@ -7,6 +7,7 @@ use OCP\EventDispatcher\IEventListener;
 use OCP\Files\Events\Node\NodeDeletedEvent;
 use OCP\Files\Folder;
 use OCP\Files\IAppData;
+use OCP\Files\NotFoundException;
 use OCP\ILogger;
 
 class FileDeleteListener implements IEventListener {
@@ -36,12 +37,12 @@ class FileDeleteListener implements IEventListener {
 
         try 
         {
-            $prevFolder = $this->appData->getFolder('previews');
-            
-            if ($prevFolder->fileExists($node->getId() . '.png')) 
-            { 
-                $prevFolder->getFile($node->getId() . '.png')->delete();
-            }
+            $this->appData->getFolder('previews')->getFile($node->getId() . '.png')->delete();
+        }
+        catch (NotFoundException $e)
+        {
+            // ignore
+            return;
         }
         catch (\Exception $e)
         {
