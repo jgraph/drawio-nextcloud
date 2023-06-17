@@ -35,7 +35,7 @@ OC.L10N.register(
     "Error: Creating a new file failed." : "错误：创建新文件失败。",
     "Edit in Draw.io" : "在Draw.io中编辑",
     "draw.io Configuration error:" : "draw.io配置错误",
-    "Saving..." : "正在保存…",
+    "Saving..." : "正在保存……",
     "Settings have been successfully saved" : "设置已经成功保存",
     "Error when trying to connect" : "尝试连接时出现错误",
     "Auto" : "自动",
