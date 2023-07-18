@@ -1,9 +1,11 @@
 { "translations": {
+    "You can not open a folder" : "Неможливо відкрити каталог",
     "An internal server error occurred." : "Виникла внутрішня помилка серверу.",
     "This file is too big to be opened. Please download the file instead." : "Файл занадто великий для відкриття. Будь ласка, завантажте файл замість цього.",
     "Cannot read the file." : "Не можливо прочитати файл.",
     "File not found." : "Файл не знайдено.",
     "The file is locked." : "Файл заблоковано.",
+    "You can not write to a folder" : "Каталог тільки для читання",
     "Could not write to file." : "Не вдалося записати до файлу.",
     "Insufficient permissions" : "Недостатньо прав доступу",
     "Saving..." : "Збереження...",
