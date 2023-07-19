@@ -14,7 +14,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.s(a|c)ss$/,
+                test: /\.s?(a|c)ss$/,
                 use: [
                     'style-loader',
                     'css-loader',

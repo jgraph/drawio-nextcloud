@@ -1,5 +1,10 @@
 # Change Log
 
+## 2.1.2
+
+- Fixed #51
+- Uopdated dependencies
+
 ## 2.1.1
 
 - Added Editor Configurations to app config (#33)

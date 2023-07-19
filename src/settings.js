@@ -12,7 +12,7 @@ import * as $ from 'jquery';
 import { translate as t } from '@nextcloud/l10n'
 import axios from '@nextcloud/axios'
 import { showInfo, showSuccess, showError } from '@nextcloud/dialogs'
-import '@nextcloud/dialogs/styles/toast.scss'
+import '@nextcloud/dialogs/dist/index.css'
 
 $(function () {
     OCA.DrawIO = OCA.DrawIO || {};
