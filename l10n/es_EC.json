@@ -3,6 +3,7 @@
     "An internal server error occurred." : "Se presentó un error interno en el servidor. ",
     "This file is too big to be opened. Please download the file instead." : "Este archivo es demasiado grande para ser abierto. Por favor descárgarlo en su lugar.",
     "Cannot read the file." : "No es posible leer el archivo.",
+    "File not found." : "Archivo no encontrado.",
     "The file is locked." : "El archivo está bloqueado.",
     "You can not write to a folder" : "No puedes escribir a la carpeta",
     "Insufficient permissions" : "Permisos insuficientes",
