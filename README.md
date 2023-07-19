@@ -60,6 +60,6 @@ The draw.io for NextCloud app is free and licensed under the AGPL 3.0 license, w
 - What is the cost of the draw.io integration for NextCloud?
 The draw.io for NextCloud app is free (libre et gratuit) and there are no costs associated with its use. It is licensed under the AGPL 3.0 license, which allows anyone to use and distribute the app without paying any fees.
 
-## Contributors ##
+## SOC 2 ##
 
-[Contributors](https://github.com/jgraph/drawio-nextcloud/graphs/contributors)
+This repo is not covered by the JGraph SOC 2 process.
