@@ -515,7 +515,7 @@ class EditorController extends Controller
 
                 if ($file instanceof Folder || !$writeable) 
                 {
-                    return new DataResponse(['message' => $this->trans->t('You can not write to this path')], Http::STATUS_FORBIDDEN);
+                    return new DataResponse(['message' => $this->trans->t('You cannot write to this path')], Http::STATUS_FORBIDDEN);
                 }
 
                 $prevFolder->newFile($file->getId() . '.png', base64_decode($previewContents));
