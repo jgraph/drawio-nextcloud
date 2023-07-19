@@ -1,6 +1,6 @@
-# ![](screenshots/icon.png) Nextcloud Draw.io / Diagrams.net integration app
+# ![](screenshots/icon.png) Nextcloud draw.io integration app
 
-This app allows users to create and edit diagrams in [Nextcloud](https://nextcloud.com) using [Draw.io](https://app.diagrams.net) / Diagrams.net on-line editor.
+This app allows users to create and edit diagrams in [Nextcloud](https://nextcloud.com) using [draw.io](https://app.diagrams.net).
 
 App Store link: https://apps.nextcloud.com/apps/drawio
 
@@ -13,7 +13,7 @@ Once installed, you will see an option to create a Draw.io diagram/whiteboard fr
 
 ## Info ##
 - Requires [Nextcloud](https://nextcloud.com) >=20.0.0
-- Version 20.8.6+ of diagrams.net (draw.io) is required.
+- Version 20.8.6+ of draw.io is required.
 - Real-time collaboration only works with the official online version of draw.io (https://embed.diagrams.net) and Autosave enabled in draw.io settings (/index.php/settings/admin/drawio).
 - Multi language support (l10n)
 - Inspired by the old Draw.io Integration and OnlyOffice
@@ -39,7 +39,7 @@ Once installed, you will see an option to create a Draw.io diagram/whiteboard fr
 Realtime collaboration is only possible with **Autosave enabled** and using the official diagrams.net server (https://embed.diagrams.net). Self hosted servers won't work.
 
 ## Known Issues ##
-- If you're experiencing problems while updating your Nextcloud intance, try to disable/delete Draw.io integration app (/apps/drawio/) and then install/copy it again after the NC update is completed.
+- If you're experiencing problems while updating your Nextcloud intance, try to disable/delete draw.io integration app (/apps/drawio/) and then install/copy it again after the NC update is completed.
 - Clear PHP cache after updating the app if you have undefined method/classes errors. For example, if you're using PHP-FPM, you can restart the service `service php7.4-fpm restart`.
 - Integrity check of Nextcloud core fails as we add our new MIME types and icons. This is expected and safe to ignore ([issue #26](https://github.com/jgraph/drawio-nextcloud/issues/26)).
 
@@ -50,15 +50,7 @@ Go to Admin page and change the settings you want:
 
 Click "Save" when you're done.
 
-If you would like to self-host Draw.io, you might want to consider https://github.com/jgraph/docker-drawio (requires version 20.8.6+).
-
-
-## Licensing and Costs ##
-- How do I license the draw.io integration for NextCloud?
-The draw.io for NextCloud app is free and licensed under the AGPL 3.0 license, which means it is free to use and distribute. There is no need to purchase a license or pay any fees to use the app.
-
-- What is the cost of the draw.io integration for NextCloud?
-The draw.io for NextCloud app is free (libre et gratuit) and there are no costs associated with its use. It is licensed under the AGPL 3.0 license, which allows anyone to use and distribute the app without paying any fees.
+If you would like to self-host draw.io, you might want to consider https://github.com/jgraph/docker-drawio (requires version 20.8.6+).
 
 ## SOC 2 ##
 
