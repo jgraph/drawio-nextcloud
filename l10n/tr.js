@@ -17,7 +17,6 @@ OC.L10N.register(
     "Insufficient permissions" : "İzinler yetersiz",
     "File content not supplied" : "Dosya içeriği belirtilmemiş",
     "File etag not supplied" : "Dosya etag değeri belirtilmemiş",
-    "You can not write to this path" : "Bu yola yazamazsınız",
     "Incorrect parameters" : "Parametreler geçersiz",
     "The required folder was not found" : "Gerekli klasör bulunamadı",
     "You don't have enough permission to create file" : "Dosyayı oluşturmak için yeterli izinleriniz yok",

@@ -17,7 +17,6 @@ OC.L10N.register(
     "Insufficient permissions" : "Permisos insuficientes",
     "File content not supplied" : "No se proporcionó el contenido del archivo",
     "File etag not supplied" : "No se ha proporcionó el archivo etag",
-    "You can not write to this path" : "No puedes escribir a esta ruta",
     "Incorrect parameters" : "Parámetros incorrectos",
     "The required folder was not found" : "La carpeta requerida no fue conseguida",
     "You don't have enough permission to create file" : "No tiene los permisos suficientes para crear el archivo",

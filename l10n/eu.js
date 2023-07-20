@@ -17,7 +17,6 @@ OC.L10N.register(
     "Insufficient permissions" : "Baimen gutxiegi",
     "File content not supplied" : "Ez da fitxategiaren edukia eman",
     "File etag not supplied" : "etag fitxategia ez da hornitu",
-    "You can not write to this path" : "Ezin duzu lokalizazio honetan idatzi",
     "Incorrect parameters" : "Parametro okerrak",
     "The required folder was not found" : "Beharrezko karpeta ez da aurkitu",
     "You don't have enough permission to create file" : "Ez duzu fitxategia sortzeko behar adina baimen",

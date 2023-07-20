@@ -11,7 +11,6 @@ OC.L10N.register(
     "You can not write to a folder" : "Et voi kirjoittaa kansioon",
     "Could not write to file." : "Tiedostoon ei voitu kirjoittaa.",
     "Insufficient permissions" : "Oikeudet eivät riitä",
-    "You can not write to this path" : "Et voi kirjoittaa tähän polkuun",
     "Incorrect parameters" : "Virheelliset parametrit",
     "You don't have enough permission to create file" : "Sinulla ei ole oikeuksia luoda tiedostoa",
     "Can't create file" : "Tiedostoa ei voi luoda",

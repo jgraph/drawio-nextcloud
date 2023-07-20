@@ -15,7 +15,6 @@
     "Insufficient permissions" : "Nedostatečná oprávnění",
     "File content not supplied" : "Nedodán obsah souboru",
     "File etag not supplied" : "Nedodán etag souboru",
-    "You can not write to this path" : "Do tohoto umístění nemůžete zapisovat",
     "Incorrect parameters" : "Nesprávné parametry",
     "The required folder was not found" : "Požadovaná složka nebyla nalezena",
     "You don't have enough permission to create file" : "Nemáte oprávnění dostatečné pro vytvoření souboru",

@@ -12,7 +12,6 @@ OC.L10N.register(
     "The file you are working on was updated in the meantime." : "Súbor, s ktorým pracujete, bol medzičasom upravený.",
     "Could not write to file." : "Do súboru sa nepodarilo zapísať",
     "Insufficient permissions" : "Nedostatočné oprávnenia",
-    "You can not write to this path" : "Do tohto umiestnenia nemôžete zapisovať",
     "Incorrect parameters" : "Nesprávne parametre",
     "The required folder was not found" : "Požadovaný priečinok nebol nájdený",
     "You don't have enough permission to create file" : "Nemáte dostatočné oprávnenie na vytvorenie súboru",

@@ -15,7 +15,6 @@
     "Insufficient permissions" : "Недостатъчни права",
     "File content not supplied" : "Не е предоставено съдържание на файла",
     "File etag not supplied" : "Не е предоставен etag на файла",
-    "You can not write to this path" : "Не можете да записвате в този път",
     "Incorrect parameters" : "Грешни параметри",
     "The required folder was not found" : "Необходимата папка не е намерена",
     "You don't have enough permission to create file" : "Нямате достатъчно права за създаване на файл",

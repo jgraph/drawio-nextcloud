@@ -17,7 +17,6 @@ OC.L10N.register(
     "Insufficient permissions" : "Nicht ausreichende Berechtigungen",
     "File content not supplied" : "Dateiinhalt nicht angegeben",
     "File etag not supplied" : "Datei-Etage nicht angegeben",
-    "You can not write to this path" : "Du kannst in diesen Pfad nicht schreiben",
     "Incorrect parameters" : "Falsche Parameter",
     "The required folder was not found" : "Sie haben nicht genug Berechtigungen um die Datei zu erstellen",
     "You don't have enough permission to create file" : "Du hast nicht genug Berechtigungen um die Datei zu erstellen",

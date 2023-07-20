@@ -15,7 +15,6 @@
     "Insufficient permissions" : "权限不足",
     "File content not supplied" : "未提供文件内容",
     "File etag not supplied" : "未提供文件电子标签",
-    "You can not write to this path" : "您不能写入到该路径",
     "Incorrect parameters" : "无效的参数",
     "The required folder was not found" : "请求的文件夹未找到",
     "You don't have enough permission to create file" : "您没有足够的权限创建文件",

@@ -17,7 +17,6 @@ OC.L10N.register(
     "Insufficient permissions" : "Недовољне дозволе",
     "File content not supplied" : "Није наведен садржај фајла",
     "File etag not supplied" : "Није наведен etag фајла",
-    "You can not write to this path" : "Не можете да вршите упис на ову путању",
     "Incorrect parameters" : "Неисправни параметри",
     "The required folder was not found" : "Није пронађен потребан фолдер",
     "You don't have enough permission to create file" : "Немате довољно дозвола да креирате фајл",

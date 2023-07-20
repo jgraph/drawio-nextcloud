@@ -17,7 +17,6 @@ OC.L10N.register(
     "Insufficient permissions" : "Otillräcklig behörighet.",
     "File content not supplied" : "Filinnehåll tillhandahålls inte",
     "File etag not supplied" : "Filens etag tillhandahålls inte",
-    "You can not write to this path" : "Du kan inte skriva till denna sökväg",
     "Incorrect parameters" : "Felaktiga parametrar",
     "The required folder was not found" : "Den nödvändiga mappen hittades inte",
     "You don't have enough permission to create file" : "Du har inte tillräcklig behörighet för att skapa en fil",

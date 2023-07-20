@@ -17,7 +17,6 @@ OC.L10N.register(
     "Insufficient permissions" : "صلاحيات غير كافية",
     "File content not supplied" : "لم يتم توفير محتوى الملف",
     "File etag not supplied" : "لم يتم توفير وسم الكيان الإلكتروني \"etag \" للملف",
-    "You can not write to this path" : "لا يمكنك الكتابة على هذا المسار",
     "Incorrect parameters" : "معلمات غير صحيحة",
     "The required folder was not found" : "لم يتم العثور على المجلد المطلوب",
     "You don't have enough permission to create file" : "ليس لديك الإذن الكافي لإنشاء ملف",
