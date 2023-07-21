@@ -17,6 +17,7 @@ OC.L10N.register(
     "Insufficient permissions" : "權限不足",
     "File content not supplied" : "未提供檔案內容",
     "File etag not supplied" : "未提供檔案電子標籤",
+    "You cannot write to this path" : "您無法寫入此途徑",
     "Incorrect parameters" : "參數不正確",
     "The required folder was not found" : "找不到必要的資料夾",
     "You don't have enough permission to create file" : "您沒有創建檔案的權限",
