@@ -51,7 +51,7 @@ OC.L10N.register(
     "No" : "否",
     "Language" : "語言",
     "Activate offline mode in Draw.io?" : "在 Draw.io 啟用離線模式？",
-    "When the \"offline mode\" is active, this disables all remote operations and features to protect the users privacy. Draw.io will then also only be in English, even if you set a different language manually." : "啟用「離線模式」後，會停用所有遠端操作與功能以保護使用者隱私。Draw.io 也僅會以英文顯示（即便您設定了其他語言也是如此）。",
+    "When the \"offline mode\" is active, this disables all remote operations and features to protect the users privacy. Draw.io will then also only be in English, even if you set a different language manually." : "啟用「離線模式」後，會停用所有遠端操作與功能以保護用戶隱私。Draw.io 也僅會以英文顯示（即便您設定了其他語言也是如此）。",
     "Activate autosave?" : "啟用自動儲存？",
     "Note: To enable realtime collaboration, autosave must be active." : "注意：要啟用即時協作，必須啟用自動儲存。",
     "Enable libraries?" : "啟用媒體庫？",

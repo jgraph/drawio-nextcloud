@@ -2,8 +2,11 @@ OC.L10N.register(
     "drawio",
     {
     "You can not open a folder" : "Не можете да отворите папка",
+    "An internal server error occurred." : "Се случи внатрешна грешка.",
+    "This file is too big to be opened. Please download the file instead." : "Датотеката е премногу голема за да се отвори. Преземете ја датотеката и отворете ја.",
     "Cannot read the file." : "Неможе да се прочита датотеката.",
     "File not found." : "Датотеката не е пронајдена.",
+    "The file is locked." : "Датотеката е заклучена.",
     "Could not write to file." : "Не може да се запише во датотеката",
     "Saving..." : "Зачувува ...",
     "Auto" : "Автоматски",
