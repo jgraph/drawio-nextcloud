@@ -10,6 +10,7 @@ OC.L10N.register(
     "You can not write to a folder" : "Вы не можете записать в каталог",
     "Could not write to file." : "Не удалось записать в файл.",
     "Insufficient permissions" : "Недостаточно прав доступа",
+    "The required folder was not found" : "Нужная папка не найдена",
     "Saving..." : "Сохранение…",
     "Auto" : "Автоматически",
     "Dark" : "Тёмное",
