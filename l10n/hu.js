@@ -17,6 +17,7 @@ OC.L10N.register(
     "Insufficient permissions" : "Nincs jogosultsága hozzá",
     "File content not supplied" : "A fájltartalom nincs megadva",
     "File etag not supplied" : "A fájl etag nincs megadva",
+    "You cannot write to this path" : "Nem írhat erre az útvonalra",
     "Incorrect parameters" : "Hibás paraméterek",
     "The required folder was not found" : "A kért mappa nem található",
     "You don't have enough permission to create file" : "Nincs engedélye fájl létrehozásához",
