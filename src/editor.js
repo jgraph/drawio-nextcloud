@@ -350,8 +350,6 @@ import '@nextcloud/dialogs/dist/index.css'
                         if (contents === ' ') 
                         {
                             OCA.DrawIO.NewFileMode = true;
-                            // Empty diagram XML
-                            contents = '<mxGraphModel><root><mxCell id="0"/><mxCell id="1" parent="0"/></root></mxGraphModel>'; 
                         }
                         
                         editWindow.postMessage(JSON.stringify({
