@@ -1,5 +1,9 @@
 # Change Log
 
+## 2.1.4
+
+- Fixed #59
+
 ## 2.1.3
 
 - Fixed #57
