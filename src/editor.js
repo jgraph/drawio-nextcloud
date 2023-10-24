@@ -350,6 +350,10 @@ import '@nextcloud/dialogs/dist/index.css'
                         if (contents === ' ') 
                         {
                             OCA.DrawIO.NewFileMode = true;
+                            // Whiteboards require XML, but diagrams must be empty
+							if (currentFile.name.endsWith('.dwb')) {
+								contents = '<mxGraphModel><root><mxCell id="0"/><mxCell id="1" parent="0"/></root></mxGraphModel>'; 
+							}
                         }
                         
                         editWindow.postMessage(JSON.stringify({
