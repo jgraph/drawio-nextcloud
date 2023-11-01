@@ -10,6 +10,7 @@ OC.L10N.register(
     "Saving..." : "Guardando…",
     "Yes" : "Sí",
     "No" : "Non",
-    "Language" : "Llingua"
+    "Language" : "Llingua",
+    "Save" : "Guardar"
 },
 "nplurals=2; plural=(n != 1);");
