@@ -49,7 +49,7 @@
     "No" : "Ne",
     "Language" : "Jazyk",
     "Activate offline mode in Draw.io?" : "Aktivovat režim Draw.io pro práci bez připojení?",
-    "When the \"offline mode\" is active, this disables all remote operations and features to protect the users privacy. Draw.io will then also only be in English, even if you set a different language manually." : "Pokud je aktivní \"režim práce bez připojení\", vypne toto veškeré dálkové operace a funkce pro ochranu soukromí uživatele. Draw.io tím bude také pouze v angličtině, i když nastavíte ručně jiný jazyk.",
+    "When the \"offline mode\" is active, this disables all remote operations and features to protect the users privacy. Draw.io will then also only be in English, even if you set a different language manually." : "Pokud je aktivní „režim práce bez připojení“, vypne toto veškeré dálkové operace a funkce pro ochranu soukromí uživatele. Draw.io tím bude také pouze v angličtině, i když nastavíte ručně jiný jazyk.",
     "Activate autosave?" : "Aktivovat automatické ukládání?",
     "Note: To enable realtime collaboration, autosave must be active." : "Pozn.: aby bylo spolupracovat v reálném čase, je třeba, aby automatické ukládání bylo aktivní.",
     "Enable libraries?" : "Zapnout knihovny?",
