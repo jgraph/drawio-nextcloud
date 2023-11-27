@@ -1,8 +1,10 @@
 { "translations": {
+    "You can not open a folder" : "Nu se poate deschide un folder",
     "An internal server error occurred." : "A apărut o eroare internp a serverului.",
     "This file is too big to be opened. Please download the file instead." : "Fișierul este prea mare pentru a fi deschis. Descarcă-l în schimb.",
     "Cannot read the file." : "Fișierul nu poate fi citit.",
     "The file is locked." : "Fișierul este blocat.",
+    "You can not write to a folder" : "Nu se poate scrie într-un folder",
     "Insufficient permissions" : "Permisiuni insuficiente",
     "Saving..." : "Se salvează...",
     "Auto" : "Auto",
