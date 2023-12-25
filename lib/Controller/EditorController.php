@@ -173,6 +173,10 @@ class EditorController extends Controller
 			} else {
 				return new DataResponse(['message' => (string)$this->trans->t('Invalid fileId/revId supplied.')], Http::STATUS_BAD_REQUEST);
 			}
+        }
+        catch (NotFoundException $e)
+        {
+            return $this->loadInternal($fileId, null, true);
 		} catch (\Exception $e) {
             $this->logger->logException($e, ["message" => "Can't load file version: $fileId, $revId", "app" => $this->appName]);
 			$message = (string)$this->trans->t('An internal server error occurred.');
@@ -238,6 +242,11 @@ class EditorController extends Controller
      */
 	public function load($fileId, $shareToken) 
     {
+        return $this->loadInternal($fileId, $shareToken, false);
+    }
+
+    private function loadInternal($fileId, $shareToken, $contentsOnly)
+    {
         $locked = false;
 
 		try 
@@ -264,7 +273,7 @@ class EditorController extends Controller
             if ($fileContents !== false) 
             {
                 return new DataResponse(
-                    [
+                    $contentsOnly? $fileContents: [
                         'xml' => $fileContents,
                         'id' => $fileId,
                         'size' => $file->getSize(),
@@ -603,8 +612,6 @@ class EditorController extends Controller
         $lang = $this->config->GetLang();
         $lang = trim(strtolower($lang));
 
-        $eventDispatcher = \OC::$server->getEventDispatcher();
-
         if ("auto" === $lang)
         {
             $lang = \OC::$server->getL10NFactory("")->get("")->getLanguageCode();
@@ -656,7 +663,6 @@ class EditorController extends Controller
         }
 
         $csp = new ContentSecurityPolicy();
-        $csp->allowInlineScript(true);
 
         if (isset($drawioUrl) && !empty($drawioUrl))
         {

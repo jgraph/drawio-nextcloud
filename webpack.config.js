@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 
 module.exports = {
     mode: 'production',
@@ -20,7 +21,17 @@ module.exports = {
                     'css-loader',
                     'sass-loader'
                 ]
+            },
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader'
             }
         ]
-    }
+    },
+    plugins: [
+        // fix "process is not defined" error:
+        new webpack.ProvidePlugin({
+            process: 'process/browser.js',
+        }),
+    ]
 }

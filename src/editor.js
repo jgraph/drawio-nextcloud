@@ -180,7 +180,7 @@ import '@nextcloud/dialogs/dist/index.css'
 
             if (filePath)
             {
-                url = generateUrl('/apps/files/?dir={currentDirectory}&fileid={fileId}', {
+                url = generateUrl('/apps/files/?dir={currentDirectory}', {
                     currentDirectory: filePath.substring(0, filePath.lastIndexOf('/')),
                     fileId: data.id
                 });

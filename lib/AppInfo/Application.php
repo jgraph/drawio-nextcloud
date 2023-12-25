@@ -40,30 +40,20 @@ class Application extends App {
 
         $this->appConfig = new AppConfig($appName);
 
-
         // Default script and style if configured
         if (!empty($this->appConfig->GetDrawioUrl()) && array_key_exists("REQUEST_URI", \OC::$server->getRequest()->server))
         {
             $url = \OC::$server->getRequest()->server["REQUEST_URI"];
 
             if (isset($url)) {
-                if (preg_match("%/apps/files(/.*)?%", $url)) {
+                if (preg_match("%/apps/files(/.*)?%", $url) || preg_match("%/s/.*%", $url)) // Files app and file sharing
+                {
                     Util::addScript($appName, "main");
                     Util::addStyle($appName, "main");
                 }
             }
         }
-        // Default script and style if configured
-        $eventDispatcher = \OC::$server->getEventDispatcher();
-
-        $eventDispatcher->addListener("OCA\Files_Sharing::loadAdditionalScripts",
-            function() {
-                if (!empty($this->appConfig->GetDrawioUrl()) && array_key_exists("REQUEST_URI", \OC::$server->getRequest()->server) ) {
-                    Util::addScript($this->appConfig->GetAppName(), "main");
-                    Util::addStyle($this->appConfig->GetAppName(), "main");
-                }
-            });
-
+        
         $container = $this->getContainer();
 
         $container->registerService("L10N", function($c)

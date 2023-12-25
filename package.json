@@ -11,12 +11,16 @@
         "watch": "NODE_ENV=development webpack --progress --watch"
     },
     "dependencies": {
-        "@nextcloud/auth": "^2.1.0",
+        "@nextcloud/auth": "^2.2.1",
         "@nextcloud/axios": "^2.4.0",
         "@nextcloud/dialogs": "^4.1.0",
+        "@nextcloud/event-bus": "^3.1.0",
+        "@nextcloud/files": "^3.0.0",
         "@nextcloud/l10n": "^2.2.0",
         "@nextcloud/router": "^2.1.2",
-        "jquery": "^3.7.0"
+        "jquery": "^3.7.0",
+        "path": "^0.12.7",
+        "process": "^0.11.10"
     },
     "devDependencies": {
         "css-loader": "^6.7.3",
