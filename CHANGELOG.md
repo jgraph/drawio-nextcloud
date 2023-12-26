@@ -1,5 +1,9 @@
 # Change Log
 
+## 3.0.1
+
+- Fixed #64, #66
+
 ## 3.0.0
 
 - Nextcloud 28 compatibility. This breaks compatibility with older versions. Also, consider this release as beta. (Fixes #63)
