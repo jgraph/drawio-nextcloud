@@ -11,15 +11,25 @@
 
 namespace OCA\Drawio\Settings;
 
-use OCP\Settings\ISettings;
+use OCP\Settings\IDelegatedSettings;
 
 use OCA\Drawio\AppInfo\Application;
 
 
-class Admin implements ISettings {
+class Admin implements IDelegatedSettings {
 
     public function __construct()
     {
+    }
+
+    public function getName(): ?string {
+        return null;
+    }
+
+    public function getAuthorizedAppConfig(): array {
+        return [
+            'drawio' => ['/drawio.*/'],
+        ];
     }
 
     public function getForm()
