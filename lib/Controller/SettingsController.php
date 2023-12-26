@@ -71,8 +71,11 @@ class SettingsController extends Controller
         return new TemplateResponse($this->appName, "settings", $data, "blank");
     }
 
-
-
+	/**
+	 * Save settings
+	 *
+	 * @AuthorizedAdminSetting(settings=OCA\Drawio\Settings\Admin)
+	 */
     public function settings()
     {
         $drawio = trim($_POST['drawioUrl']);
