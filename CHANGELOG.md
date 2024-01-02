@@ -1,5 +1,9 @@
 # Change Log
 
+## 3.0.2
+
+- Fixed #69
+
 ## 3.0.1
 
 - Fixed #64, #66
