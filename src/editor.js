@@ -202,7 +202,7 @@ import '@nextcloud/dialogs/dist/index.css'
 
     OCA.DrawIO.EditFile = function (editWindow, origin, autosave, isWB, previews, configObj) 
     {
-        var autosaveEnabled = autosave === 'yes';
+        var autosaveEnabled = autosave;
         var fileId = $('#iframeEditor').data('id');
         var shareToken = $('#iframeEditor').data('sharetoken');
         var currentFile = null;
@@ -496,3 +496,51 @@ import '@nextcloud/dialogs/dist/index.css'
     };
 
 })(OCA);
+
+$(function () {
+    var drawioData = JSON.parse(atob($('#drawioData').text()));
+
+    if (drawioData['error'])
+    {
+        OCA.DrawIO.DisplayError(drawioData['error']);
+    }
+    else
+    {
+        var iframe = document.getElementById('iframeEditor');
+        var originUrl = drawioData['drawioUrl'];
+        var drawIoUrl = drawioData['drawioUrl'] + drawioData['frame_params'];
+        var autosave = drawioData['finalAutosave'] == 'yes';
+        var isWB = drawioData['isWB'] == 'true';
+        var previews = drawioData['drawioPreviews'] == 'yes';
+
+        if (drawioData['drawioDarkMode'] == 'auto')
+        {
+            try
+            {
+                var darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                var themeName = OCA.Theming.enabledThemes[0];
+
+                if ((!themeName || themeName === 'default') && darkMode)
+                {
+                    drawIoUrl += '&dark=1';
+                }
+                else if (themeName && themeName.indexOf('dark') !== -1)
+                {
+                    drawIoUrl += '&dark=1';
+                }
+            }
+            catch (e){}
+        }
+
+        var config = {};
+
+        try
+        {
+            config = JSON.parse(drawioData['drawioConfig']);
+        }
+        catch (e){}
+
+        OCA.DrawIO.EditFile(iframe.contentWindow, originUrl, autosave, isWB, previews, config);
+        iframe.setAttribute('src', drawIoUrl);
+    }
+});
