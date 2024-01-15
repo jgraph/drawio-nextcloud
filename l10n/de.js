@@ -40,7 +40,7 @@ OC.L10N.register(
     "Error when trying to connect" : "Fehler beim Verbindungsversuch",
     "Auto" : "Automatisch",
     "Draw.io URL" : "Draw.io URL",
-    "Note: To enable realtime collaboration, leave blank or enter (https://embed.diagrams.net)" : "Hinweis: Um Echtzeit-Zusammenarbeit zu aktivieren, leer lassen, oder gebe (https://embed.diagrams.net) ein",
+    "Note: To enable realtime collaboration, leave blank or enter (https://embed.diagrams.net)" : "Hinweis: Um Echtzeit-Zusammenarbeit zu aktivieren, leer lassen oder gib (https://embed.diagrams.net) ein.",
     "Theme:" : "Design:",
     "Classic" : "Klassisch",
     "Modern" : "Modern",
