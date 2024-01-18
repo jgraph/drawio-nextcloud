@@ -616,9 +616,9 @@ class EditorController extends Controller
         {
             $lang = \OC::$server->getL10NFactory("")->get("")->getLanguageCode();
 
-            if (!empty($lang))
+            if (!empty($lang) && strpos($lang, "_"))
             {
-                $lang = substr($lang, 0, 2); // Change to draw.io format
+                $lang = substr($lang, 0, strpos($lang, "_")); // Change to draw.io format
             }
         }
 
