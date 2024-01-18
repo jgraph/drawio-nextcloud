@@ -615,6 +615,11 @@ class EditorController extends Controller
         if ("auto" === $lang)
         {
             $lang = \OC::$server->getL10NFactory("")->get("")->getLanguageCode();
+
+            if (!empty($lang))
+            {
+                $lang = substr($lang, 0, 2); // Change to draw.io format
+            }
         }
 
         if (empty($drawioUrl))
