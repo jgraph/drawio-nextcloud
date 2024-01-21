@@ -13,7 +13,7 @@ OC.L10N.register(
     "Saving..." : "Salvataggio…",
     "Auto" : "Automatico",
     "Dark" : "Scuro",
-    "Yes" : "Si",
+    "Yes" : "Sì",
     "No" : "No",
     "Language" : "Lingua",
     "Save" : "Salva"
