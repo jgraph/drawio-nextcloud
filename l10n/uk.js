@@ -3,7 +3,7 @@ OC.L10N.register(
     {
     "You can not open a folder" : "Неможливо відкрити каталог",
     "An internal server error occurred." : "Виникла внутрішня помилка серверу.",
-    "This file is too big to be opened. Please download the file instead." : "Файл занадто великий для відкриття. Будь ласка, завантажте файл замість цього.",
+    "This file is too big to be opened. Please download the file instead." : "Файл занадто великий для відкриття. Рекомендуємо звантажити його на ваш пристрій.",
     "Cannot read the file." : "Не можливо прочитати файл.",
     "File not found." : "Файл не знайдено.",
     "The file is locked." : "Файл заблоковано.",
