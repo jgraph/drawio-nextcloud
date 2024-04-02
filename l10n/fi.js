@@ -13,6 +13,7 @@ OC.L10N.register(
     "Insufficient permissions" : "Oikeudet eivät riitä",
     "You cannot write to this path" : "Et voi kirjoittaa tähän polkuun",
     "Incorrect parameters" : "Virheelliset parametrit",
+    "The required folder was not found" : "Vaadittua kansiota ei löytynyt",
     "You don't have enough permission to create file" : "Sinulla ei ole oikeuksia luoda tiedostoa",
     "Can't create file" : "Tiedostoa ei voi luoda",
     "Draw.io app not configured! Please contact admin." : "Draw.io-sovellusta ei ole määritetty! Ole yhteydessä ylläpitoon.",
@@ -45,6 +46,7 @@ OC.L10N.register(
     "Activate autosave?" : "Käytetäänkö automaattista tallennusta?",
     "Enable libraries?" : "Käytetäänkö kirjastoja?",
     "Enable diagram previews?" : "Käytetäänkö kaavioiden esikatseluja?",
+    "draw.io Configuration" : "draw.io-määritys",
     "Save" : "Tallenna"
 },
 "nplurals=2; plural=(n != 1);");
