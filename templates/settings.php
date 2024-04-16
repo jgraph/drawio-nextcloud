@@ -39,7 +39,6 @@
         <option value="no"<?php if ($_["drawioOfflineMode"] === "no") echo ' selected'; ?>><?php p($l->t("No")) ?></option>
       </select>
     </p>
-
     <p><?php p($l->t("When the \"offline mode\" is active, this disables all remote operations and features to protect the users privacy. Draw.io will then also only be in English, even if you set a different language manually.")) ?></p>
 
     <p class="drawio-header">
@@ -48,8 +47,8 @@
         <option value="yes"<?php if ($_["drawioAutosave"] === "yes") echo ' selected'; ?>><?php p($l->t("Yes")) ?></option>
         <option value="no"<?php if ($_["drawioAutosave"] === "no") echo ' selected'; ?>><?php p($l->t("No")) ?></option>
       </select>
-      <?php p($l->t("Note: To enable realtime collaboration, autosave must be active.")) ?>
     </p>
+    <p><?php p($l->t("Note: To enable realtime collaboration, autosave must be active.")) ?></p>
 
     <p class="drawio-header">
         <label for='drawioLibraries'><?php p($l->t("Enable libraries?")) ?>
