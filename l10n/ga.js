@@ -1,6 +1,7 @@
 OC.L10N.register(
     "drawio",
     {
+    "Dark" : "Dorcha",
     "Yes" : "Tá",
     "No" : "Níl",
     "Language" : "Teanga",
