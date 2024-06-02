@@ -1,6 +1,7 @@
 OC.L10N.register(
     "drawio",
     {
+    "File not found." : "Comhad gan aimsiú.",
     "Dark" : "Dorcha",
     "Yes" : "Tá",
     "No" : "Níl",
