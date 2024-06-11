@@ -2,6 +2,7 @@ OC.L10N.register(
     "drawio",
     {
     "File not found." : "Comhad gan aimsiú.",
+    "Saving..." : "Shábháil...",
     "Auto" : "Auto",
     "Dark" : "Dorcha",
     "Yes" : "Tá",
