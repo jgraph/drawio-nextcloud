@@ -4,6 +4,7 @@
     "Cannot read the file." : "Không thể đọc thư mục",
     "File not found." : "Không tìm thấy tệp tin.",
     "The file is locked." : "Thư mục đã khóa",
+    "Could not write to file." : "Không thể ghi vào tệp.",
     "Insufficient permissions" : "Không đủ quyền",
     "Saving..." : "Đang lưu...",
     "Auto" : "Tự động",
