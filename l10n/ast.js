@@ -29,7 +29,9 @@ OC.L10N.register(
     "Yes" : "Sí",
     "No" : "Non",
     "Language" : "Llingua",
+    "Activate autosave?" : "¿Quies activar el guardáu automáticu?",
     "Enable libraries?" : "¿Quies activar les biblioteques?",
+    "draw.io Configuration" : "Configuración de draw.io",
     "Save" : "Guardar"
 },
 "nplurals=2; plural=(n != 1);");
