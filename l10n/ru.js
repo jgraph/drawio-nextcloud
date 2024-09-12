@@ -12,6 +12,7 @@ OC.L10N.register(
     "Insufficient permissions" : "Недостаточно прав доступа",
     "The required folder was not found" : "Нужная папка не найдена",
     "Saving..." : "Сохранение…",
+    "Settings have been successfully saved" : "Настройки успешно сохранены",
     "Auto" : "Автоматически",
     "Dark" : "Тёмное",
     "Yes" : "Да",
