@@ -30,7 +30,7 @@ OC.L10N.register(
     "Loading, please wait." : "Carregando, por favor espere.",
     "Error loading the file" : "Erro ao carregar o arquivo",
     "New draw.io Diagram" : "New draw.io Diagram",
-    "New draw.io Whiteboard" : "New draw.io Whiteboard",
+    "New draw.io Whiteboard" : "Novo quadro branco draw.io",
     "Open in Draw.io" : "Abrir no Draw.io",
     "Error: Creating a new file failed." : "Erro: Falha ao criar um novo arquivo.",
     "Edit in Draw.io" : "Edit in Draw.io",
