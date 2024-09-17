@@ -1,5 +1,9 @@
 # Change Log
 
+## 3.0.3
+
+- Added support for Nextcloud 30
+
 ## 3.0.2
 
 - Fixed #69
