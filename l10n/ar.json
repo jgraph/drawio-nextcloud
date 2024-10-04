@@ -2,7 +2,7 @@
     "Versions plugin is not enabled" : "لم يتم تمكين المكوِّن الإضافي للإصدارات",
     "You can not open a folder" : "لا يمكنك فتح مجلد",
     "Invalid fileId/revId supplied." : "حقل غير صالح.",
-    "An internal server error occurred." : "حدث خطأ داخلي في الخادوم.",
+    "An internal server error occurred." : "حدث خطأ داخلي في الخادم.",
     "Invalid fileId supplied." : "تم تقديم معرّف ملف غير صالح.",
     "This file is too big to be opened. Please download the file instead." : "هذا الملف كبير جدًا بحيث لا يمكن فتحه. يرجى تنزيل الملف بدلاً من ذلك.",
     "Cannot read the file." : "لا يمكن قراءة الملف.",
