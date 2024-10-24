@@ -22,7 +22,7 @@ OC.L10N.register(
     "The required folder was not found" : "لم يتم العثور على المجلد المطلوب",
     "You don't have enough permission to create file" : "ليس لديك الإذن الكافي لإنشاء ملف",
     "Can't create file" : "لا يمكن إنشاء الملف",
-    "Draw.io app not configured! Please contact admin." : "لم يتم تهيئة تطبيق Draw.io! يرجى الاتصال بالمسؤول.",
+    "Draw.io app not configured! Please contact admin." : "لم يتم تهيئة تطبيق Draw.io! يرجى الاتصال بمدير النظام.",
     "Draw.io" : "تطبيق Draw.io!",
     "Draw.io integration app" : "تكامل تطبيق Draw.io",
     "Integrates draw.io diagrams editor with Nextcloud" : "تكامل محرر الرسوم البيانية draw.io مع نكست كلود",
