@@ -27,7 +27,7 @@ OC.L10N.register(
     "Draw.io integration app" : "تكامل تطبيق Draw.io",
     "Integrates draw.io diagrams editor with Nextcloud" : "تكامل محرر الرسوم البيانية draw.io مع نكست كلود",
     "FileId is empty" : "معرف الملف فارغ",
-    "Loading, please wait." : "جاري التحميل، يرجي الانتظار.",
+    "Loading, please wait." : "يتم التحميل، يرجي الانتظار.",
     "Error loading the file" : "خطأ في تحميل الملف",
     "New draw.io Diagram" : "رسم تخطيطي جديد في تطبيق draw.io",
     "New draw.io Whiteboard" : "رسم جديد في تطبيق draw.io",
