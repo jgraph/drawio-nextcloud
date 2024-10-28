@@ -47,21 +47,6 @@ class RegisterMimeType extends MimeTypeMigration
         $this->appendToFile($mimetypemappingFile, ['drawio' => ['application/x-drawio'], 'dwb' => ['application/x-drawio-wb']]);
     }
 
-    private function copyIcons()
-    {
-        $icons = ['drawio', 'dwb'];
-
-        foreach ($icons as $icon) 
-        {
-            $source = __DIR__ . '/../../img/' . $icon . '.svg';
-            $target = \OC::$SERVERROOT . '/core/img/filetypes/' . $icon . '.svg';
-            if (!file_exists($target) || md5_file($target) !== md5_file($source)) 
-            {
-                copy($source, $target);
-            }
-        }
-    }
-
     public function run(IOutput $output)
     {
         $output->info('Registering the mimetype...');
@@ -73,9 +58,6 @@ class RegisterMimeType extends MimeTypeMigration
         $this->registerForNewFiles();
 
         $output->info('The mimetype was successfully registered.');
-
-        $output->info('Copy drawio icons to core/img directory.');
-        $this->copyIcons();
 
         $this->updateJS->run(new StringInput(''), new ConsoleOutput());
     }
