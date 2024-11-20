@@ -16,6 +16,7 @@
     "Yes" : "Да",
     "No" : "Нет",
     "Language" : "Язык",
+    "When the \"offline mode\" is active, this disables all remote operations and features to protect the users privacy. Draw.io will then also only be in English, even if you set a different language manually." : "Когда активен «офлайн-режим», это отключает все удаленные операции и функции для защиты конфиденциальности пользователей. Draw.io тогда также будет только на английском языке, даже если вы вручную установите другой язык.",
     "Save" : "Сохранить"
 },"pluralForm" :"nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);"
 }
