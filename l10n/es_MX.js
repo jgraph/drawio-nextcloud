@@ -9,6 +9,7 @@ OC.L10N.register(
     "You can not write to a folder" : "No puedes escribir a la carpeta",
     "Insufficient permissions" : "Permisos insuficientes",
     "Saving..." : "Guardando...",
+    "Auto" : "Auto",
     "Dark" : "Oscuro",
     "Yes" : "Sí",
     "No" : "No",
