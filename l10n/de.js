@@ -19,7 +19,7 @@ OC.L10N.register(
     "File etag not supplied" : "Datei-Etage nicht angegeben",
     "You cannot write to this path" : "Du kannst in diesen Pfad nicht schreiben",
     "Incorrect parameters" : "Falsche Parameter",
-    "The required folder was not found" : "Sie haben nicht genug Berechtigungen um die Datei zu erstellen",
+    "The required folder was not found" : "Benötigt keine Übersetzung. Hier wird nur die formelle Übersetzung verwendet (de_DE).",
     "You don't have enough permission to create file" : "Du hast nicht genug Berechtigungen um die Datei zu erstellen",
     "Can't create file" : "Datei kann nicht erstellt werden",
     "Draw.io app not configured! Please contact admin." : "Draw.io-App nicht eingerichtet. Bitte kontaktiere deine Administration",
