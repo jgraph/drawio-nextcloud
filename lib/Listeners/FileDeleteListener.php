@@ -8,17 +8,18 @@ use OCP\Files\Events\Node\NodeDeletedEvent;
 use OCP\Files\Folder;
 use OCP\Files\IAppData;
 use OCP\Files\NotFoundException;
-use OCP\ILogger;
+use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 
 class FileDeleteListener implements IEventListener {
 
-    /** @var ILogger */
+    /** @var LoggerInterface */
     private $logger;
 
     /** @var IAppData */
     private $appData;
 
-	public function __construct(ILogger $logger, IAppData $appData)
+	public function __construct(LoggerInterface $logger, IAppData $appData)
     {
         $this->logger = $logger;
         $this->appData = $appData;
@@ -47,7 +48,7 @@ class FileDeleteListener implements IEventListener {
         catch (\Exception $e)
         {
             // ignore
-            $this->logger->logException($e, ["message" => "Can't delete preview for file: " . $node->getPath(), "app" => 'drawio']);
+            $this->logger->error($e->getMessage(), ["message" => "Can't delete preview for file: " . $node->getPath(), "app" => 'drawio', 'level' => LogLevel::ERROR, 'exception' => $e]);
         }
 	}
 }

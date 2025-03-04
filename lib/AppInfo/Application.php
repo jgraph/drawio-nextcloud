@@ -27,6 +27,8 @@ use OCA\Drawio\Listeners\FileDeleteListener;
 use OCP\EventDispatcher\IEventDispatcher;
 use OCP\Files\Events\Node\NodeDeletedEvent;
 use OCP\Files\IAppData;
+use Psr\Log\LoggerInterface;
+
 
 class Application extends App {
 
@@ -73,7 +75,7 @@ class Application extends App {
 
         $container->registerService("Logger", function($c)
         {
-            return $c->query("ServerContainer")->getLogger();
+            return $c->query("ServerContainer")->get(LoggerInterface::class);
         });
 
 
