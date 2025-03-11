@@ -12,8 +12,7 @@
 namespace OCA\Drawio;
 
 use OCP\IConfig;
-use OCP\ILogger;
-
+use Psr\Log\LoggerInterface;
 
 class AppConfig {
 
@@ -48,7 +47,7 @@ class AppConfig {
         $this->appName = $AppName;
 
         $this->config = \OC::$server->getConfig();
-        $this->logger = \OC::$server->getLogger();
+        $this->logger = \OC::$server->get(LoggerInterface::class);
     }
 
     public function SetDrawioUrl($drawio)

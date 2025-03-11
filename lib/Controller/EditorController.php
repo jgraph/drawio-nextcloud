@@ -23,13 +23,14 @@ use OCP\Constants;
 use OCP\Files\FileInfo;
 use OCP\Files\IRootFolder;
 use OCP\IL10N;
-use OCP\ILogger;
 use OCP\IRequest;
 use OCP\ISession;
 use OCP\IURLGenerator;
 use OCP\IUserSession;
 use OCP\Share\Exceptions\ShareNotFound;
 use OCP\Share\IManager;
+use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 
 use OC\Files\Filesystem;
 use OC\Files\View;
@@ -100,7 +101,7 @@ class EditorController extends Controller
      * @param IUserSession $userSession - current user session
      * @param IURLGenerator $urlGenerator - url generator service
      * @param IL10N $trans - l10n service
-     * @param ILogger $logger - logger
+     * @param LoggerInterface $logger - logger
      * @param OCA\Drawio\AppConfig $config - app config
      */
     public function __construct($AppName,
@@ -109,7 +110,7 @@ class EditorController extends Controller
                                 IUserSession $userSession,
                                 IURLGenerator $urlGenerator,
                                 IL10N $trans,
-                                ILogger $logger,
+                                LoggerInterface $logger,
                                 AppConfig $config,
                                 IManager $shareManager,
                                 ISession $session,
@@ -178,7 +179,7 @@ class EditorController extends Controller
         {
             return $this->loadInternal($fileId, null, true);
 		} catch (\Exception $e) {
-            $this->logger->logException($e, ["message" => "Can't load file version: $fileId, $revId", "app" => $this->appName]);
+            $this->logger->error($e->getMessage(), ["message" => "Can't load file version: $fileId, $revId", "app" => $this->appName, 'level' => LogLevel::ERROR, 'exception' => $e]);
 			$message = (string)$this->trans->t('An internal server error occurred.');
 			return new DataResponse(['message' => $message], Http::STATUS_INTERNAL_SERVER_ERROR);
 		}
@@ -225,7 +226,7 @@ class EditorController extends Controller
 				return new DataResponse(['message' => (string)$this->trans->t('Invalid fileId supplied.')], Http::STATUS_BAD_REQUEST);
 			}
 		} catch (\Exception $e) {
-            $this->logger->logException($e, ["message" => "Can't get file versions: $fileId", "app" => $this->appName]);
+            $this->logger->error($e->getMessage(), ["message" => "Can't get file versions: $fileId", "app" => $this->appName, 'level' => LogLevel::ERROR, 'exception' => $e]);
 			$message = (string)$this->trans->t('An internal server error occurred.');
 			return new DataResponse(['message' => $message], Http::STATUS_INTERNAL_SERVER_ERROR);
 		}
@@ -314,7 +315,7 @@ class EditorController extends Controller
 			$message = (string)$e->getHint();
 			return new DataResponse(['message' => $message], Http::STATUS_INTERNAL_SERVER_ERROR);
 		} catch (\Exception $e) {
-            $this->logger->logException($e, ["message" => "Can't load file: $fileId , $shareToken", "app" => $this->appName]);
+            $this->logger->error($e->getMessage(), ["message" => "Can't load file: $fileId , $shareToken", "app" => $this->appName, 'level' => LogLevel::ERROR, 'exception' => $e]);
 			$message = (string)$this->trans->t('An internal server error occurred.');
 			return new DataResponse(['message' => $message], Http::STATUS_INTERNAL_SERVER_ERROR);
 		}
@@ -382,7 +383,7 @@ class EditorController extends Controller
 			$message = (string)$e->getHint();
 			return new DataResponse(['message' => $message], Http::STATUS_INTERNAL_SERVER_ERROR);
 		} catch (\Exception $e) {
-            $this->logger->logException($e, ["message" => "Can't get file info: $fileId , $shareToken", "app" => $this->appName]);
+            $this->logger->error($e->getMessage(), ["message" => "Can't get file info: $fileId , $shareToken", "app" => $this->appName, 'level' => LogLevel::ERROR, 'exception' => $e]);
 			$message = (string)$this->trans->t('An internal server error occurred.');
 			return new DataResponse(['message' => $message], Http::STATUS_INTERNAL_SERVER_ERROR);
 		}
@@ -486,7 +487,7 @@ class EditorController extends Controller
 			$message = (string)$e->getHint();
 			return new DataResponse(['message' => $message], Http::STATUS_INTERNAL_SERVER_ERROR);
 		} catch (\Exception $e) {
-            $this->logger->logException($e, ["message" => "Can't save file: $fileId , $shareToken", "app" => $this->appName]);
+            $this->logger->error($e->getMessage(), ["message" => "Can't save file: $fileId , $shareToken", "app" => $this->appName, 'level' => LogLevel::ERROR, 'exception' => $e]);
 			$message = (string)$this->trans->t('An internal server error occurred.');
 			return new DataResponse(['message' => $message], Http::STATUS_INTERNAL_SERVER_ERROR);
 		}
@@ -539,7 +540,7 @@ class EditorController extends Controller
         }
         catch (\Exception $e) 
         {
-            $this->logger->logException($e, ["message" => "Can't save preview for file: $fileId , $shareToken", "app" => $this->appName]);
+            $this->logger->error($e->getMessage(), ["message" => "Can't save preview for file: $fileId , $shareToken", "app" => $this->appName, 'level' => LogLevel::ERROR, 'exception' => $e]);
 			$message = (string)$this->trans->t('An internal server error occurred.');
 			return new DataResponse(['message' => $message], Http::STATUS_INTERNAL_SERVER_ERROR);
 		}
@@ -576,7 +577,7 @@ class EditorController extends Controller
         }
         catch (NotPermittedException $e)
         {
-            $this->logger->logException($e, ["message" => "Can't create file: $name", "app" => $this->appName]);
+            $this->logger->error($e->getMessage(), ["message" => "Can't create file: $name", "app" => $this->appName, 'level' => LogLevel::ERROR, 'exception' => $e]);
             return ["error" => $this->trans->t("Can't create file")];
         }
 
