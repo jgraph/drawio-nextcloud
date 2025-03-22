@@ -12,7 +12,7 @@ jobs:
       run: |
         echo "zip_file_name=drawio-${GITHUB_REF##*/}.zip" >> $GITHUB_OUTPUT
         echo "tar_file_name=drawio-${GITHUB_REF##*/}.tar.gz" >> $GITHUB_OUTPUT
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
           path: drawio
     - name: Archive Release (zip)

@@ -36,7 +36,7 @@ OC.L10N.register(
     "Edit in Draw.io" : "Editar en Draw.io",
     "draw.io Configuration error:" : "Error de configuración draw.io:",
     "Saving..." : "Guardando...",
-    "Settings have been successfully saved" : "Los ajustes han sido guardados exitósamente",
+    "Settings have been successfully saved" : "Los ajustes se han guardado correctamente",
     "Error when trying to connect" : "Error al intentar conectarse",
     "Auto" : "Auto",
     "Draw.io URL" : "URL de Draw.io",

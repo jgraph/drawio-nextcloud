@@ -8,6 +8,7 @@
  **/
 
 import { generateUrl } from '@nextcloud/router'
+import { getSharingToken } from '@nextcloud/sharing/public'
 import * as $ from 'jquery';
 import { translate as t } from '@nextcloud/l10n'
 import { showError } from '@nextcloud/dialogs'
@@ -159,7 +160,7 @@ OCA.DrawIO = {
         {
             var fileName = $('#filename').val();
             var mimeType = $('#mimetype').val();
-            var sharingToken = $('#sharingToken').val();
+            var sharingToken = getSharingToken();
             var extension = fileName.substr(fileName.lastIndexOf('.') + 1).toLowerCase();
             var isWB = String(extension == 'dwb');
 

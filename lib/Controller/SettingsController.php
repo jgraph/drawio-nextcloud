@@ -15,8 +15,9 @@ namespace OCA\Drawio\Controller;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IL10N;
-use OCP\ILogger;
 use OCP\IRequest;
+use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 
 use OCA\Drawio\AppConfig;
 use OCA\Drawio\Migration;
@@ -33,13 +34,13 @@ class SettingsController extends Controller
      * @param string $AppName - application name
      * @param IRequest $request - request object
      * @param IL10N $trans - l10n service
-     * @param ILogger $logger - logger
+     * @param LoggerInterface $logger - logger
      * @param OCA\Drawio\AppConfig $config - application configuration
      */
     public function __construct($AppName,
                                 IRequest $request,
                                 IL10N $trans,
-                                ILogger $logger,
+                                LoggerInterface $logger,
                                 AppConfig $config
                                 )
     {

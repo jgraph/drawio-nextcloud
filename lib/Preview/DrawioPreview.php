@@ -9,8 +9,9 @@ use OCP\AppFramework\QueryException;
 use OCP\Files\FileInfo;
 use OCP\Files\IAppData;
 use OCP\Files\NotFoundException;
-use OCP\ILogger;
 use OCP\Image;
+use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 
 use OCA\Drawio\AppConfig;
 
@@ -32,7 +33,7 @@ class DrawioPreview extends Provider
         "application/x-drawio-wb"
     ];
 
-    public function __construct(ILogger $logger, IAppData $appData)
+    public function __construct(LoggerInterface $logger, IAppData $appData)
     {
         $this->logger = $logger;
         $this->appData = $appData;
@@ -101,7 +102,7 @@ class DrawioPreview extends Provider
         }
         catch (\Exception $e)
         {
-            $this->logger->logException($e, ["message" => "Can't get preview file", "app" => $this->appName]);
+            $this->logger->error($e->getMessage(), ["message" => "Can't get preview file", "app" => $this->appName, 'level' => LogLevel::ERROR, 'exception' => $e]);
             return false;
         }
     }
