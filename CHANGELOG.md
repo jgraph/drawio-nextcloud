@@ -1,5 +1,9 @@
 # Change Log
 
+## 3.0.4
+
+- Adds support for NextCloud 31
+
 ## 3.0.3
 
 - Added support for Nextcloud 30
