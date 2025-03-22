@@ -5,7 +5,7 @@
     <name>Draw.io</name>
     <summary>Draw.io integration app</summary>
     <description><![CDATA[Integrates draw.io diagrams editor with Nextcloud]]></description>
-    <version>3.0.3</version>
+    <version>3.0.4</version>
     <licence>agpl</licence>
     <author>JGraph Ltd</author>
     <namespace>Drawio</namespace>
@@ -20,7 +20,7 @@
     <repository type="git">https://github.com/jgraph/drawio-nextcloud.git</repository>
     <screenshot small-thumbnail="https://raw.githubusercontent.com/jgraph/drawio-nextcloud/release/screenshots/drawio_integration_sm.png">https://raw.githubusercontent.com/jgraph/drawio-nextcloud/release/screenshots/drawio_integration.png</screenshot>
     <dependencies>
-        <nextcloud min-version="28" max-version="30"/>
+        <nextcloud min-version="28" max-version="31"/>
     </dependencies>
     <settings>
         <admin>OCA\Drawio\Settings\Admin</admin>
