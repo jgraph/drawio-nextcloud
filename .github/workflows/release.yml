@@ -3,6 +3,7 @@ on:
   push:
     tags:
       - 'v*'
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,9 +13,24 @@ jobs:
       run: |
         echo "zip_file_name=drawio-${GITHUB_REF##*/}.zip" >> $GITHUB_OUTPUT
         echo "tar_file_name=drawio-${GITHUB_REF##*/}.tar.gz" >> $GITHUB_OUTPUT
+
     - uses: actions/checkout@v4
       with:
-          path: drawio
+        path: drawio
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      working-directory: drawio
+      run: npm ci
+
+    - name: Build the plugin
+      working-directory: drawio
+      run: npm run build
+
     - name: Archive Release (zip)
       uses: thedoctor0/zip-release@main
       with:
@@ -22,6 +38,7 @@ jobs:
         filename: ${{ steps.vars.outputs.zip_file_name }}
         path: drawio
         exclusions: '*.git* .tx/* screenshots/* src/* package* webpack.config.js'
+
     - name: Archive Release (tar.gz)
       uses: thedoctor0/zip-release@main
       with:
@@ -29,11 +46,13 @@ jobs:
         filename: ${{ steps.vars.outputs.tar_file_name }}
         path: drawio
         exclusions: '*.git* .tx/* screenshots/* src/* package* webpack.config.js'
+
     - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
         artifacts: ${{ steps.vars.outputs.zip_file_name }},${{ steps.vars.outputs.tar_file_name }}
         token: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Upload App Release
       run: |
         sleep 60
@@ -41,3 +60,4 @@ jobs:
         export signature=`openssl dgst -sha512 -sign drawio.key ${{ steps.vars.outputs.tar_file_name }} | openssl base64`
         export requestJSON="{\"download\":\"https://github.com/jgraph/drawio-nextcloud/releases/download/${GITHUB_REF##*/}/drawio-${GITHUB_REF##*/}.tar.gz\", \"signature\": \"${signature//$'\n'/\\n}\"}"
         curl -X POST https://apps.nextcloud.com/api/v1/apps/releases -H "Authorization: Token ${{ secrets.NEXTCLOUD_TOKEN }}" -H "Content-Type: application/json" -d "${requestJSON}"
+
