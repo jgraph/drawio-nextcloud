@@ -8,7 +8,7 @@
  **/
 
 import { generateUrl } from '@nextcloud/router'
-import { getSharingToken } from '@nextcloud/sharing/public'
+import { getSharingToken, isPublicShare } from '@nextcloud/sharing/public'
 import * as $ from 'jquery';
 import { translate as t } from '@nextcloud/l10n'
 import { showError } from '@nextcloud/dialogs'
@@ -156,7 +156,7 @@ OCA.DrawIO = {
 
     init: async function () 
     {
-        if ($('#isPublic').val() === '1' && !$('#filestable').length) 
+        if (isPublicShare() && !$('#filestable').length)
         {
             var fileName = $('#filename').val();
             var mimeType = $('#mimetype').val();
