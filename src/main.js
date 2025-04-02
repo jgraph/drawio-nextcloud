@@ -154,17 +154,35 @@ OCA.DrawIO = {
         }
     },
 
+    isViewIsFile = function() {
+        const mimetype = document.getElementById('mimetype')?.value
+        if (mimetype !== undefined) {
+            return mimetype !== 'httpd/unix-directory';
+        }
+        
+        try {
+            return loadState('files_sharing', 'view') === 'public-file-share';
+        } catch {
+            return false;
+        }
+    },
+
     init: async function () 
     {
-        if (isPublicShare() && !$('#filestable').length)
+        if (isPublicShare() && OCA.DrawIO.isViewIsFile())
         {
-            var fileName = $('#filename').val();
-            var mimeType = $('#mimetype').val();
+
+            var fileName = document.getElementById('filename')?.value ?? loadState('files_sharing', 'filename', null);
             var sharingToken = getSharingToken();
+
+	    if (fileName === null || fileName === undefined) {
+		return;
+	    }
+
             var extension = fileName.substr(fileName.lastIndexOf('.') + 1).toLowerCase();
             var isWB = String(extension == 'dwb');
 
-            if (!OCA.DrawIO.Mimes[extension] || OCA.DrawIO.Mimes[extension].mime != mimeType)
+            if (!OCA.DrawIO.Mimes[extension])
             {
                 return;
             }
