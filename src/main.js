@@ -154,8 +154,10 @@ OCA.DrawIO = {
         }
     },
 
-    isViewIsFile = function() {
-        const mimetype = document.getElementById('mimetype')?.value
+    isViewIsFile : function() {
+        const mimetypeEl = document.getElementById('mimetype')
+        const mimetype = mimetypeEl ? mimetypeEl.value : undefined
+        
         if (mimetype !== undefined) {
             return mimetype !== 'httpd/unix-directory';
         }
