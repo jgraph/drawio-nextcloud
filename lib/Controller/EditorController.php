@@ -813,7 +813,7 @@ class EditorController extends Controller
 
     protected function checkPermissions($share, $permissions) {
         return ($share->getPermissions() & $permissions) === $permissions;
-    
+    }
 
     /**
      * Render draw.io editor for public share access via direct file URL.
