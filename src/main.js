@@ -169,6 +169,31 @@ OCA.DrawIO = {
         }
     },
 
+    function isPublicShare() {
+        return window.location.pathname.startsWith('/s/')
+    }
+    
+    function getPublicToken() {
+        const parts = window.location.pathname.split('/')
+        return parts.length >= 3 ? parts[2] : null
+    }
+    
+    function redirectToDrawio() {
+        if (!window.OC || !OC.generateUrl) return;
+    
+        const fileIdEl = document.getElementById('fileId');
+        const fileId = fileIdEl ? fileIdEl.value : null;
+    
+        if (isPublicShare()) {
+            const token = getPublicToken();
+            const publicUrl = `/s/${token}/download`;
+    
+            window.location.href = OC.generateUrl(`/apps/drawio/public-frame?fileUrl=${encodeURIComponent(publicUrl)}`);
+        } else if (fileId) {
+            window.location.href = OC.generateUrl(`/apps/drawio/edit?fileId=${fileId}&isWB=false`);
+        }
+    }
+    
     init: async function () 
     {
         if (isPublicShare() && OCA.DrawIO.isViewIsFile())

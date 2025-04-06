@@ -2,6 +2,26 @@
     style("drawio", "editor");
     script("drawio", "editor");
 
+<script>
+    const IS_PUBLIC = <?php echo isset($_['isPublic']) && $_['isPublic'] ? 'true' : 'false'; ?>;
+    const DRAWIO_FILE_URL = '<?php echo $_['publicFileUrl'] ?? ''; ?>';
+
+    const iframe = document.createElement('iframe');
+    iframe.id = 'drawioFrame';
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('style', 'width: 100%; height: 100vh');
+
+    if (IS_PUBLIC && DRAWIO_FILE_URL) {
+        iframe.src = `/apps/drawio/js/editor.html?url=${encodeURIComponent(DRAWIO_FILE_URL)}`;
+    } else {
+        // fallback for authenticated users
+        const fileId = OC.requestToken ? OC.fileId : null;
+        iframe.src = `/apps/drawio/js/editor.html?fileId=${fileId}`;
+    }
+
+    document.body.appendChild(iframe);
+</script>
+
     $frame_params = "?embed=1&embedRT=1&configure=1";
     if ($_["drawioOfflineMode"] === "yes")
     {
@@ -38,6 +58,23 @@
 
     $drawioData = base64_encode(json_encode($_));
 ?>
+
+
+<script>
+    const IS_PUBLIC = <?php echo isset($_['isPublic']) && $_['isPublic'] ? 'true' : 'false'; ?>;
+    const DRAWIO_FILE_URL = '<?php echo $_['publicFileUrl'] ?? ''; ?>';
+
+    const iframe = document.createElement('iframe');
+    iframe.id = 'drawioFrame';
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('style', 'width: 100%; height: 100vh');
+
+    if (IS_PUBLIC && DRAWIO_FILE_URL) {
+        iframe.src = `/apps/drawio/js/editor.html?url=${encodeURIComponent(DRAWIO_FILE_URL)}`;
+        document.body.innerHTML = '';
+        document.body.appendChild(iframe);
+    }
+</script>
 
 <div id="app-content">
     <iframe id="iframeEditor" data-id="<?php p($_["fileId"]) ?>" data-sharetoken="<?php p($_["shareToken"]) ?>" width="100%" height="100%" align="top" frameborder="0" name="iframeEditor" onmousewheel="" allowfullscreen=""></iframe>
