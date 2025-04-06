@@ -684,13 +684,14 @@ class EditorController extends Controller
     }
 
     /**
+     * Render draw.io editor for public share access via direct file URL.
+     *
      * @NoAdminRequired
      * @PublicPage
      * @UseSession
      */
-    public function publicFrame(string $fileUrl): TemplateResponse
-    {
-        return new TemplateResponse('drawio', 'editor', [
+    public function publicFrame(string $fileUrl): \OCP\AppFramework\Http\TemplateResponse {
+        return new \OCP\AppFramework\Http\TemplateResponse('drawio', 'editor', [
             'publicFileUrl' => $fileUrl,
             'isPublic' => true
         ]);
@@ -814,19 +815,4 @@ class EditorController extends Controller
     protected function checkPermissions($share, $permissions) {
         return ($share->getPermissions() & $permissions) === $permissions;
     }
-
-    /**
-     * Render draw.io editor for public share access via direct file URL.
-     *
-     * @NoAdminRequired
-     * @PublicPage
-     * @UseSession
-     */
-    public function publicFrame(string $fileUrl): \OCP\AppFramework\Http\TemplateResponse {
-        return new \OCP\AppFramework\Http\TemplateResponse('drawio', 'editor', [
-            'publicFileUrl' => $fileUrl,
-            'isPublic' => true
-        ]);
-    }
-
 }
