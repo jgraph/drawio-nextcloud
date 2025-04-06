@@ -10,7 +10,7 @@ return [
         ["name" => "editor#create", "url" => "/ajax/new", "verb" => "POST"],
         ["name" => "editor#save", "url" => "/ajax/save", "verb" => "PUT"],
         ["name" => "editor#savePreview", "url" => "/ajax/savePreview", "verb" => "POST"],
+
         ["name" => "settings#settings", "url" => "/ajax/settings", "verb" => "POST"],
-        ['name' => 'editor#publicFrame', 'url' => '/public-frame', 'verb' => 'GET']
     ]
 ];
