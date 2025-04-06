@@ -169,16 +169,16 @@ OCA.DrawIO = {
         }
     },
 
-    isPublicShare : function() {
+    function isPublicShare() {
         return window.location.pathname.startsWith('/s/')
-    },
+    }
     
-    getPublicToken : function() {
+    function getPublicToken() {
         const parts = window.location.pathname.split('/')
         return parts.length >= 3 ? parts[2] : null
-    },
+    }
     
-    redirectToDrawio : function() {
+    function redirectToDrawio() {
         if (!window.OC || !OC.generateUrl) return;
     
         const fileIdEl = document.getElementById('fileId');
@@ -192,7 +192,7 @@ OCA.DrawIO = {
         } else if (fileId) {
             window.location.href = OC.generateUrl(`/apps/drawio/edit?fileId=${fileId}&isWB=false`);
         }
-    },
+    }
     
     init: async function () 
     {
