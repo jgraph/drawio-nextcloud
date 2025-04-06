@@ -684,18 +684,37 @@ class EditorController extends Controller
     }
 
     /**
-     * Render draw.io editor for public share access via direct file URL.
+     * Render draw.io editor for public share access via token.
      *
      * @NoAdminRequired
      * @PublicPage
      * @UseSession
      */
-    public function publicFrame(string $fileUrl): \OCP\AppFramework\Http\TemplateResponse {
-        return new \OCP\AppFramework\Http\TemplateResponse('drawio', 'editor', [
-            'publicFileUrl' => $fileUrl,
-            'isPublic' => true
-        ]);
+    public function publicFrame(string $token): TemplateResponse {
+        try {
+            $share = $this->shareManager->getShareByToken($token);
+            if (!$share instanceof \OCP\Share\IShare) {
+                throw new \Exception('Invalid share token');
+            }
+
+            $node = $this->shareManager->getNodeById($share->getNodeId(), $share->getShareOwner());
+            if (!$node instanceof \OCP\Files\File) {
+                throw new \Exception('Invalid file');
+            }
+
+            $fileUrl = $this->urlGenerator->linkToRouteAbsolute('drawio.editor.publicFrame', ['token' => $token]);
+
+            return new TemplateResponse('drawio', 'editor', [
+                'publicFileUrl' => $fileUrl,
+                'isPublic' => true,
+                'filename' => $node->getName()
+            ]);
+
+        } catch (\Throwable $e) {
+            return $this->renderError("Unable to open public file", $e->getMessage());
+        }
     }
+
 
     /**
      * Getting file by token
