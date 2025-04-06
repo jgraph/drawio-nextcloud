@@ -12,5 +12,6 @@ return [
         ["name" => "editor#savePreview", "url" => "/ajax/savePreview", "verb" => "POST"],
         ["name" => "settings#settings", "url" => "/ajax/settings", "verb" => "POST"],
         ['name' => 'editor#publicFrame', 'url' => '/public-frame/{token}', 'verb' => 'GET']
+
     ]
 ];
