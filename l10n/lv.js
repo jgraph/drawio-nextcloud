@@ -1,6 +1,9 @@
 OC.L10N.register(
     "drawio",
     {
+    "You can not open a folder" : "Tu nevari atvērt mapi",
+    "This file is too big to be opened. Please download the file instead." : "Šī datne ir pārāk liela, lai to atvērtu. Lūgums lejupielādēt šo datni.",
+    "Open in Draw.io" : "Atvērt Draw.io",
     "Saving..." : "Saglabā...",
     "Auto" : "Automātiski",
     "Dark" : "Tumšs",
