@@ -497,7 +497,7 @@ import '@nextcloud/dialogs/style.css';
 
 })(OCA);
 
-$(function () {
+$(async function () {
     var drawioData = JSON.parse(atob($('#drawioData').text()));
 
     if (drawioData['error'])
@@ -540,7 +540,30 @@ $(function () {
         }
         catch (e){}
 
-        OCA.DrawIO.EditFile(iframe.contentWindow, originUrl, autosave, isWB, previews, config);
-        iframe.setAttribute('src', drawIoUrl);
+        function startEditor()
+        {
+            OCA.DrawIO.EditFile(iframe.contentWindow, originUrl, autosave, isWB, previews, config);
+            iframe.setAttribute('src', drawIoUrl);
+        }
+        
+        var shareToken = $('#iframeEditor').data('sharetoken');
+
+        // Find out if file is read-only
+        if (shareToken)
+        {
+            var data = await OCA.DrawIO.getFileInfo('', shareToken);
+            
+            if (data && !data.writeable)
+            {
+                drawIoUrl += '&chrome=0';
+                autosave = false;
+            }
+
+            startEditor();
+        }
+        else
+        {
+            startEditor();
+        }
     }
 });

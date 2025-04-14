@@ -42,8 +42,13 @@ OCA.DrawIO = {
 
     OpenEditor: function (fileId, isWB)
     {
-        var url = generateUrl('/apps/' + OCA.DrawIO.AppName + '/edit?fileId={fileId}&isWB=' + isWB, {
-            fileId: fileId
+        var shareToken = getSharingToken();
+        var url = generateUrl('/apps/' + OCA.DrawIO.AppName + '/edit?' + 
+                (shareToken? 'shareToken={shareToken}' : 'fileId={fileId}') + 
+                '&isWB=' + isWB, 
+        {
+            fileId: fileId,
+            shareToken: shareToken
         });
         window.location.href = url;
     },
@@ -154,75 +159,10 @@ OCA.DrawIO = {
         }
     },
 
-    isViewIsFile : function() {
-        const mimetypeEl = document.getElementById('mimetype')
-        const mimetype = mimetypeEl ? mimetypeEl.value : undefined
-        
-        if (mimetype !== undefined) {
-            return mimetype !== 'httpd/unix-directory';
-        }
-        
-        try {
-            return loadState('files_sharing', 'view') === 'public-file-share';
-        } catch {
-            return false;
-        }
-    },
-
     init: async function () 
     {
-        if (isPublicShare() && OCA.DrawIO.isViewIsFile())
-        {
-
-            var fileName = document.getElementById('filename')?.value ?? loadState('files_sharing', 'filename', null);
-            var sharingToken = getSharingToken();
-
-	    if (fileName === null || fileName === undefined) {
-		return;
-	    }
-
-            var extension = fileName.substr(fileName.lastIndexOf('.') + 1).toLowerCase();
-            var isWB = String(extension == 'dwb');
-
-            if (!OCA.DrawIO.Mimes[extension])
-            {
-                return;
-            }
-
-            var button = document.createElement('a');
-            button.href = generateUrl('apps/' + OCA.DrawIO.AppName + '/edit?shareToken={shareToken}&isWB={isWB}&lightbox=true', {
-                shareToken: sharingToken,
-                isWB: isWB
-            });
-            button.className = 'button';
-            button.innerText = t(OCA.DrawIO.AppName, 'Open in Draw.io');
-            $('#preview').append(button);
-
-            // If the file is editable, add a button to edit it
-            var url = generateUrl('/apps/' + OCA.DrawIO.AppName + '/ajax/getFileInfo?shareToken={shareToken}', 
-            {
-                shareToken: sharingToken
-            });
-                
-            var response = await axios.get(url);
-
-            if (response.status == 200 && response.data.writeable) 
-            {
-                var editButton = document.createElement('a');
-                editButton.href = generateUrl('apps/' + OCA.DrawIO.AppName + '/edit?shareToken={shareToken}&isWB={isWB}', {
-                    shareToken: sharingToken,
-                    isWB: isWB
-                });
-                editButton.className = 'button';
-                editButton.innerText = t(OCA.DrawIO.AppName, 'Edit in Draw.io');
-                $('#preview').append(editButton);
-            }
-        }
-        else
-        {
-            OCA.DrawIO.registerNewFileMenuPlugin();
-            OCA.DrawIO.registerFileActions();
-        }
+        OCA.DrawIO.registerNewFileMenuPlugin();
+        OCA.DrawIO.registerFileActions();
     }
 };
 
