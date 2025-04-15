@@ -33,7 +33,6 @@ OC.L10N.register(
     "New draw.io Whiteboard" : "Novo encerado de Draw.io",
     "Open in Draw.io" : "Abrir en Draw.io",
     "Error: Creating a new file failed." : "Erro: Produciuse un fallo ao crear un ficheiro novo.",
-    "Edit in Draw.io" : "Editar en Draw.io",
     "draw.io Configuration error:" : "Erro de configuración de Draw.io:",
     "Saving..." : "Gardando...",
     "Settings have been successfully saved" : "Os axustes gardáronse correctamente",

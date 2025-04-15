@@ -33,7 +33,6 @@ OC.L10N.register(
     "New draw.io Whiteboard" : "新建 Draw.io 白板",
     "Open in Draw.io" : "在 Draw.io 中打开",
     "Error: Creating a new file failed." : "错误：创建新文件失败。",
-    "Edit in Draw.io" : "在 Draw.io 中编辑",
     "draw.io Configuration error:" : "Draw.io 配置错误：",
     "Saving..." : "正在保存……",
     "Settings have been successfully saved" : "设置已成功保存",

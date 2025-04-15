@@ -27,7 +27,6 @@ OC.L10N.register(
     "New draw.io Whiteboard" : "Uusi draw.io-valkotaulu",
     "Open in Draw.io" : "Avaa Draw.iossa",
     "Error: Creating a new file failed." : "Virhe: uuden tiedoston luominen epäonnistui.",
-    "Edit in Draw.io" : "Muokkaa Draw.io:ssa",
     "draw.io Configuration error:" : "draw.io-määritysvirhe:",
     "Saving..." : "Tallennetaan...",
     "Settings have been successfully saved" : "Asetukset on tallennettu onnistuneesti.",

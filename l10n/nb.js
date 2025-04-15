@@ -33,7 +33,6 @@ OC.L10N.register(
     "New draw.io Whiteboard" : "Ny draw.io-tavle",
     "Open in Draw.io" : "Åpne i Draw.io",
     "Error: Creating a new file failed." : "Feil: Oppretting av ny fil feilet.",
-    "Edit in Draw.io" : "Rediger i Draw.io",
     "draw.io Configuration error:" : "draw.io-konfigurasjonsfeil:",
     "Saving..." : "Lagrer …",
     "Settings have been successfully saved" : "Innstillingene er lagret",

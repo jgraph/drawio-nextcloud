@@ -33,7 +33,6 @@ OC.L10N.register(
     "New draw.io Whiteboard" : "Nová tabule draw.io",
     "Open in Draw.io" : "Otevřít v Draw.io",
     "Error: Creating a new file failed." : "Chyba: vytváření nového souboru se nezdařilo.",
-    "Edit in Draw.io" : "Upravit v Draw.io",
     "draw.io Configuration error:" : "Chyba v nastavení pro draw.io:",
     "Saving..." : "Ukládá se…",
     "Settings have been successfully saved" : "Nastavení byla úspěšně uložena",

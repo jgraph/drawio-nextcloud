@@ -33,7 +33,6 @@ OC.L10N.register(
     "New draw.io Whiteboard" : "Yeni draw.io tahtası",
     "Open in Draw.io" : "Draw.io üzerinde aç",
     "Error: Creating a new file failed." : "Hata: Yeni bir dosya oluşturulamadı.",
-    "Edit in Draw.io" : "Draw.io ile düzenle",
     "draw.io Configuration error:" : "draw.io yapılandırma sorunu:",
     "Saving..." : "Kaydediliyor...",
     "Settings have been successfully saved" : "Ayarlar kaydedildi",

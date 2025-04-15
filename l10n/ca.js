@@ -33,7 +33,6 @@ OC.L10N.register(
     "New draw.io Whiteboard" : "Nova pissarra de draw.io",
     "Open in Draw.io" : "Obre a Draw.io",
     "Error: Creating a new file failed." : "Error: no s'ha pogut crear un fitxer nou.",
-    "Edit in Draw.io" : "Edició a Draw.io",
     "draw.io Configuration error:" : "Error de configuració de draw.io:",
     "Saving..." : "S'està desant...",
     "Settings have been successfully saved" : "Els paràmetres s'han desat correctament",

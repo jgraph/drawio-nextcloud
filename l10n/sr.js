@@ -33,7 +33,6 @@ OC.L10N.register(
     "New draw.io Whiteboard" : "Нова draw.io бела табла",
     "Open in Draw.io" : "Отвори у Draw.io",
     "Error: Creating a new file failed." : "Грешка: није успело креирање новог фајла.",
-    "Edit in Draw.io" : "Уређуј у Draw.io",
     "draw.io Configuration error:" : "Грешка draw.io подешавања:",
     "Saving..." : "Снимам...",
     "Settings have been successfully saved" : "Подешавања су успешно сачувана",

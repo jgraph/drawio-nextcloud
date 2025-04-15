@@ -33,7 +33,6 @@ OC.L10N.register(
     "New draw.io Whiteboard" : "يېڭى رەسىم .io ئاق دوسكا",
     "Open in Draw.io" : "Draw.io دا ئېچىڭ",
     "Error: Creating a new file failed." : "خاتالىق: يېڭى ھۆججەت قۇرۇش مەغلۇب بولدى.",
-    "Edit in Draw.io" : "Draw.io دا تەھرىرلەڭ",
     "draw.io Configuration error:" : "draw.io سەپلىمە خاتالىقى:",
     "Saving..." : "ساقلاۋاتىدۇ…",
     "Settings have been successfully saved" : "تەڭشەكلەر مۇۋەپپەقىيەتلىك ساقلاندى",
