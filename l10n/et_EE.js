@@ -1,6 +1,7 @@
 OC.L10N.register(
     "drawio",
     {
+    "Versions plugin is not enabled" : "Versioonide lisamoodul pole kasutusel",
     "You can not open a folder" : "Sa ei saa avada kausta",
     "An internal server error occurred." : "Tekkis sisemine serveri tõrge.",
     "This file is too big to be opened. Please download the file instead." : "See fail on avamiseks liiga suur. Selle asemel palun laadi fail alla.",
@@ -8,14 +9,20 @@ OC.L10N.register(
     "File not found." : "Faili ei leitud",
     "The file is locked." : "Fail on lukus.",
     "You can not write to a folder" : "Sa ei saa kirjutada kausta",
+    "The file you are working on was updated in the meantime." : "Fail, millega sa töötad, uuenes vahepeal",
     "Could not write to file." : "Faili kirjutamine ei õnnestu.",
     "Insufficient permissions" : "Pole piisavalt õiguseid",
     "File content not supplied" : "Faili sisu pole toetatud",
+    "You cannot write to this path" : "Sa ei saa kirjutada siia asukohta",
+    "New draw.io Diagram" : "Uus draw.io joonis",
+    "New draw.io Whiteboard" : "Uus draw.io tahvel",
+    "draw.io Configuration error:" : "draw.io seadistustviga:",
     "Saving..." : "Salvestamine...",
     "Dark" : "Hele",
     "Yes" : "Jah",
     "No" : "Ei",
     "Language" : "Keel",
+    "draw.io Configuration" : "draw.io seadistused",
     "Save" : "Salvesta"
 },
 "nplurals=2; plural=(n != 1);");
