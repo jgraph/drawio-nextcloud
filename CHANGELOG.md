@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.1.0
+
+- Fixed #102, #97, #89, #30
+- Better support for Nextcloud 31
+- Better support for shared files and folders
+- Support adding diagrams to any writeable folder
+  
 ## 3.0.4
 
 - Adds support for NextCloud 31
