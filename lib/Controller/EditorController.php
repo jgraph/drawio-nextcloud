@@ -548,26 +548,25 @@ class EditorController extends Controller
     
     /**
      * @NoAdminRequired
+     * @PublicPage
      */
-    public function create($name, $dir)
+    public function create($name, $dirId, $shareToken)
     {
-        $userId = $this->userSession->getUser()->getUID();
-        $userFolder = $this->root->getUserFolder($userId);
-        $folder = $userFolder->get($dir);
+        list ($folder, $writeable) = $this->getDir($dirId, $shareToken);
 
         if ($folder === NULL)
         {
-            $this->logger->info("Folder for file creation was not found: " . $dir, array("app" => $this->appName));
+            $this->logger->info("Folder for file creation was not found: " . $dirId, array("app" => $this->appName));
             return ["error" => $this->trans->t("The required folder was not found")];
         }
 
-        if (!$folder->isCreatable())
+        if (!$writeable)
         {
-            $this->logger->info("Folder for file creation without permission: " . $dir, array("app" => $this->appName));
+            $this->logger->info("Folder for file creation without permission: " . $dirId, array("app" => $this->appName));
             return ["error" => $this->trans->t("You don't have enough permission to create file")];
         }
 
-        $name = $userFolder->getNonExistingName($name);
+        $name = $folder->getNonExistingName($name);
 
         $template = " "; //"space" - empty file for drawio
 
@@ -690,7 +689,7 @@ class EditorController extends Controller
      *
      * @return array
      */
-    private function getFileByToken($shareToken) 
+    private function getNodeByToken($shareToken) 
     {
         $share = null;
 
@@ -753,20 +752,22 @@ class EditorController extends Controller
         /** @var File $file */
         $file = null;
         $writeable = false;
-        $relativePath = null;
+        $baseFolder = null;
 
         if (!empty($fileId) && $this->userSession->isLoggedIn()) 
         {
             $file = $this->getFileById($fileId);
-            $writeable = $file->isUpdateable();
             $uid = $this->userSession->getUser()->getUID();
             $baseFolder = $this->root->getUserFolder($uid);
-            $relativePath = $baseFolder->getRelativePath($file->getPath());
         }
         else if (!empty($shareToken))
         {
-            list ($file, $share) = $this->getFileByToken($shareToken);
-            $writeable = $this->checkPermissions($share, Constants::PERMISSION_UPDATE);
+            list ($file, $share) = $this->getNodeByToken($shareToken);
+            
+            if (!empty($fileId) && $file->getType() == FileInfo::TYPE_FOLDER) // File in a shared folder case
+            {
+                $file = $file->getById($fileId)[0];
+            }
         }
         else
         {
@@ -778,7 +779,60 @@ class EditorController extends Controller
             throw new NotFoundException();
         }
 
-        return [$file, $writeable, $relativePath];
+        if (!empty($shareToken))
+        {
+            $writeable = $this->checkPermissions($share, Constants::PERMISSION_UPDATE);
+        }
+        else
+        {
+            $writeable = $file->isUpdateable();
+        }
+
+        return [$file, $writeable, $baseFolder != null? $baseFolder->getRelativePath($file->getPath()) : null];
+    }
+
+    /**
+     * Getting directory by id or token
+     *
+     * @param $dirId - directory identifier
+     * @param $shareToken - access token
+     *
+     * @return array
+     */
+    private function getDir($dirId, $shareToken)
+    {
+        /** @var Folder $dir */
+        $dir = null;
+        $isCreatable = false;
+
+        if (!empty($dirId) && $this->userSession->isLoggedIn()) 
+        {
+            $dir = $this->root->getById($dirId)[0];
+        }
+        else if (!empty($shareToken))
+        {
+            list ($dir, $share) = $this->getNodeByToken($shareToken);
+        }
+        else
+        {
+            throw new BadRequestException(['fileId', 'shareToken']);
+        }
+
+        if ($dir === null || $dir === false)
+        {
+            throw new NotFoundException();
+        }
+
+        if (!empty($shareToken))
+        {
+            $isCreatable = $this->checkPermissions($share, Constants::PERMISSION_CREATE);
+        }
+        else
+        {
+            $isCreatable = $dir->isCreatable();
+        }
+
+        return [$dir, $isCreatable];
     }
 
     /**

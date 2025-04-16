@@ -44,7 +44,8 @@ OCA.DrawIO = {
     {
         var shareToken = getSharingToken();
         var url = generateUrl('/apps/' + OCA.DrawIO.AppName + '/edit?' + 
-                (shareToken? 'shareToken={shareToken}' : 'fileId={fileId}') + 
+                (fileId? 'fileId={fileId}' : '') + 
+                (shareToken? '&shareToken={shareToken}' : '') +
                 '&isWB=' + isWB, 
         {
             fileId: fileId,
@@ -83,14 +84,14 @@ OCA.DrawIO = {
     CreateNewFile: async function (name, folder, ext, mime) 
     {
         var isWB = ext == 'dwb';
-        var dir = folder.path;
         var url = generateUrl('apps/' + OCA.DrawIO.AppName + '/ajax/new');
 
         try
         {
             var response = await axios.post(url, {
                 name: name,
-                dir: dir
+                dirId: folder.fileid,
+                shareToken: getSharingToken()
             });
 
             if (response.status !== 200) 
@@ -139,9 +140,8 @@ OCA.DrawIO = {
             addNewFileMenuEntry({
                 id: 'drawIoDiagram_' + ext,
                 displayName: attr.newStr,
-                enabled() {
-                    // only attach to main file list, public view is not supported yet
-                    return getNavigation()?.active?.id === 'files'
+                enabled(node) {
+                    return (node.permissions & OC.PERMISSION_CREATE) !== 0;
                 },
                 iconClass: attr.css,
                 async handler(context, content)

@@ -551,7 +551,8 @@ $(async function () {
         // Find out if file is read-only
         if (shareToken)
         {
-            var data = await OCA.DrawIO.getFileInfo('', shareToken);
+            var fileId = $('#iframeEditor').data('id');
+            var data = await OCA.DrawIO.getFileInfo(fileId || '', shareToken);
             
             if (data && !data.writeable)
             {
