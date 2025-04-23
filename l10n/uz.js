@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "File not found." : "Fayl topilmadi.",
     "Saving..." : "Saqlanmoqda...",
+    "Dark" : "Qorong'i",
     "Yes" : "Yes",
     "No" : "No",
     "Language" : "Language",
