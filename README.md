@@ -52,6 +52,6 @@ Click "Save" when you're done.
 
 If you would like to self-host draw.io, you might want to consider https://github.com/jgraph/docker-drawio (requires version 20.8.6+).
 
-## SOC 2 ##
+## Support and SOC 2 ##
 
-This repo is not covered by the JGraph SOC 2 process.
+This repo is not covered by the JGraph SOC 2 process. We do not provide commercial services or support for this app.
