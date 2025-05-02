@@ -1,6 +1,7 @@
 { "translations": {
     "You can not open a folder" : "Tu nevari atvērt mapi",
     "This file is too big to be opened. Please download the file instead." : "Šī datne ir pārāk liela, lai to atvērtu. Lūgums lejupielādēt šo datni.",
+    "FileId is empty" : "Lauks ir tukšs",
     "Open in Draw.io" : "Atvērt Draw.io",
     "Saving..." : "Saglabā...",
     "Auto" : "Automātiski",
