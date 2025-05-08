@@ -1,6 +1,11 @@
 { "translations": {
     "You can not open a folder" : "Tu nevari atvērt mapi",
+    "An internal server error occurred." : "Atgadījās iekšēja servera kļūda.",
     "This file is too big to be opened. Please download the file instead." : "Šī datne ir pārāk liela, lai to atvērtu. Lūgums lejupielādēt šo datni.",
+    "Cannot read the file." : "Nevar nolasīt datni.",
+    "The file is locked." : "Datne ir slēgta.",
+    "Could not write to file." : "Nevarēja ierakstīt datnē.",
+    "Insufficient permissions" : "Nepietiekamas atļaujas",
     "FileId is empty" : "Lauks ir tukšs",
     "Open in Draw.io" : "Atvērt Draw.io",
     "Saving..." : "Saglabā...",
