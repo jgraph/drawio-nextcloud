@@ -18,6 +18,7 @@ OC.L10N.register(
     "New draw.io Whiteboard" : "Uus draw.io tahvel",
     "draw.io Configuration error:" : "draw.io seadistustviga:",
     "Saving..." : "Salvestamine...",
+    "Auto" : "Automaatne",
     "Dark" : "Hele",
     "Yes" : "Jah",
     "No" : "Ei",
