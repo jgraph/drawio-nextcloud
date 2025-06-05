@@ -1,7 +1,7 @@
 OC.L10N.register(
     "drawio",
     {
-    "Versions plugin is not enabled" : "Sürümler uygulama eki kullanıma alınmamış",
+    "Versions plugin is not enabled" : "Sürümler uygulama eki etkin değil",
     "You can not open a folder" : "Bir klasör açamazsınız",
     "Invalid fileId/revId supplied." : "Belirtilen dosyaKimliği/sürümKimliği geçersiz.",
     "An internal server error occurred." : "Sunucuda bir sorun çıktı.",
@@ -49,8 +49,8 @@ OC.L10N.register(
     "Yes" : "Evet",
     "No" : "Hayır",
     "Language" : "Dil",
-    "Activate offline mode in Draw.io?" : "Draw.io çevrim dışı kipi kullanıma alınsın",
-    "When the \"offline mode\" is active, this disables all remote operations and features to protect the users privacy. Draw.io will then also only be in English, even if you set a different language manually." : "\"Çevrim dışı kip\" kullanıma alındığında, kullanıcıların gizliliğinin korunması için tüm uzaktan işlemler ve özellikler kullanımdan kaldırılır. Bu durumda el ile farklı bir dil ayarlasanız bile draw.io yalnızca İngilizce kullanılabilir.",
+    "Activate offline mode in Draw.io?" : "Draw.io çevrim dışı kipi etkinleştir",
+    "When the \"offline mode\" is active, this disables all remote operations and features to protect the users privacy. Draw.io will then also only be in English, even if you set a different language manually." : "\"Çevrim dışı kip\" etkinleştirildiğinde, kullanıcıların gizliliğinin korunması için tüm uzaktan işlemler ve özellikler devre dışı bırakılır. Bu durumda el ile farklı bir dil ayarlasanız bile draw.io yalnızca İngilizce kullanılabilir.",
     "Activate autosave?" : "Otomatik kaydetme kullanılsın",
     "Note: To enable realtime collaboration, autosave must be active." : "Not: Gerçek zamanlı iş birliği yapabilmek için otomatik kaydetme kullanılmalıdır.",
     "Enable libraries?" : "Kitaplıklar kullanılsın",
