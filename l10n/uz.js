@@ -1,6 +1,8 @@
 OC.L10N.register(
     "drawio",
     {
+    "You can not open a folder" : "Siz jildni ocholmaysiz",
+    "This file is too big to be opened. Please download the file instead." : "Bu faylni ochish uchun juda katta. Buning o'rniga faylni yuklab oling.",
     "File not found." : "Fayl topilmadi.",
     "Saving..." : "Saqlanmoqda...",
     "Dark" : "Qorong'i",
