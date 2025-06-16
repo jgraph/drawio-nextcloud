@@ -16,7 +16,7 @@ OC.L10N.register(
     "Could not write to file." : "Konnte Datei nicht schreiben.",
     "Insufficient permissions" : "Nicht ausreichende Berechtigungen",
     "File content not supplied" : "Dateiinhalt nicht angegeben",
-    "File etag not supplied" : "Datei-Etage nicht angegeben",
+    "File etag not supplied" : "Datei-ETag nicht angegeben",
     "You cannot write to this path" : "Du kannst in diesen Pfad nicht schreiben",
     "Incorrect parameters" : "Falsche Parameter",
     "The required folder was not found" : "Der erforderliche Ordner wurde nicht gefunden",
