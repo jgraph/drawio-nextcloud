@@ -1,8 +1,8 @@
 OC.L10N.register(
     "drawio",
     {
-    "Yes" : "Yes",
-    "No" : "No",
+    "Yes" : "Так",
+    "No" : "Не",
     "Language" : "Мова",
     "Save" : "Захаваць"
 },
