@@ -1,6 +1,10 @@
 OC.L10N.register(
     "drawio",
     {
+    "Can't create file" : "Не ўдалося стварыць файл",
+    "Draw.io" : "Draw.io",
+    "Open in Draw.io" : "Адкрыць у Draw.io",
+    "Theme:" : "Тэма:",
     "Yes" : "Так",
     "No" : "Не",
     "Language" : "Мова",
