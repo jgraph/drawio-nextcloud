@@ -9,6 +9,6 @@ OC.L10N.register(
     "Yes" : "Yes",
     "No" : "No",
     "Language" : "Language",
-    "Save" : "Save"
+    "Save" : "Saqlash"
 },
 "nplurals=1; plural=0;");
