@@ -49,6 +49,7 @@ export default {
                 attrs: { id: `drawoi-${rnd}` },
                 style: {
                     background: 'white',
+                    cursor: 'pointer',
                 },
                 class: [
                     'drawio',

@@ -16,11 +16,9 @@ import axios from '@nextcloud/axios'
 import {
 	DefaultType,
 	FileAction,
-	addNewFileMenuEntry,
 	registerFileAction,
 	File,
 	Permission,
-	getNavigation,
 } from '@nextcloud/files'
 import { getCurrentUser } from '@nextcloud/auth'
 import { emit } from '@nextcloud/event-bus'
@@ -123,48 +121,50 @@ OCA.DrawIO = {
         };
     },
 
-    registerNewFileMenuPlugin: () => {
-        function getUniqueName(name, ext, names) 
-        {
-            let newName;
-
-            do
-            {
-                newName = name + '-' + Math.round(Math.random() * 1000000) + '.' + ext;
-            }
-            while (names.includes(newName)) 
-            
-            return newName;
-        }
-
-        function addMenuEntry(ext, attr)
-        {
-            addNewFileMenuEntry({
-                id: 'drawIoDiagram_' + ext,
-                displayName: attr.newStr,
-                enabled(node) {
-                    return (node.permissions & OC.PERMISSION_CREATE) !== 0;
-                },
-                iconClass: attr.css,
-                async handler(context, content)
-                {
-                    const contentNames = content.map((node) => node.basename);
-                    const fileName = getUniqueName(attr.newStr, ext, contentNames);
-                    OCA.DrawIO.CreateNewFile(fileName, context, ext, attr.mime);
-                }
-            });
-        }
-
-        for (const ext in OCA.DrawIO.Mimes) 
-        {
-            addMenuEntry(ext, OCA.DrawIO.Mimes[ext]);
-        }
-    },
-
     init: async function () 
     {
-        OCA.DrawIO.registerNewFileMenuPlugin();
-        OCA.DrawIO.registerFileActions();
+        if ($('#isPublic').val() === '1' && !$('#filestable').length)
+        {
+            var fileName = $('#filename').val();
+            var mimeType = $('#mimetype').val();
+            var sharingToken = $('#sharingToken').val();
+            var extension = fileName.substr(fileName.lastIndexOf('.') + 1).toLowerCase();
+            var isWB = String(extension == 'dwb');
+
+            if (!OCA.DrawIO.Mimes[extension] || OCA.DrawIO.Mimes[extension].mime != mimeType)
+            {
+                return;
+            }
+
+            var button = document.createElement('a');
+            button.href = generateUrl('apps/' + OCA.DrawIO.AppName + '/edit?shareToken={shareToken}&isWB={isWB}&lightbox=true', {
+                shareToken: sharingToken,
+                isWB: isWB
+            });
+            button.className = 'button';
+            button.innerText = t(OCA.DrawIO.AppName, 'Open in Draw.io');
+            $('#preview').append(button);
+
+            // If the file is editable, add a button to edit it
+            var url = generateUrl('/apps/' + OCA.DrawIO.AppName + '/ajax/getFileInfo?shareToken={shareToken}', 
+            {
+                shareToken: sharingToken
+            });
+                
+            var response = await axios.get(url);
+
+            if (response.status == 200 && response.data.writeable) 
+            {
+                var editButton = document.createElement('a');
+                editButton.href = generateUrl('apps/' + OCA.DrawIO.AppName + '/edit?shareToken={shareToken}&isWB={isWB}', {
+                    shareToken: sharingToken,
+                    isWB: isWB
+                });
+                editButton.className = 'button';
+                editButton.innerText = t(OCA.DrawIO.AppName, 'Edit in Draw.io');
+                $('#preview').append(editButton);
+            }
+        }
     }
 };
 
