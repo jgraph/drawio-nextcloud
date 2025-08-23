@@ -1,6 +1,10 @@
 OC.L10N.register(
     "drawio",
     {
+    "An internal server error occurred." : "Узнікла ўнутраная памылка сервера.",
+    "This file is too big to be opened. Please download the file instead." : "Гэты файл занадта вялікі, каб яго можна было адкрыць. Замест гэтага спампуйце файл.",
+    "Cannot read the file." : "Немагчыма прачытаць файл.",
+    "The file is locked." : "Файл заблакіраваны.",
     "Can't create file" : "Не ўдалося стварыць файл",
     "Draw.io" : "Draw.io",
     "Open in Draw.io" : "Адкрыць у Draw.io",
