@@ -10,6 +10,7 @@ OC.L10N.register(
     "You can not write to a folder" : "フォルダーに書き込みできません",
     "Could not write to file." : "ファイルに書き込めませんでした。",
     "Insufficient permissions" : "権限が不足しています",
+    "FileId is empty" : "フィールドが空です",
     "Saving..." : "保存中...",
     "Auto" : "自動",
     "Dark" : "暗い",
