@@ -4,6 +4,7 @@ OC.L10N.register(
     "An internal server error occurred." : "Узнікла ўнутраная памылка сервера.",
     "This file is too big to be opened. Please download the file instead." : "Гэты файл занадта вялікі, каб яго можна было адкрыць. Замест гэтага спампуйце файл.",
     "Cannot read the file." : "Немагчыма прачытаць файл.",
+    "Invalid fileId/shareToken supplied." : "Пададзены няправільны ідэнтыфікатар файла/токен абагульвання.",
     "File not found." : "Файл не знойдзены.",
     "The file is locked." : "Файл заблакіраваны.",
     "Can't create file" : "Не ўдалося стварыць файл",
