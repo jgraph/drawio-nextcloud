@@ -2,7 +2,7 @@ OC.L10N.register(
     "drawio",
     {
     "Dark" : "Ubrik",
-    "Yes" : "Oui",
+    "Yes" : "Ih",
     "No" : "Uhu",
     "Save" : "Sekles"
 },
