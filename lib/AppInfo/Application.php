@@ -23,6 +23,8 @@ use OCA\Drawio\Controller\ViewerController;
 use OCA\Drawio\Controller\SettingsController;
 use OCA\Drawio\Preview\DrawioPreview;
 use OCA\Drawio\Listeners\FileDeleteListener;
+use OCA\Drawio\Listeners\RegisterTemplateCreatorListener;
+use OCP\Files\Template\RegisterTemplateCreatorEvent;
 
 use OCP\EventDispatcher\IEventDispatcher;
 use OCP\Files\Events\Node\NodeDeletedEvent;
@@ -32,11 +34,13 @@ use Psr\Log\LoggerInterface;
 
 class Application extends App {
 
+    public const APP_ID = "drawio";
+
     public $appConfig;
 
     public function __construct(array $urlParams = [])
     {
-        $appName = "drawio";
+        $appName = self::APP_ID;
 
         parent::__construct($appName, $urlParams);
 
@@ -139,5 +143,6 @@ class Application extends App {
         /** @var IEventDispatcher $eventDispatcher */
 		$newEventDispatcher = $server->query(IEventDispatcher::class);
         $newEventDispatcher->addServiceListener(NodeDeletedEvent::class, FileDeleteListener::class);
+        $newEventDispatcher->addServiceListener(RegisterTemplateCreatorEvent::class, RegisterTemplateCreatorListener::class);
     }
 }
