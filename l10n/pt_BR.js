@@ -10,7 +10,7 @@ OC.L10N.register(
     "Cannot read the file." : "Não é possível ler o arquivo.",
     "Invalid fileId/shareToken supplied." : "FileId/shareToken inválido fornecido.",
     "File not found." : "Arquivo não encontrado.",
-    "The file is locked." : "O arquivo está bloqueado.",
+    "The file is locked." : "O arquivo está trancado.",
     "You can not write to a folder" : "Você não pode gravar em uma pasta",
     "The file you are working on was updated in the meantime." : "O arquivo no qual você está trabalhando foi atualizado nesse meio tempo.",
     "Could not write to file." : "Não foi possível gravar no arquivo.",
