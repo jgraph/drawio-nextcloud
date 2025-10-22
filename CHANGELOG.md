@@ -1,5 +1,9 @@
 # Change Log
 
+## 3.1.1
+
+- Adds support for NextCloud 32
+
 ## 3.1.0
 
 - Fixed #102, #97, #89, #30
