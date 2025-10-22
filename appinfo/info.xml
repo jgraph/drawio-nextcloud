@@ -7,7 +7,7 @@
     <description><![CDATA[Integrates draw.io diagrams editor with Nextcloud]]></description>
     <version>3.0.9</version>
     <licence>agpl</licence>
-    <author>JGraph Ltd</author>
+    <author>draw.io Ltd</author>
     <namespace>Drawio</namespace>
     <types>
         <filesystem />

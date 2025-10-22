@@ -2,7 +2,7 @@
     "name": "drawio",
     "description": "Integrates draw.io diagrams editor with Nextcloud",
     "version": "3.0.4",
-    "author": "JGraph Ltd",
+    "author": "draw.io Ltd",
     "license": "agpl",
     "private": true,
     "scripts": {
