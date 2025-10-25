@@ -753,12 +753,17 @@ class EditorController extends Controller
         $file = null;
         $writeable = false;
         $baseFolder = null;
+        $share = null;
 
         if (!empty($fileId) && $this->userSession->isLoggedIn()) 
         {
             $file = $this->getFileById($fileId);
             $uid = $this->userSession->getUser()->getUID();
             $baseFolder = $this->root->getUserFolder($uid);
+            if (!empty($shareToken))
+            {
+                $share = $this->shareManager->getShareByToken($shareToken);  // Have fileId and shareToken, and be logged in, get $share
+            }
         }
         else if (!empty($shareToken))
         {
