@@ -11,7 +11,7 @@
     "The file is locked." : "Die Datei ist gesperrt.",
     "You can not write to a folder" : "Du kannst nicht in einen Ordner schreiben",
     "The file you are working on was updated in the meantime." : "Die Datei die du bearbeitest wurde zwischenzeitig aktualisiert.",
-    "Could not write to file." : "Konnte Datei nicht schreiben.",
+    "Could not write to file." : "In die Datei konnte nicht geschrieben werden.",
     "Insufficient permissions" : "Nicht ausreichende Berechtigungen",
     "File content not supplied" : "Dateiinhalt nicht angegeben",
     "File etag not supplied" : "Datei-ETag nicht angegeben",
