@@ -50,7 +50,7 @@ class Application extends App {
             if (isset($url)) {
                 if (preg_match("%/apps/files(/.*)?%", $url) || preg_match("%/s/.*%", $url)) // Files app and file sharing
                 {
-                    Util::addScript($appName, "main");
+                    Util::addInitScript($appName, "main");
                     Util::addStyle($appName, "main");
                 }
             }
