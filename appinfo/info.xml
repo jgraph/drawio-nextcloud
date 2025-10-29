@@ -5,7 +5,7 @@
     <name>Draw.io</name>
     <summary>Draw.io integration app</summary>
     <description><![CDATA[Integrates draw.io diagrams editor with Nextcloud]]></description>
-    <version>3.1.1</version>
+    <version>3.1.2</version>
     <licence>agpl</licence>
     <author>JGraph Ltd</author>
     <namespace>Drawio</namespace>
