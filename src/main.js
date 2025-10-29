@@ -169,4 +169,14 @@ OCA.DrawIO = {
 $(function () 
 {
     OCA.DrawIO.init();
+    
+    // Sometimes the file doesn't open, so we add a delayed attempt as well
+    setTimeout(() => 
+    {
+        if (window.location.pathname.startsWith('/s/'))
+        {
+            // TODO Add whiteboard support for public shares
+            OCA.DrawIO.OpenEditor(null, false);
+        }
+    }, 10000);
 });
