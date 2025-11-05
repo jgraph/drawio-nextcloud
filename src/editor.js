@@ -180,10 +180,19 @@ import '@nextcloud/dialogs/style.css';
 
             if (filePath)
             {
-                url = generateUrl('/apps/files/?dir={currentDirectory}', {
-                    currentDirectory: filePath.substring(0, filePath.lastIndexOf('/')),
-                    fileId: data.id
-                });
+                const matches = [...filePath.matchAll(/\/\.attachments\.(\d+)\//g)];
+                if (matches.length) {
+                    const match = matches[matches.length - 1];
+                    url = generateUrl('/apps/files/files/{fileId}?dir={currentDirectory}&openfile=true', {
+                        currentDirectory: filePath.substring(0, filePath.lastIndexOf(match[0])),
+                        fileId: match[1],
+                    });
+                } else {
+                    url = generateUrl('/apps/files/?dir={currentDirectory}', {
+                        currentDirectory: filePath.substring(0, filePath.lastIndexOf('/')),
+                        fileId: data.id
+                    });
+                }
             }
             else // ShareToken case
             {
