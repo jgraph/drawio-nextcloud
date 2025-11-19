@@ -1,7 +1,9 @@
 { "translations": {
+    "Auto" : "Auto",
     "Dark" : "ມືດ",
     "Yes" : "ແມ່ນແລ້ວ",
     "No" : "ບໍ່",
+    "Language" : "Language",
     "Save" : "ບັນທຶກ"
 },"pluralForm" :"nplurals=1; plural=0;"
 }
