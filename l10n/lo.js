@@ -1,6 +1,7 @@
 OC.L10N.register(
     "drawio",
     {
+    "Saving..." : "ກຳລັງບັນທຶກ...",
     "Auto" : "Auto",
     "Dark" : "ມືດ",
     "Yes" : "ແມ່ນແລ້ວ",
