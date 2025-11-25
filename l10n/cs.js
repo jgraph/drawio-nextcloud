@@ -34,7 +34,7 @@ OC.L10N.register(
     "Open in Draw.io" : "Otevřít v Draw.io",
     "Error: Creating a new file failed." : "Chyba: vytváření nového souboru se nezdařilo.",
     "draw.io Configuration error:" : "Chyba v nastavení pro draw.io:",
-    "Saving..." : "Ukládá se…",
+    "Saving..." : "Ukládání…",
     "Settings have been successfully saved" : "Nastavení byla úspěšně uložena",
     "Error when trying to connect" : "Chyba při pokusu o připojení",
     "Auto" : "Automaticky",
