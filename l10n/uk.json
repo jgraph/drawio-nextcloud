@@ -2,7 +2,7 @@
     "Versions plugin is not enabled" : "Плагін версій не ввімкнено",
     "You can not open a folder" : "Неможливо відкрити каталог",
     "Invalid fileId/revId supplied." : "Вказано невірний ідентифікатор файлу/реєстраційний номер.",
-    "An internal server error occurred." : "Виникла внутрішня помилка серверу.",
+    "An internal server error occurred." : "Виникла внутрішня помилка сервера.",
     "Invalid fileId supplied." : "Вказано невірний ідентифікатор файлу.",
     "This file is too big to be opened. Please download the file instead." : "Файл занадто великий для відкриття. Рекомендуємо звантажити його на ваш пристрій.",
     "Cannot read the file." : "Не можливо прочитати файл.",
