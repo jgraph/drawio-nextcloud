@@ -37,7 +37,7 @@ jobs:
         type: 'zip'
         filename: ${{ steps.vars.outputs.zip_file_name }}
         path: drawio
-        exclusions: '*.git* .tx/* screenshots/* node_modules/* src/* package* webpack.config.js'
+        exclusions: '*.git* screenshots/* node_modules/* src/* scripts/* package* webpack.config.js docker-compose.yml CLAUDE.md DEV.md'
 
     - name: Archive Release (tar.gz)
       uses: thedoctor0/zip-release@main
@@ -45,7 +45,7 @@ jobs:
         type: 'tar'
         filename: ${{ steps.vars.outputs.tar_file_name }}
         path: drawio
-        exclusions: '*.git* .tx/* screenshots/* node_modules/* src/* package* webpack.config.js'
+        exclusions: '*.git* screenshots/* node_modules/* src/* scripts/* package* webpack.config.js docker-compose.yml CLAUDE.md DEV.md'
 
     - name: Upload Release
       uses: ncipollo/release-action@v1
