@@ -1,6 +1,9 @@
 OC.L10N.register(
     "drawio",
     {
+    "File not found." : "Файл олдсонгүй.",
+    "Saving..." : "Хадгалж байна...",
+    "Auto" : "Автомат",
     "Dark" : "хар",
     "Yes" : "Тийм",
     "No" : "Үгүй",
