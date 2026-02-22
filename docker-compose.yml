@@ -22,7 +22,13 @@ services:
       NEXTCLOUD_ADMIN_PASSWORD: admin
     volumes:
       - nextcloud-data:/var/www/html
-      - .:/var/www/html/custom_apps/drawio
+      - ./appinfo:/var/www/html/custom_apps/drawio/appinfo:ro
+      - ./lib:/var/www/html/custom_apps/drawio/lib
+      - ./js:/var/www/html/custom_apps/drawio/js:ro
+      - ./css:/var/www/html/custom_apps/drawio/css:ro
+      - ./img:/var/www/html/custom_apps/drawio/img:ro
+      - ./l10n:/var/www/html/custom_apps/drawio/l10n:ro
+      - ./templates:/var/www/html/custom_apps/drawio/templates:ro
     depends_on:
       - db
 

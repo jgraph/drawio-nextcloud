@@ -704,7 +704,7 @@ class EditorController extends Controller
                 || $this->session->get("public_link_authenticated") !== (string) $share->getId())) ||
             !$this->checkPermissions($share, Constants::PERMISSION_READ))
         {
-            throw new ForbiddenException();
+            throw new ForbiddenException('Insufficient permissions', false);
         }
 
         return [$share->getNode(), $share];
@@ -730,7 +730,7 @@ class EditorController extends Controller
 
         if (!$file->isReadable())
         {
-            throw new ForbiddenException();
+            throw new ForbiddenException('Insufficient permissions', false);
         }
 
         return $file;

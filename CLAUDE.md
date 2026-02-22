@@ -51,12 +51,14 @@ npm run extract-strings # Extract translatable strings to l10n/source-strings.js
 ```
 
 ### Local Development (Docker)
-See `DEV.md` for Docker-based workflow:
-1. Run Nextcloud in Docker: `docker run -d -p 8088:80 arm64v8/nextcloud`
-2. Build, zip (excluding .git, .tx, screenshots, src, package files), copy to container
-3. Unzip into `apps/drawio` inside the container
+See `DEV.md` for full details. Quick start:
+```bash
+npm ci
+./scripts/dev-setup.sh        # builds, starts NC 32 + MariaDB, enables the app
+```
+Then open http://localhost:8088 (admin / admin). PHP changes are live (volume-mounted); JS changes require `npm run build`.
 
-**Important:** Changing the app version in `info.xml` without a proper upgrade path will break the Nextcloud server.
+**Important:** Do not change the app version in `info.xml` during development — it will break the Nextcloud instance.
 
 ## Architecture
 
