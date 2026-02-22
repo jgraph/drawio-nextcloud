@@ -2,20 +2,20 @@
 
 namespace OCA\Drawio\Preview;
 
-use OC\Files\View;
-use OC\Preview\Provider;
+use OCP\Preview\IProviderV2;
 
-use OCP\AppFramework\QueryException;
+use OCP\Files\File;
 use OCP\Files\FileInfo;
 use OCP\Files\IAppData;
 use OCP\Files\NotFoundException;
+use OCP\IImage;
 use OCP\Image;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 
 use OCA\Drawio\AppConfig;
 
-class DrawioPreview extends Provider
+class DrawioPreview implements IProviderV2
 {
     protected $appConfig;
     protected $logger;
@@ -70,12 +70,12 @@ class DrawioPreview extends Provider
             $prevFile->getMtime() >= $file->getMtime();
     }
 
-    public function getThumbnail($path, $maxX, $maxY, $scalingup, $view)
+    public function getThumbnail(File $file, int $maxX, int $maxY): ?IImage
     {
-        $thumbnail = $this->getPreviewFile($view->getFileInfo($path)->getId());
+        $thumbnail = $this->getPreviewFile($file->getId());
 
         if ($this->appConfig->GetPreviews() === 'no' || $thumbnail === false) {
-            return false;
+            return null;
         }
 
         $image = new Image();
@@ -85,13 +85,13 @@ class DrawioPreview extends Provider
             $image->scaleDownToFit($maxX, $maxY);
             return $image;
         }
-        
-        return false;
+
+        return null;
     }
 
     private function getPreviewFile($fileId)
     {
-        try 
+        try
         {
             return $this->appData->getFolder('previews')->getFile($fileId . '.png');
         }

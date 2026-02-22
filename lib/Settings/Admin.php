@@ -13,13 +13,16 @@ namespace OCA\Drawio\Settings;
 
 use OCP\Settings\IDelegatedSettings;
 
-use OCA\Drawio\AppInfo\Application;
+use OCA\Drawio\Controller\SettingsController;
 
 
 class Admin implements IDelegatedSettings {
 
-    public function __construct()
+    private SettingsController $settingsController;
+
+    public function __construct(SettingsController $settingsController)
     {
+        $this->settingsController = $settingsController;
     }
 
     public function getName(): ?string {
@@ -34,10 +37,7 @@ class Admin implements IDelegatedSettings {
 
     public function getForm()
     {
-        $app = new Application();
-        $container = $app->getContainer();
-        $response = $container->query("\OCA\Drawio\Controller\SettingsController")->index();
-        return $response;
+        return $this->settingsController->index();
     }
 
     public function getSection()

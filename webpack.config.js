@@ -10,7 +10,8 @@ module.exports = {
     },
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, 'js')
+        path: path.resolve(__dirname, 'js'),
+        clean: true
     },
     module: {
         rules: [

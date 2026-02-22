@@ -1,7 +1,7 @@
 {
     "name": "drawio",
     "description": "Integrates draw.io diagrams editor with Nextcloud",
-    "version": "3.1.1",
+    "version": "4.0.0",
     "author": "draw.io Ltd",
 
     "license": "agpl",
@@ -15,12 +15,12 @@
     "dependencies": {
         "@nextcloud/auth": "^2.4.0",
         "@nextcloud/axios": "^2.5.1",
-        "@nextcloud/dialogs": "^6.1.1",
+        "@nextcloud/dialogs": "^7.0.0",
         "@nextcloud/event-bus": "^3.3.2",
-        "@nextcloud/files": "^3.10.2",
+        "@nextcloud/files": "^4.0.0",
         "@nextcloud/l10n": "^3.2.0",
         "@nextcloud/router": "^3.0.1",
-        "@nextcloud/sharing": "^0.2.3",
+        "@nextcloud/sharing": "^0.4.0",
         "jquery": "^3.7.0",
         "path": "^0.12.7",
         "process": "^0.11.10"

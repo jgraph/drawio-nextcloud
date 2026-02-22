@@ -7,7 +7,7 @@ Nextcloud app that integrates the draw.io (diagrams.net) diagram editor. Users c
 - **App ID:** `drawio`
 - **Namespace:** `OCA\Drawio`
 - **License:** AGPL
-- **Nextcloud compatibility:** 31–32 (see `appinfo/info.xml`)
+- **Nextcloud compatibility:** 33 (see `appinfo/info.xml`)
 - **Version:** defined in both `appinfo/info.xml` and `package.json` (keep in sync)
 
 ## Repository Structure
@@ -54,7 +54,7 @@ npm run extract-strings # Extract translatable strings to l10n/source-strings.js
 See `DEV.md` for full details. Quick start:
 ```bash
 npm ci
-./scripts/dev-setup.sh        # builds, starts NC 32 + MariaDB, enables the app
+./scripts/dev-setup.sh        # builds, starts NC 33 + MariaDB, enables the app
 ```
 Then open http://localhost:8088 (admin / admin). PHP changes are live (volume-mounted); JS changes require `npm run build`.
 

@@ -15,7 +15,6 @@ import { showError } from '@nextcloud/dialogs'
 import axios from '@nextcloud/axios'
 import {
 	DefaultType,
-	FileAction,
 	addNewFileMenuEntry,
 	registerFileAction,
 	File,
@@ -58,21 +57,21 @@ OCA.DrawIO = {
     {
         function registerAction(ext, attr)
         {
-            registerFileAction(new FileAction({
+            registerFileAction({
                 id: 'drawioOpen' + ext,
                 displayName() {
-                    t(OCA.DrawIO.AppName, 'Open in Draw.io')
+                    return t(OCA.DrawIO.AppName, 'Open in Draw.io')
                 },
                 enabled(nodes) {
-                    return nodes.length === 1 && attr.mime === nodes[0].mime && (nodes[0].permissions & OC.PERMISSION_READ) !== 0
+                    return nodes.length === 1 && attr.mime === nodes[0].mime && (nodes[0].permissions & Permission.READ) !== 0
                 },
                 iconSvgInline: () => attr.icon,
-                async exec(node, view) {
+                async handler(node, view) {
                     OCA.DrawIO.OpenEditor(node.fileid, ext == 'dwb');
                     return true;
                 },
                 default: DefaultType.HIDDEN
-            }));
+            });
         }
         
         for (const ext in OCA.DrawIO.Mimes) 
@@ -141,9 +140,9 @@ OCA.DrawIO = {
                 id: 'drawIoDiagram_' + ext,
                 displayName: attr.newStr,
                 enabled(node) {
-                    return (node.permissions & OC.PERMISSION_CREATE) !== 0;
+                    return (node.permissions & Permission.CREATE) !== 0;
                 },
-                iconClass: attr.css,
+                iconSvgInline: attr.icon,
                 async handler(context, content)
                 {
                     const contentNames = content.map((node) => node.basename);

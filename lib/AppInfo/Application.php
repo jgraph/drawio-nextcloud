@@ -12,8 +12,10 @@
 namespace OCA\Drawio\AppInfo;
 
 use OCP\AppFramework\App;
+use OCP\AppFramework\Bootstrap\IBootContext;
+use OCP\AppFramework\Bootstrap\IBootstrap;
+use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\Util;
-use OCP\IPreview;
 use OCP\Files\IMimeTypeDetector;
 use OCP\Files\IMimeTypeLoader;
 
@@ -29,7 +31,7 @@ use OCP\Files\IAppData;
 use Psr\Log\LoggerInterface;
 
 
-class Application extends App {
+class Application extends App implements IBootstrap {
 
     public $appConfig;
 
@@ -40,6 +42,21 @@ class Application extends App {
         parent::__construct($appName, $urlParams);
 
         $this->appConfig = new AppConfig($appName);
+    }
+
+    public function register(IRegistrationContext $context): void
+    {
+        $context->registerEventListener(NodeDeletedEvent::class, FileDeleteListener::class);
+
+        $context->registerPreviewProvider(
+            DrawioPreview::class,
+            DrawioPreview::getMimeTypeRegex()
+        );
+    }
+
+    public function boot(IBootContext $context): void
+    {
+        $appName = "drawio";
 
         // Default script and style if configured
         if (!empty($this->appConfig->GetDrawioUrl()) && array_key_exists("REQUEST_URI", \OC::$server->getRequest()->server))
@@ -54,8 +71,8 @@ class Application extends App {
                 }
             }
         }
-        
-        $container = $this->getContainer();
+
+        $container = $context->getAppContainer();
 
         $container->registerService("L10N", function($c)
         {
@@ -109,20 +126,10 @@ class Application extends App {
                 \OC::$server->get(IAppData::class)
             );
         });
-        
-        $previewManager = $container->query(IPreview::class);
-        $previewManager->registerProvider(DrawioPreview::getMimeTypeRegex(), function() use ($container) {
-            return $container->query(DrawioPreview::class);
-        });
 
         $detector = $container->query(IMimeTypeDetector::class);
         $detector->getAllMappings();
         $detector->registerType("drawio", "application/x-drawio");
         $detector->registerType("dwb", "application/x-drawio-wb");
-
-        $server = $container->getServer();
-        /** @var IEventDispatcher $eventDispatcher */
-		$newEventDispatcher = $server->query(IEventDispatcher::class);
-        $newEventDispatcher->addServiceListener(NodeDeletedEvent::class, FileDeleteListener::class);
     }
 }
