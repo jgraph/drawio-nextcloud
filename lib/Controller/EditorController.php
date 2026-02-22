@@ -13,7 +13,6 @@ namespace OCA\Drawio\Controller;
 
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Http\Template\PublicTemplateResponse;
-use OCP\AppFramework\Http\DataDownloadResponse;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\ContentSecurityPolicy;
@@ -34,7 +33,6 @@ use Psr\Log\LogLevel;
 
 use OC\Files\Filesystem;
 use OC\Files\View;
-use OC\User\NoUserException;
 use OCP\Lock\ILockingProvider;
 
 use OCA\Files\Helper;
@@ -42,8 +40,6 @@ use OCP\Files\IAppData;
 use OCA\Files_Versions\Storage;
 use OCA\Files_Versions\Versions\IVersionManager;
 use OCA\Files_Versions\Versions\IVersion;
-use OCA\Viewer\Event\LoadViewer;
-
 use OCA\Drawio\AppConfig;
 
 
@@ -55,6 +51,7 @@ use OCP\Files\Folder;
 use OCP\Files\ForbiddenException;
 use OCP\Files\GenericFileException;
 use OCP\Files\NotFoundException;
+use OCP\Files\NotPermittedException;
 use OCP\Lock\LockedException;
 use OCP\Federation\Exceptions\BadRequestException;
 

@@ -14,13 +14,13 @@ namespace OCA\Drawio\Controller;
 
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
+use OCP\Files\IMimeTypeLoader;
+use OCP\Files\IMimeTypeDetector;
 use OCP\IL10N;
 use OCP\IRequest;
 use Psr\Log\LoggerInterface;
-use Psr\Log\LogLevel;
 
 use OCA\Drawio\AppConfig;
-use OCA\Drawio\Migration;
 
 class SettingsController extends Controller
 {
@@ -28,6 +28,8 @@ class SettingsController extends Controller
     private $trans;
     private $logger;
     private $config;
+    private $mimeTypeLoader;
+    private $mimeTypeDetector;
 
 
     /**
@@ -35,13 +37,17 @@ class SettingsController extends Controller
      * @param IRequest $request - request object
      * @param IL10N $trans - l10n service
      * @param LoggerInterface $logger - logger
-     * @param OCA\Drawio\AppConfig $config - application configuration
+     * @param AppConfig $config - application configuration
+     * @param IMimeTypeLoader $mimeTypeLoader - MIME type loader
+     * @param IMimeTypeDetector $mimeTypeDetector - MIME type detector
      */
     public function __construct($AppName,
                                 IRequest $request,
                                 IL10N $trans,
                                 LoggerInterface $logger,
-                                AppConfig $config
+                                AppConfig $config,
+                                IMimeTypeLoader $mimeTypeLoader,
+                                IMimeTypeDetector $mimeTypeDetector
                                 )
     {
         parent::__construct($AppName, $request);
@@ -49,6 +55,8 @@ class SettingsController extends Controller
         $this->trans = $trans;
         $this->logger = $logger;
         $this->config = $config;
+        $this->mimeTypeLoader = $mimeTypeLoader;
+        $this->mimeTypeDetector = $mimeTypeDetector;
     }
 
 
@@ -79,15 +87,15 @@ class SettingsController extends Controller
 	 */
     public function settings()
     {
-        $drawio = trim($_POST['drawioUrl']);
-        $offlinemode = trim($_POST['offlineMode']);
-        $theme = trim($_POST['theme']);
-        $lang = trim($_POST['lang']);
-        $autosave = trim($_POST['autosave']);
-        $libraries = trim($_POST['libraries']);
-        $darkmode = trim($_POST['darkMode']);
-        $previews = trim($_POST['previews']);
-        $drawioConfig = trim($_POST['drawioConfig']);
+        $drawio = trim($this->request->getParam('drawioUrl', ''));
+        $offlinemode = trim($this->request->getParam('offlineMode', ''));
+        $theme = trim($this->request->getParam('theme', ''));
+        $lang = trim($this->request->getParam('lang', ''));
+        $autosave = trim($this->request->getParam('autosave', ''));
+        $libraries = trim($this->request->getParam('libraries', ''));
+        $darkmode = trim($this->request->getParam('darkMode', ''));
+        $previews = trim($this->request->getParam('previews', ''));
+        $drawioConfig = trim($this->request->getParam('drawioConfig', ''));
 
         $this->config->SetDrawioUrl($drawio);
         $this->config->SetOfflineMode($offlinemode);
@@ -99,17 +107,14 @@ class SettingsController extends Controller
         $this->config->SetPreviews($previews);
         $this->config->SetDrawioConfig($drawioConfig);
 
-        if (version_compare(implode(".", \OCP\Util::getVersion()), "13", ">=")) {
-            $checkmime = new \OCA\Drawio\Migration\CheckMimeType();
-            $registered = $checkmime->run();
+        $checkmime = new \OCA\Drawio\Migration\CheckMimeType();
+        $registered = $checkmime->run();
 
-            if ($registered == false) {
-                $mimeTypeLoader = \OC::$server->getMimeTypeLoader();
-                $updaetJS = new \OC\Core\Command\Maintenance\Mimetype\UpdateJS(\OC::$server->getMimeTypeDetector());
-                $mime = new \OCA\Drawio\Migration\RegisterMimeType($mimeTypeLoader, $updaetJS);
-                $output = new \OC\Migration\SimpleOutput(\OC::$server->get(\Psr\Log\LoggerInterface::class), $this->appName);
-                $mime->run($output);
-            }
+        if ($registered == false) {
+            $updateJS = new \OC\Core\Command\Maintenance\Mimetype\UpdateJS($this->mimeTypeDetector);
+            $mime = new \OCA\Drawio\Migration\RegisterMimeType($this->mimeTypeLoader, $updateJS);
+            $output = new \OC\Migration\SimpleOutput($this->logger, $this->appName);
+            $mime->run($output);
         }
 
         return [

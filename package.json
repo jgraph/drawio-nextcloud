@@ -9,7 +9,8 @@
     "scripts": {
         "build": "NODE_ENV=production webpack --progress",
         "dev": "NODE_ENV=development webpack --progress",
-        "watch": "NODE_ENV=development webpack --progress --watch"
+        "watch": "NODE_ENV=development webpack --progress --watch",
+        "extract-strings": "node scripts/extract-strings.js"
     },
     "dependencies": {
         "@nextcloud/auth": "^2.4.0",
@@ -26,7 +27,6 @@
     },
     "devDependencies": {
         "css-loader": "^6.7.3",
-        "mini-css-extract-plugin": "^2.7.6",
         "sass": "^1.69.4",
         "sass-loader": "^13.3.2",
         "style-loader": "^3.3.3",

@@ -15,11 +15,10 @@ use OCP\AppFramework\App;
 use OCP\Util;
 use OCP\IPreview;
 use OCP\Files\IMimeTypeDetector;
+use OCP\Files\IMimeTypeLoader;
 
 use OCA\Drawio\AppConfig;
-use OCA\Drawio\Controller\DisplayController;
 use OCA\Drawio\Controller\EditorController;
-use OCA\Drawio\Controller\ViewerController;
 use OCA\Drawio\Controller\SettingsController;
 use OCA\Drawio\Preview\DrawioPreview;
 use OCA\Drawio\Listeners\FileDeleteListener;
@@ -86,7 +85,9 @@ class Application extends App {
                 $c->query("Request"),
                 $c->query("L10N"),
                 $c->query("Logger"),
-                $this->appConfig
+                $this->appConfig,
+                $c->query(IMimeTypeLoader::class),
+                $c->query(IMimeTypeDetector::class)
             );
         });
 
@@ -108,22 +109,6 @@ class Application extends App {
                 \OC::$server->get(IAppData::class)
             );
         });
-        
-        $container->registerService("ViewerController", function($c)
-        {
-            return new ViewerController(
-                $c->query("AppName"),
-                $c->query("Request"),
-                $c->query("RootStorage"),
-                $c->query("UserSession"),
-                $c->query("ServerContainer")->getURLGenerator(),
-                $c->query("L10N"),
-                $c->query("Logger"),
-                $this->appConfig,
-                $c->query("IManager"),
-                $c->query("Session")
-            );
-        }); 
         
         $previewManager = $container->query(IPreview::class);
         $previewManager->registerProvider(DrawioPreview::getMimeTypeRegex(), function() use ($container) {
