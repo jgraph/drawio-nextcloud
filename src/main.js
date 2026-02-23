@@ -62,12 +62,12 @@ OCA.DrawIO = {
                 displayName() {
                     return t(OCA.DrawIO.AppName, 'Open in Draw.io')
                 },
-                enabled(nodes) {
-                    return nodes.length === 1 && attr.mime === nodes[0].mime && (nodes[0].permissions & Permission.READ) !== 0
+                enabled(context) {
+                    return context.nodes.length === 1 && attr.mime === context.nodes[0].mime && (context.nodes[0].permissions & Permission.READ) !== 0
                 },
                 iconSvgInline: () => attr.icon,
-                async handler(node, view) {
-                    OCA.DrawIO.OpenEditor(node.fileid, ext == 'dwb');
+                async exec(context) {
+                    OCA.DrawIO.OpenEditor(context.nodes[0].fileid, ext == 'dwb');
                     return true;
                 },
                 default: DefaultType.HIDDEN
