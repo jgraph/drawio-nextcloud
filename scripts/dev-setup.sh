@@ -12,7 +12,7 @@ fi
 echo "Building JavaScript..."
 npm run build
 
-echo "Starting Nextcloud 32..."
+echo "Starting Nextcloud 33..."
 docker compose up -d
 
 echo "Waiting for Nextcloud to be ready (this may take a minute on first run)..."
@@ -33,7 +33,7 @@ docker compose exec -u 33 nextcloud php occ app:enable drawio
 
 echo ""
 echo "========================================="
-echo "  Nextcloud 32 is ready!"
+echo "  Nextcloud 33 is ready!"
 echo "  URL:   http://localhost:8088"
 echo "  Login: admin / admin"
 echo "========================================="

@@ -13,7 +13,7 @@ npm ci
 ./scripts/dev-setup.sh
 ```
 
-This builds the JavaScript, starts Nextcloud 32 with MariaDB in Docker, waits for it to be ready, and enables the draw.io app. Takes about a minute on first run (image pulls).
+This builds the JavaScript, starts Nextcloud 33 with MariaDB in Docker, waits for it to be ready, and enables the draw.io app. Takes about a minute on first run (image pulls).
 
 Open **http://localhost:8088** and log in with **admin / admin**.
 
