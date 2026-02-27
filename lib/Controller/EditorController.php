@@ -31,8 +31,8 @@ use OCP\Share\IManager;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 
-use OC\Files\Filesystem;
-use OC\Files\View;
+use OCP\IConfig;
+use OCP\L10N\IFactory as IL10NFactory;
 use OCP\Lock\ILockingProvider;
 
 use OCA\Files\Helper;
@@ -43,7 +43,7 @@ use OCA\Files_Versions\Versions\IVersion;
 use OCA\Drawio\AppConfig;
 
 
-use OC\HintException;
+use OCP\HintException;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\Files\File;
@@ -87,9 +87,15 @@ class EditorController extends Controller
 	 * @var OCA\Files_Versions\Versions\IVersionManager
 	 */
 	protected $versionManager;
-    
+
     /** @var IAppData */
     private $appData;
+
+    /** @var IConfig */
+    private $ncConfig;
+
+    /** @var IL10NFactory */
+    private $l10nFactory;
 
     /**
      * @param string $AppName - application name
@@ -112,7 +118,10 @@ class EditorController extends Controller
                                 IManager $shareManager,
                                 ISession $session,
                                 ILockingProvider $lockingProvider,
-                                IAppData $appData
+                                IAppData $appData,
+                                IConfig $ncConfig,
+                                IL10NFactory $l10nFactory,
+                                ?IVersionManager $versionManager = null
                                 )
     {
         parent::__construct($AppName, $request);
@@ -127,15 +136,9 @@ class EditorController extends Controller
         $this->session = $session;
         $this->lockingProvider = $lockingProvider;
         $this->appData = $appData;
-
-        try
-        {
-            $this->versionManager = \OC::$server->get(IVersionManager::class);
-        }
-        catch (\Exception $e)
-        {
-            $this->logger->info('VersionManager not found, Versions plugin may not be enabled.', ['app' => $this->appName]);
-        }
+        $this->ncConfig = $ncConfig;
+        $this->l10nFactory = $l10nFactory;
+        $this->versionManager = $versionManager;
     }
 
     /**
@@ -286,7 +289,7 @@ class EditorController extends Controller
                         'shareToken' => $shareToken,
                         'versionsEnabled' => empty($shareToken) && isset($this->versionManager),
                         'ver' => 2,
-                        'instanceId' => \OC_Util::getInstanceId()
+                        'instanceId' => $this->ncConfig->getSystemValueString('instanceid', '')
                     ],
                     Http::STATUS_OK
                 );
@@ -359,7 +362,7 @@ class EditorController extends Controller
                     'shareToken' => $shareToken,
                     'versionsEnabled' => empty($shareToken) && isset($this->versionManager),
                     'ver' => 2,
-                    'instanceId' => \OC_Util::getInstanceId()
+                    'instanceId' => $this->ncConfig->getSystemValueString('instanceid', '')
                 ],
                 Http::STATUS_OK
             );
@@ -611,7 +614,7 @@ class EditorController extends Controller
 
         if ("auto" === $lang)
         {
-            $lang = \OC::$server->getL10NFactory("")->get("")->getLanguageCode();
+            $lang = $this->l10nFactory->findLanguage();
 
             if (!empty($lang) && strpos($lang, "_"))
             {

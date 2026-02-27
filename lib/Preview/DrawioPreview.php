@@ -33,12 +33,12 @@ class DrawioPreview implements IProviderV2
         "application/x-drawio-wb"
     ];
 
-    public function __construct(LoggerInterface $logger, IAppData $appData)
+    public function __construct(LoggerInterface $logger, IAppData $appData, AppConfig $appConfig)
     {
         $this->logger = $logger;
         $this->appData = $appData;
         $this->appName = 'drawio';
-        $this->appConfig = new AppConfig($this->appName);
+        $this->appConfig = $appConfig;
     }
 
     /**
