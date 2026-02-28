@@ -702,15 +702,33 @@ class EditorController extends Controller
             throw new NotFoundException();
         }
 
-        if ($share === null || $share === false || 
-            ($share->getPassword() !== null && (!$this->session->exists("public_link_authenticated")
-                || $this->session->get("public_link_authenticated") !== (string) $share->getId())) ||
+        if ($share === null || $share === false ||
+            ($share->getPassword() !== null && !$this->isShareAuthenticated($share)) ||
             !$this->checkPermissions($share, Constants::PERMISSION_READ))
         {
             throw new ForbiddenException('Insufficient permissions', false);
         }
 
         return [$share->getNode(), $share];
+    }
+
+    /**
+     * Check if the current session has authenticated for a password-protected share.
+     * Nextcloud stores authenticated share IDs as an array in the session,
+     * but we also handle the legacy string format for compatibility.
+     *
+     * @param \OCP\Share\IShare $share
+     *
+     * @return bool
+     */
+    private function isShareAuthenticated($share)
+    {
+        $authenticated = $this->session->get("public_link_authenticated");
+        if (is_array($authenticated))
+        {
+            return in_array($share->getId(), $authenticated);
+        }
+        return $authenticated === (string) $share->getId();
     }
 
 
