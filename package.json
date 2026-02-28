@@ -1,7 +1,7 @@
 {
     "name": "drawio",
     "description": "Integrates draw.io diagrams editor with Nextcloud",
-    "version": "4.0.1",
+    "version": "4.0.2",
     "author": "draw.io Ltd",
 
     "license": "agpl",
