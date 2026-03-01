@@ -7,7 +7,7 @@ Nextcloud app that integrates the draw.io (diagrams.net) diagram editor. Users c
 - **App ID:** `drawio`
 - **Namespace:** `OCA\Drawio`
 - **License:** AGPL
-- **Nextcloud compatibility:** 33 (see `appinfo/info.xml`)
+- **Nextcloud compatibility:** 32+ (min-version in `appinfo/info.xml`)
 - **Version:** defined in both `appinfo/info.xml` and `package.json` (keep in sync)
 
 ## Repository Structure

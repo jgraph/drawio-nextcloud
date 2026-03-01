@@ -1,5 +1,27 @@
 # Change Log
 
+## 4.0.2
+
+- Fixed password-protected public share links returning 403 (#122)
+- Improved layout of draw.io admin settings page
+- Reduced uses of internal API calls
+- Translation updates
+
+## 4.0.1
+
+- Handler fixes
+
+## 4.0.0
+
+- Adds support for Nextcloud 32 and 33
+- Fixed shared file handling when logged in (#114)
+- Added fallback for shared files that are not open
+- Translation updates
+
+## 3.1.2
+
+- Updates for release
+
 ## 3.1.1
 
 - Adds support for NextCloud 32
