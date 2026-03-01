@@ -18,6 +18,7 @@ use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\IConfig;
 use OCP\Util;
 use OCP\Files\IMimeTypeDetector;
+use OCP\Files\IMimeTypeLoader;
 
 use OCP\AppFramework\Services\IInitialState;
 
@@ -68,5 +69,59 @@ class Application extends App implements IBootstrap {
         $detector->getAllMappings();
         $detector->registerType("drawio", "application/x-drawio");
         $detector->registerType("dwb", "application/x-drawio-wb");
+
+        $this->ensureMimeTypeAssets($container, $appConfig, $detector);
+    }
+
+    /**
+     * Self-healing check: re-register MIME type assets if they were lost
+     * (e.g., after a Nextcloud core upgrade that replaces core/ files).
+     */
+    private function ensureMimeTypeAssets($container, AppConfig $appConfig, IMimeTypeDetector $detector): void
+    {
+        $currentNcVersion = \OC_Util::getVersionString();
+        $storedNcVersion = $appConfig->GetNcVersion();
+
+        $needsRepair = ($storedNcVersion !== $currentNcVersion);
+
+        if (!$needsRepair) {
+            $iconTarget = \OC::$SERVERROOT . '/core/img/filetypes/drawio.svg';
+            if (!file_exists($iconTarget)) {
+                $needsRepair = true;
+            }
+        }
+
+        if (!$needsRepair) {
+            return;
+        }
+
+        try {
+            $logger = $container->get(LoggerInterface::class);
+            $logger->info('Draw.io: Re-registering MIME type assets (NC version: ' .
+                $storedNcVersion . ' -> ' . $currentNcVersion . ')', ['app' => 'drawio']);
+
+            $mimeTypeLoader = $container->get(IMimeTypeLoader::class);
+            $updateJS = new \OC\Core\Command\Maintenance\Mimetype\UpdateJS($detector);
+            $mime = new \OCA\Drawio\Migration\RegisterMimeType($mimeTypeLoader, $updateJS);
+
+            $output = new class($logger) implements \OCP\Migration\IOutput {
+                private $logger;
+                public function __construct($logger) { $this->logger = $logger; }
+                public function info($message) { $this->logger->info($message, ['app' => 'drawio']); }
+                public function warning($message) { $this->logger->warning($message, ['app' => 'drawio']); }
+                public function startProgress(int $max = 0, string $description = ''): void {}
+                public function advance(int $step = 1, string $description = ''): void {}
+                public function finishProgress(): void {}
+            };
+
+            $mime->run($output);
+            $appConfig->SetNcVersion($currentNcVersion);
+
+            $logger->info('Draw.io: MIME type assets re-registered successfully', ['app' => 'drawio']);
+        } catch (\Exception $e) {
+            $logger = $container->get(LoggerInterface::class);
+            $logger->warning('Draw.io: Failed to re-register MIME type assets: ' . $e->getMessage(),
+                ['app' => 'drawio', 'exception' => $e]);
+        }
     }
 }

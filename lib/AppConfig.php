@@ -43,6 +43,7 @@ class AppConfig {
     private $_previews = "DrawioPreviews";
     private $_drawioConfig = "DrawioConfig";
     private $_whiteboards = "DrawioWhiteboards";
+    private $_ncVersion = "DrawioNcVersion";
 
     public function __construct($AppName, IConfig $config, LoggerInterface $logger)
     {
@@ -204,6 +205,16 @@ class AppConfig {
         {
             return $val;
         }
+    }
+
+    public function SetNcVersion($version)
+    {
+        $this->config->setAppValue($this->appName, $this->_ncVersion, $version);
+    }
+
+    public function GetNcVersion()
+    {
+        return $this->config->getAppValue($this->appName, $this->_ncVersion, '');
     }
 
     public function GetAppName()
