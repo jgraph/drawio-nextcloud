@@ -166,10 +166,19 @@ import '@nextcloud/dialogs/style.css';
 
             if (filePath)
             {
-                url = generateUrl('/apps/files/?dir={currentDirectory}', {
-                    currentDirectory: filePath.substring(0, filePath.lastIndexOf('/')),
-                    fileId: data.id
-                });
+                var attachmentMatch = filePath.match(/\/\.attachments\.(\d+)\//);
+                if (attachmentMatch) {
+                    // File is a Text/Collectives document attachment — redirect to parent document
+                    url = generateUrl('/apps/files/files/{fileId}?dir={dir}&openfile=true', {
+                        dir: filePath.substring(0, filePath.lastIndexOf('/.attachments.')),
+                        fileId: attachmentMatch[1],
+                    });
+                } else {
+                    url = generateUrl('/apps/files/?dir={currentDirectory}', {
+                        currentDirectory: filePath.substring(0, filePath.lastIndexOf('/')),
+                        fileId: data.id
+                    });
+                }
             }
             else // ShareToken case
             {

@@ -25,8 +25,13 @@ use OCP\AppFramework\Services\IInitialState;
 use OCA\Drawio\AppConfig;
 use OCA\Drawio\Preview\DrawioPreview;
 use OCA\Drawio\Listeners\FileDeleteListener;
+use OCA\Drawio\Listeners\DrawioReferenceListener;
+use OCA\Drawio\Listeners\RegisterTemplateCreatorListener;
+use OCA\Drawio\Reference\DrawioReferenceProvider;
 
+use OCP\Collaboration\Reference\RenderReferenceEvent;
 use OCP\Files\Events\Node\NodeDeletedEvent;
+use OCP\Files\Template\RegisterTemplateCreatorEvent;
 use Psr\Log\LoggerInterface;
 
 
@@ -40,6 +45,10 @@ class Application extends App implements IBootstrap {
     public function register(IRegistrationContext $context): void
     {
         $context->registerEventListener(NodeDeletedEvent::class, FileDeleteListener::class);
+        $context->registerEventListener(RenderReferenceEvent::class, DrawioReferenceListener::class);
+        $context->registerEventListener(RegisterTemplateCreatorEvent::class, RegisterTemplateCreatorListener::class);
+
+        $context->registerReferenceProvider(DrawioReferenceProvider::class);
 
         $context->registerPreviewProvider(
             DrawioPreview::class,
