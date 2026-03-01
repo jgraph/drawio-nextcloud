@@ -1,6 +1,6 @@
 { "translations": {
     "Versions plugin is not enabled" : "Le plugin Versions n'est pas activé",
-    "You can not open a folder" : "Vous ne pouvez pas ouvrir ce dossier",
+    "You can not open a folder" : "Vous ne pouvez pas ouvrir un dossier",
     "Invalid fileId/revId supplied." : "FileId/revId fournis non valides.",
     "An internal server error occurred." : "Une erreur interne du serveur est survenue.",
     "Invalid fileId supplied." : "FileId fourni non valide.",
@@ -15,7 +15,7 @@
     "Insufficient permissions" : "Droits insuffisants",
     "File content not supplied" : "Contenu du fichier non fourni",
     "File etag not supplied" : "etag du fichier non fourni",
-    "You cannot write to this path" : "Vous ne pouvez pas écrire dans ce dossier",
+    "You cannot write to this path" : "Vous ne pouvez pas écrire sur ce chemin",
     "Incorrect parameters" : "Paramètres incorrects",
     "The required folder was not found" : "Le dossier requis n'a pas été trouvé",
     "You don't have enough permission to create file" : "Vous n'avez pas la permission de créer le fichier",
@@ -34,7 +34,7 @@
     "draw.io Configuration error:" : "Erreur de configuration de Draw.io :",
     "Saving..." : "Enregistrement en cours…",
     "Settings have been successfully saved" : "Les paramètres ont été enregistrés avec succès",
-    "Error when trying to connect" : "Erreur en essayant de se connecter",
+    "Error when trying to connect" : "Erreur lors de la connexion",
     "Auto" : "Auto",
     "Draw.io URL" : "URL Draw.io",
     "Note: To enable realtime collaboration, leave blank or enter (https://embed.diagrams.net)" : "Note : pour permettre la collaboration en temps réel, laissez vide ou entrez (https://embed.diagrams.net)",
@@ -51,9 +51,9 @@
     "When the \"offline mode\" is active, this disables all remote operations and features to protect the users privacy. Draw.io will then also only be in English, even if you set a different language manually." : "Lorsque le mode \"hors ligne\" est actif, ceci désactive toutes les opérations et fonctionnalités à distance afin de protéger la vie privée des utilisateurs. Draw.io sera alors aussi seulement en anglais, même si vous avez sélectionné une autre langue manuellement.",
     "Activate autosave?" : "Activer l'enregistrement automatique ?",
     "Note: To enable realtime collaboration, autosave must be active." : "Note : pour permettre la collaboration en temps réel, l'enregistrement automatique doit être activé.",
-    "Enable libraries?" : "Activer les librairies ?",
-    "Enable diagram previews?" : "Activer la prévisualisation des diagrames ?",
-    "Note: Disable previews to save storage space used to store diagram preview images" : "Note : désactiver les prévisualisations pour économiser l'espace de stockage utilisé par les aperçus des diagrames",
+    "Enable libraries?" : "Activer les bibliothèques ?",
+    "Enable diagram previews?" : "Activer la prévisualisation des diagrammes ?",
+    "Note: Disable previews to save storage space used to store diagram preview images" : "Note : désactiver les prévisualisations pour économiser l'espace de stockage utilisé par les aperçus des diagrammes",
     "draw.io Configuration" : "Configuration de Draw.io",
     "Save" : "Enregistrer"
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
