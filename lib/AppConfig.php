@@ -24,6 +24,7 @@ class AppConfig {
     private $predefLibraries = "no";
     private $predefDarkMode = "auto";
     private $predefPreviews = "yes";
+    private $predefWhiteboards = "yes";
 
     private $appName;
 
@@ -41,6 +42,7 @@ class AppConfig {
     private $_darkmode = "DrawioDarkMode";
     private $_previews = "DrawioPreviews";
     private $_drawioConfig = "DrawioConfig";
+    private $_whiteboards = "DrawioWhiteboards";
 
     public function __construct($AppName, IConfig $config, LoggerInterface $logger)
     {
@@ -169,6 +171,19 @@ class AppConfig {
         return $val;
     }
     
+    public function SetWhiteboards($whiteboards)
+    {
+        $this->logger->info("SetWhiteboards: " . $whiteboards, array("app" => $this->appName));
+        $this->config->setAppValue($this->appName, $this->_whiteboards, $whiteboards);
+    }
+
+    public function GetWhiteboards()
+    {
+        $val = $this->config->getAppValue($this->appName, $this->_whiteboards);
+        if (empty($val)) $val = $this->predefWhiteboards;
+        return $val;
+    }
+
     public function SetDrawioConfig($drawioConfig)
     {
         $this->logger->info("SetDrawioConfig: " . $drawioConfig, array("app" => $this->appName));

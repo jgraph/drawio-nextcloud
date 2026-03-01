@@ -76,6 +76,7 @@ class SettingsController extends Controller
             "drawioDarkMode" => $this->config->GetDarkMode(),
             "drawioPreviews" => $this->config->GetPreviews(),
             "drawioConfig" => $this->config->GetDrawioConfig(),
+            "drawioWhiteboards" => $this->config->GetWhiteboards(),
         ];
         return new TemplateResponse($this->appName, "settings", $data, "blank");
     }
@@ -96,6 +97,7 @@ class SettingsController extends Controller
         $darkmode = trim($this->request->getParam('darkMode', ''));
         $previews = trim($this->request->getParam('previews', ''));
         $drawioConfig = trim($this->request->getParam('drawioConfig', ''));
+        $whiteboards = trim($this->request->getParam('whiteboards', ''));
 
         $this->config->SetDrawioUrl($drawio);
         $this->config->SetOfflineMode($offlinemode);
@@ -106,6 +108,7 @@ class SettingsController extends Controller
         $this->config->SetDarkMode($darkmode);
         $this->config->SetPreviews($previews);
         $this->config->SetDrawioConfig($drawioConfig);
+        $this->config->SetWhiteboards($whiteboards);
 
         $checkmime = new \OCA\Drawio\Migration\CheckMimeType();
         $registered = $checkmime->run();
@@ -139,6 +142,7 @@ class SettingsController extends Controller
             "drawioDarkMode" =>$this->config->GetDarkMode(),
             "drawioPreviews" =>$this->config->GetPreviews(),
             "drawioConfig" =>$this->config->GetDrawioConfig(),
+            "drawioWhiteboards" =>$this->config->GetWhiteboards(),
         ];
     }
 

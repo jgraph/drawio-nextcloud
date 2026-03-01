@@ -72,6 +72,15 @@
     </div>
 
     <div class="drawio-setting">
+        <label for="drawioWhiteboards"><?php p($l->t("Enable whiteboards?")) ?></label>
+        <select id="drawioWhiteboards">
+            <option value="yes"<?php if ($_["drawioWhiteboards"] === "yes") echo ' selected'; ?>><?php p($l->t("Yes")) ?></option>
+            <option value="no"<?php if ($_["drawioWhiteboards"] === "no") echo ' selected'; ?>><?php p($l->t("No")) ?></option>
+        </select>
+        <p class="drawio-hint"><?php p($l->t("Note: Disabling whiteboards hides the 'New draw.io Whiteboard' option from the file creation menu. Existing whiteboard files can still be opened.")) ?></p>
+    </div>
+
+    <div class="drawio-setting">
         <label for="drawioConfig"><?php p($l->t("draw.io Configuration")) ?></label>
         <textarea id="drawioConfig"><?php p($_["drawioConfig"]) ?></textarea>
     </div>

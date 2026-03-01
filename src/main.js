@@ -23,6 +23,7 @@ import {
 } from '@nextcloud/files'
 import { getCurrentUser } from '@nextcloud/auth'
 import { emit } from '@nextcloud/event-bus'
+import { loadState } from '@nextcloud/initial-state'
 
 // Some code is inspired by Mind Map app (https://github.com/ACTom/files_mindmap)
 
@@ -152,8 +153,11 @@ OCA.DrawIO = {
             });
         }
 
-        for (const ext in OCA.DrawIO.Mimes) 
+        var whiteboardsEnabled = loadState('drawio', 'whiteboards', 'yes') === 'yes';
+
+        for (const ext in OCA.DrawIO.Mimes)
         {
+            if (ext === 'dwb' && !whiteboardsEnabled) continue;
             addMenuEntry(ext, OCA.DrawIO.Mimes[ext]);
         }
     },

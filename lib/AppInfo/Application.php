@@ -19,6 +19,8 @@ use OCP\IConfig;
 use OCP\Util;
 use OCP\Files\IMimeTypeDetector;
 
+use OCP\AppFramework\Services\IInitialState;
+
 use OCA\Drawio\AppConfig;
 use OCA\Drawio\Preview\DrawioPreview;
 use OCA\Drawio\Listeners\FileDeleteListener;
@@ -58,6 +60,10 @@ class Application extends App implements IBootstrap {
         Util::addStyle("drawio", "main");
 
         $container = $context->getAppContainer();
+
+        $initialState = $container->get(IInitialState::class);
+        $appConfig = $container->get(AppConfig::class);
+        $initialState->provideInitialState('whiteboards', $appConfig->GetWhiteboards());
         $detector = $container->get(IMimeTypeDetector::class);
         $detector->getAllMappings();
         $detector->registerType("drawio", "application/x-drawio");
