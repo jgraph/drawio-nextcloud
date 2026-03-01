@@ -18,7 +18,8 @@ lib/               PHP backend
   AppConfig.php    Configuration manager (get/set for all admin settings)
   AppInfo/         Application bootstrap, DI registration, MIME types
   Controller/      EditorController (file CRUD, revisions) & SettingsController
-  Listeners/       Event handlers (e.g. preview cleanup on file delete)
+  Listeners/       Event handlers (file delete cleanup, reference widget loader, template creator)
+  Reference/       Reference Provider for inline diagram previews in Text/Collectives/Talk
   Migration/       MIME type registration/unregistration repair steps
   Preview/         Thumbnail generation from cached PNG previews
   Settings/        Admin settings panel registration
@@ -26,6 +27,8 @@ src/               JavaScript source (webpack entry points)
   editor.js        Editor page – iframe communication, save/load, autosave, previews
   main.js          File list integration – file actions, new file menu entries
   settings.js      Admin settings form
+  reference.js     Reference widget registration for inline diagram previews
+  components/      Vue components (DrawioReferenceWidget.vue)
 js/                Compiled webpack output (do not edit directly)
 templates/         PHP templates for editor and settings pages
 css/               Stylesheets (main, editor, settings)

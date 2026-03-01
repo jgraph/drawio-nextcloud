@@ -1,5 +1,12 @@
 # Change Log
 
+## 4.1.0
+
+- Added Reference Provider for inline draw.io diagram previews in Collectives, Talk, Notes, and other text editors (#118)
+- Added Smart Picker integration — search and insert diagrams from the "/" menu
+- Registered draw.io diagrams and whiteboards in the Nextcloud "New file" template system
+- Editor now redirects to the parent document when closing a diagram stored as a Text attachment
+
 ## 4.0.2
 
 - Fixed password-protected public share links returning 403 (#122)
