@@ -88,7 +88,7 @@ class Application extends App implements IBootstrap {
      */
     private function ensureMimeTypeAssets($container, AppConfig $appConfig, IMimeTypeDetector $detector): void
     {
-        $currentNcVersion = \OC_Util::getVersionString();
+        $currentNcVersion = $container->get(\OCP\ServerVersion::class)->getVersionString();
         $storedNcVersion = $appConfig->GetNcVersion();
 
         $needsRepair = ($storedNcVersion !== $currentNcVersion);
