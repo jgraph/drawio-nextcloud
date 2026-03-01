@@ -72,6 +72,17 @@ Then open http://localhost:8088 (admin / admin). PHP changes are live (volume-mo
 4. Save/load operations go through `EditorController` PHP endpoints
 5. PNG previews are generated client-side and saved via `savePreview` endpoint
 
+### Inline Previews (Reference Provider)
+When a draw.io editor URL is pasted into Nextcloud Text, Collectives, Talk, Notes, or Deck:
+1. `DrawioReferenceProvider` matches the URL and resolves file metadata + preview image
+2. `DrawioReferenceListener` loads the `drawio-reference` JS bundle on demand
+3. `reference.js` registers a Vue widget (`DrawioReferenceWidget.vue`) for the `drawio_diagram` rich object type
+4. The widget renders an inline card with the diagram thumbnail and an "Open in Draw.io" link
+5. Smart Picker (`/` menu) lists "Draw.io Diagrams" via `ISearchableReferenceProvider`
+
+### Template Creator
+`RegisterTemplateCreatorListener` registers `.drawio` and `.dwb` as file types in the Nextcloud "+" new file menu via `RegisterTemplateCreatorEvent`. This also enables creating diagrams as Text document attachments (stored in `.attachments.{docId}/` folders). The editor detects attachment paths on close and redirects to the parent document.
+
 ### API Routes (all under `/apps/drawio/`)
 | Method | URL                    | Controller Method        |
 |--------|------------------------|--------------------------|
@@ -92,10 +103,14 @@ Then open http://localhost:8088 (admin / admin). PHP changes are live (volume-mo
 - **MIME types:** `application/x-drawio` (.drawio) and `application/x-drawio-wb` (.dwb), registered in repair steps
 - **Translations:** Use `t('drawio', 'key')` in JS (`@nextcloud/l10n`), `$l->t('key')` in PHP templates, and `$this->trans->t('key')` in PHP controllers
 - **Frontend globals:** `OCA.DrawIO` namespace used in `main.js`; `editor.js` uses an IIFE with `OCA` parameter
+- **Reference Provider:** `DrawioReferenceProvider` extends `ADiscoverableReferenceProvider` and implements `ISearchableReferenceProvider`; rich object type is `drawio_diagram`
+- **Template Creator:** `.drawio`/`.dwb` registered via `RegisterTemplateCreatorEvent` + `TemplateFileCreator`
 
 ## File Conventions
 - PHP follows PSR-2/PSR-12 style
 - JavaScript uses ES6+ imports with `@nextcloud/*` packages
+- Vue 2 Single File Components (`.vue`) used for reference widget (`src/components/`)
+- `@nextcloud/vue` v8 provides `registerWidget` for reference widgets
 - No linter or formatter is configured
 - No test framework is set up
 
