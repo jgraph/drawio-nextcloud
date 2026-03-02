@@ -18,7 +18,7 @@
 - **Offline mode** — work without an internet connection using a bundled draw.io instance
 - **Multilingual** — translated into 99 languages
 - **Admin controls** — configure theme, language, autosave, libraries, and more from the admin settings panel]]></description>
-    <version>4.1.1</version>
+    <version>4.1.2</version>
     <licence>agpl</licence>
     <author>draw.io Ltd</author>
     <namespace>Drawio</namespace>
