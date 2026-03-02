@@ -116,10 +116,11 @@ class Application extends App implements IBootstrap {
             $output = new class($logger) implements \OCP\Migration\IOutput {
                 private $logger;
                 public function __construct($logger) { $this->logger = $logger; }
+                public function debug(string $message): void { $this->logger->debug($message, ['app' => 'drawio']); }
                 public function info($message) { $this->logger->info($message, ['app' => 'drawio']); }
                 public function warning($message) { $this->logger->warning($message, ['app' => 'drawio']); }
-                public function startProgress(int $max = 0, string $description = ''): void {}
-                public function advance(int $step = 1, string $description = ''): void {}
+                public function startProgress($max = 0): void {}
+                public function advance($step = 1, $description = ''): void {}
                 public function finishProgress(): void {}
             };
 
