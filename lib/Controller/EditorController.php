@@ -285,7 +285,7 @@ class EditorController extends Controller
                         'owner' => $file->getOwner()->getUID(),
                         'etag' => $file->getEtag(),
                         'mtime' => $file->getMTime(),
-                        'created' => $file->getCreationTime() + $file->getUploadTime(),
+                        'created' => $file->getCreationTime() ?: $file->getUploadTime(),
                         'shareToken' => $shareToken,
                         'versionsEnabled' => empty($shareToken) && isset($this->versionManager),
                         'ver' => 2,
@@ -358,7 +358,7 @@ class EditorController extends Controller
                     'owner' => $file->getOwner()->getUID(),
                     'etag' => $file->getEtag(),
                     'mtime' => $file->getMTime(),
-                    'created' => $file->getCreationTime() + $file->getUploadTime(),
+                    'created' => $file->getCreationTime() ?: $file->getUploadTime(),
                     'shareToken' => $shareToken,
                     'versionsEnabled' => empty($shareToken) && isset($this->versionManager),
                     'ver' => 2,
@@ -789,7 +789,14 @@ class EditorController extends Controller
             
             if (!empty($fileId) && $file->getType() == FileInfo::TYPE_FOLDER) // File in a shared folder case
             {
-                $file = $file->getById($fileId)[0];
+                $nodes = $file->getById($fileId);
+
+                if (empty($nodes))
+                {
+                    throw new NotFoundException();
+                }
+
+                $file = $nodes[0];
             }
         }
         else
@@ -828,9 +835,16 @@ class EditorController extends Controller
         $dir = null;
         $isCreatable = false;
 
-        if (!empty($dirId) && $this->userSession->isLoggedIn()) 
+        if (!empty($dirId) && $this->userSession->isLoggedIn())
         {
-            $dir = $this->root->getById($dirId)[0];
+            $nodes = $this->root->getById($dirId);
+
+            if (empty($nodes))
+            {
+                throw new NotFoundException();
+            }
+
+            $dir = $nodes[0];
         }
         else if (!empty($shareToken))
         {

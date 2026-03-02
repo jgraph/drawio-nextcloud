@@ -18,7 +18,7 @@
 - **Offline mode** — work without an internet connection using a bundled draw.io instance
 - **Multilingual** — translated into 99 languages
 - **Admin controls** — configure theme, language, autosave, libraries, and more from the admin settings panel]]></description>
-    <version>4.1.3</version>
+    <version>4.2.0</version>
     <licence>agpl</licence>
     <author>draw.io Ltd</author>
     <namespace>Drawio</namespace>
@@ -34,7 +34,7 @@
     <repository type="git">https://github.com/jgraph/drawio-nextcloud.git</repository>
     <screenshot small-thumbnail="https://raw.githubusercontent.com/jgraph/drawio-nextcloud/release/screenshots/drawio_integration_sm.png">https://raw.githubusercontent.com/jgraph/drawio-nextcloud/release/screenshots/drawio_integration.png</screenshot>
     <dependencies>
-        <nextcloud min-version="32" max-version="33"/>
+        <nextcloud min-version="33" max-version="33"/>
     </dependencies>
     <settings>
         <admin>OCA\Drawio\Settings\Admin</admin>
