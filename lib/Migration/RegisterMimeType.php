@@ -51,13 +51,13 @@ class RegisterMimeType extends MimeTypeMigration
     {
         $icons = ['drawio', 'dwb'];
 
-        foreach ($icons as $icon) 
+        foreach ($icons as $icon)
         {
             $source = __DIR__ . '/../../img/' . $icon . '.svg';
             $target = \OC::$SERVERROOT . '/core/img/filetypes/' . $icon . '.svg';
-            if (!file_exists($target) || md5_file($target) !== md5_file($source)) 
+            if (!file_exists($target) || md5_file($target) !== md5_file($source))
             {
-                copy($source, $target);
+                @copy($source, $target);
             }
         }
     }

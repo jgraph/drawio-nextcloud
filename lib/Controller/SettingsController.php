@@ -123,10 +123,11 @@ class SettingsController extends Controller
                 private $logger;
                 private $appName;
                 public function __construct($logger, $appName) { $this->logger = $logger; $this->appName = $appName; }
+                public function debug(string $message): void { $this->logger->debug($message, ['app' => $this->appName]); }
                 public function info($message) { $this->logger->info($message, ['app' => $this->appName]); }
                 public function warning($message) { $this->logger->warning($message, ['app' => $this->appName]); }
-                public function startProgress(int $max = 0, string $description = ''): void {}
-                public function advance(int $step = 1, string $description = ''): void {}
+                public function startProgress($max = 0): void {}
+                public function advance($step = 1, $description = ''): void {}
                 public function finishProgress(): void {}
             };
             $mime->run($output);
