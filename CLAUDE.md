@@ -106,6 +106,41 @@ When a draw.io editor URL is pasted into Nextcloud Text, Collectives, Talk, Note
 - **Reference Provider:** `DrawioReferenceProvider` extends `ADiscoverableReferenceProvider` and implements `ISearchableReferenceProvider`; rich object type is `drawio_diagram`
 - **Template Creator:** `.drawio`/`.dwb` registered via `RegisterTemplateCreatorEvent` + `TemplateFileCreator`
 
+## MIME Type Registration (Critical for Create/Edit Flow)
+
+The create/edit flow — creating a `.drawio`/`.dwb` file from the "+" menu, then clicking it to open in the draw.io editor — depends on all of the following MIME type registration steps working together. **Removing or skipping any of these breaks the basic flow** (files download instead of opening in the editor):
+
+1. **Config files** (`RegisterMimeType::registerForNewFiles`)
+   - Writes to `config/mimetypemapping.json` (extension → MIME type)
+   - Writes to `config/mimetypealiases.json` (MIME type → icon alias)
+
+2. **Filecache update** (`RegisterMimeType::registerForExistingFiles`)
+   - Updates DB filecache so existing `.drawio`/`.dwb` files have the correct MIME type
+
+3. **Icon copy** (`RegisterMimeType::copyIcons`)
+   - Copies `drawio.svg` and `dwb.svg` to `core/img/filetypes/`
+
+4. **UpdateJS** (`$this->updateJS->run(...)`)
+   - Regenerates `core/js/mimetypelist.js` with drawio MIME type entries
+
+5. **Runtime registration** (`Application::boot`)
+   - `$detector->registerType("drawio", "application/x-drawio")`
+   - `$detector->registerType("dwb", "application/x-drawio-wb")`
+
+6. **Self-healing** (`Application::ensureMimeTypeAssets`)
+   - Re-runs all of the above when NC version changes or icons are missing from core
+   - This fixed https://github.com/jgraph/drawio-nextcloud/issues/119
+
+Steps 3 and 4 modify Nextcloud core files, which triggers integrity check warnings (https://github.com/jgraph/drawio-nextcloud/issues/70). This is a known Nextcloud limitation — there is no public API for apps to register MIME type icons without modifying core (see https://github.com/nextcloud/server/issues/10131). **Do not remove steps 3 or 4 to fix the integrity warnings — it breaks the create/edit flow.**
+
+### Testing the Create/Edit Flow
+After any change to MIME type registration, always verify:
+1. Run `./scripts/dev-setup.sh` for a fresh NC instance
+2. Create a new `.drawio` file from the "+" menu → file should appear in the file list
+3. Click the file → should open in the draw.io editor (NOT download)
+4. Edit, save, and close → changes should persist
+5. Re-open the file → saved content should be there
+
 ## File Conventions
 - PHP follows PSR-2/PSR-12 style
 - JavaScript uses ES6+ imports with `@nextcloud/*` packages
