@@ -7,7 +7,7 @@ Nextcloud app that integrates the draw.io (diagrams.net) diagram editor. Users c
 - **App ID:** `drawio`
 - **Namespace:** `OCA\Drawio`
 - **License:** AGPL
-- **Nextcloud compatibility:** 32+ (min-version in `appinfo/info.xml`)
+- **Nextcloud compatibility:** 33 only (min-version and max-version in `appinfo/info.xml`)
 - **Version:** defined in both `appinfo/info.xml` and `package.json` (keep in sync)
 
 ## Repository Structure
@@ -32,9 +32,9 @@ src/               JavaScript source (webpack entry points)
 js/                Compiled webpack output (do not edit directly)
 templates/         PHP templates for editor and settings pages
 css/               Stylesheets (main, editor, settings)
-img/               SVG icons (app, drawio file type, whiteboard)
+img/               SVG icons (app, app-dark, drawio file type, whiteboard)
 l10n/              Translations (~100 languages, managed in-repo)
-scripts/           Build/maintenance scripts (extract-strings.js)
+scripts/           Build/maintenance scripts (extract-strings.js, dev-setup.sh, dev-rebuild.sh)
 .github/workflows/ CI: release pipeline (release.yml), stale bot (stale.yml)
 ```
 

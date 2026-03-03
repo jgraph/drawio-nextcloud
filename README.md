@@ -2,7 +2,7 @@
 
 [![GitHub release](https://img.shields.io/github/v/release/jgraph/drawio-nextcloud)](https://github.com/jgraph/drawio-nextcloud/releases)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
-[![Nextcloud](https://img.shields.io/badge/Nextcloud-32+-0082c9)](https://apps.nextcloud.com/apps/drawio)
+[![Nextcloud](https://img.shields.io/badge/Nextcloud-33-0082c9)](https://apps.nextcloud.com/apps/drawio)
 
 Create and edit [draw.io](https://app.diagrams.net) diagrams and whiteboards directly within [Nextcloud](https://nextcloud.com). Note that draw.io is NOT open source software.
 
@@ -25,7 +25,7 @@ Create and edit [draw.io](https://app.diagrams.net) diagrams and whiteboards dir
 
 ## Requirements
 
-- [Nextcloud](https://nextcloud.com) >= 32
+- [Nextcloud](https://nextcloud.com) 33
 - [draw.io](https://github.com/jgraph/docker-drawio) >= 20.8.6 (if self-hosting)
 
 ## Installation

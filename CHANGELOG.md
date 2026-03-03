@@ -1,5 +1,17 @@
 # Change Log
 
+## 4.2.0
+
+- Dropped Nextcloud 32 support — now requires Nextcloud 33
+- Fixed unsafe array access when opening files in shared folders
+- Fixed unsafe array access when creating files by directory ID
+- Fixed incorrect file creation timestamp (was adding creation + upload times)
+- Added error handling for non-JSON postMessage events in the editor
+
+## 4.1.3
+
+- Bug fixes and maintenance
+
 ## 4.1.0
 
 - Added Reference Provider for inline draw.io diagram previews in Collectives, Talk, Notes, and other text editors (#118)
