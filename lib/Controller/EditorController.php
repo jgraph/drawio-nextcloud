@@ -429,7 +429,29 @@ class EditorController extends Controller
                             return new DataResponse([ 'message' => $this->trans->t('The file you are working on was updated in the meantime.')], Http::STATUS_CONFLICT);
                         }
 
-						$file->putContent($fileContents);
+						try {
+                            $file->putContent($fileContents);
+                        } catch (LockedException $e) {
+                            throw $e;
+                        } catch (ForbiddenException $e) {
+                            throw $e;
+                        } catch (GenericFileException $e) {
+                            throw $e;
+                        } catch (\Exception $e) {
+                            // Post-save hooks (e.g. Activity, Deck) may fail even though
+                            // the file was written successfully. Check if the file was
+                            // actually saved by comparing etags, and if so treat as success.
+                            clearstatcache();
+                            $newEtag = $file->getEtag();
+                            if ($newEtag !== $etag) {
+                                $this->logger->warning('Post-save hook error (file was saved successfully): ' . $e->getMessage(),
+                                    ['app' => $this->appName, 'exception' => $e]);
+                                $newSize = $file->getSize();
+                                $newMtime = $file->getMTime();
+                                return new DataResponse(['etag' => $newEtag, 'size' => $newSize, 'mtime' => $newMtime], Http::STATUS_OK);
+                            }
+                            throw $e;
+                        }
                         // Clear statcache
                         clearstatcache();
                         // Get new eTag
