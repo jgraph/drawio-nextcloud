@@ -647,7 +647,7 @@ class EditorController extends Controller
         if (empty($drawioUrl))
         {
             $this->logger->error("drawioUrl is empty", array("app" => $this->appName));
-            return ["error" => $this->trans->t("Draw.io app not configured! Please contact admin.")];
+            return ["error" => $this->trans->t("Diagramming app not configured! Please contact admin.")];
         }
 
         $drawioUrlArray = explode("?",$drawioUrl);

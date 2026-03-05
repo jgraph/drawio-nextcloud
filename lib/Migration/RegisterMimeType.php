@@ -25,7 +25,7 @@ class RegisterMimeType extends MimeTypeMigration
 {
     public function getName()
     {
-        return 'Register MIME types for Draw.io';
+        return 'Register MIME types for Diagramming';
     }
 
     private function registerForExistingFiles()

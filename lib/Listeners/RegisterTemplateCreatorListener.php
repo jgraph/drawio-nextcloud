@@ -21,18 +21,18 @@ class RegisterTemplateCreatorListener implements IEventListener {
         }
 
         $event->getTemplateManager()->registerTemplateFileCreator(function () {
-            $drawio = new TemplateFileCreator('drawio', $this->l10n->t('New draw.io Diagram'), '.drawio');
+            $drawio = new TemplateFileCreator('drawio', $this->l10n->t('New Diagram'), '.drawio');
             $drawio->addMimetype('application/x-drawio');
             $drawio->setIconSvgInline(file_get_contents(__DIR__ . '/../../img/drawio.svg'));
-            $drawio->setActionLabel($this->l10n->t('New draw.io Diagram'));
+            $drawio->setActionLabel($this->l10n->t('New Diagram'));
             return $drawio;
         });
 
         $event->getTemplateManager()->registerTemplateFileCreator(function () {
-            $dwb = new TemplateFileCreator('drawio', $this->l10n->t('New draw.io Whiteboard'), '.dwb');
+            $dwb = new TemplateFileCreator('drawio', $this->l10n->t('New Whiteboard'), '.dwb');
             $dwb->addMimetype('application/x-drawio-wb');
             $dwb->setIconSvgInline(file_get_contents(__DIR__ . '/../../img/dwb.svg'));
-            $dwb->setActionLabel($this->l10n->t('New draw.io Whiteboard'));
+            $dwb->setActionLabel($this->l10n->t('New Whiteboard'));
             return $dwb;
         });
     }

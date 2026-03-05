@@ -46,7 +46,7 @@ $(function () {
             }
             catch (e)
             {
-                showError(t(OCA.DrawIO.AppName, 'draw.io Configuration error:') + ' ' + e.message, { timeout: 2500 });
+                showError(t(OCA.DrawIO.AppName, 'Configuration error:') + ' ' + e.message, { timeout: 2500 });
                 return;
             }
         }

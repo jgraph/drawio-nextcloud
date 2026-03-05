@@ -97,7 +97,7 @@ class Application extends App implements IBootstrap {
 
         try {
             $logger = $container->get(LoggerInterface::class);
-            $logger->info('Draw.io: Re-registering MIME type assets (NC version: ' .
+            $logger->info('Diagramming: Re-registering MIME type assets (NC version: ' .
                 $storedNcVersion . ' -> ' . $currentNcVersion . ')', ['app' => 'drawio']);
 
             $mimeTypeLoader = $container->get(IMimeTypeLoader::class);
@@ -118,10 +118,10 @@ class Application extends App implements IBootstrap {
             $mime->run($output);
             $appConfig->SetNcVersion($currentNcVersion);
 
-            $logger->info('Draw.io: MIME type assets re-registered successfully', ['app' => 'drawio']);
+            $logger->info('Diagramming: MIME type assets re-registered successfully', ['app' => 'drawio']);
         } catch (\Exception $e) {
             $logger = $container->get(LoggerInterface::class);
-            $logger->warning('Draw.io: Failed to re-register MIME type assets: ' . $e->getMessage(),
+            $logger->warning('Diagramming: Failed to re-register MIME type assets: ' . $e->getMessage(),
                 ['app' => 'drawio', 'exception' => $e]);
         }
     }

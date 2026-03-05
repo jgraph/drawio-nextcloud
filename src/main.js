@@ -53,7 +53,7 @@ OCA.DrawIO = {
             registerFileAction({
                 id: 'drawioOpen' + ext,
                 displayName() {
-                    return t(OCA.DrawIO.AppName, 'Open in Draw.io')
+                    return t(OCA.DrawIO.AppName, 'Edit diagram')
                 },
                 enabled(context) {
                     return context.nodes.length === 1 && attr.mime === context.nodes[0].mime && (context.nodes[0].permissions & Permission.READ) !== 0

@@ -33,7 +33,7 @@ class DrawioReferenceProvider extends ADiscoverableReferenceProvider implements 
     }
 
     public function getTitle(): string {
-        return $this->l10n->t('Draw.io Diagrams');
+        return $this->l10n->t('Diagrams');
     }
 
     public function getOrder(): int {
@@ -90,7 +90,7 @@ class DrawioReferenceProvider extends ADiscoverableReferenceProvider implements 
 
             return $this->buildReference($referenceText, $files[0]);
         } catch (\Exception $e) {
-            $this->logger->debug('Could not resolve draw.io reference: ' . $e->getMessage(), ['app' => 'drawio']);
+            $this->logger->debug('Could not resolve diagram reference: ' . $e->getMessage(), ['app' => 'drawio']);
             return null;
         }
     }
@@ -133,7 +133,7 @@ class DrawioReferenceProvider extends ADiscoverableReferenceProvider implements 
     private function buildReference(string $referenceText, $file): IReference {
         $reference = new Reference($referenceText);
         $reference->setTitle($file->getName());
-        $reference->setDescription($this->l10n->t('Draw.io diagram'));
+        $reference->setDescription($this->l10n->t('Diagram'));
 
         $previewUrl = $this->urlGenerator->getAbsoluteURL(
             $this->urlGenerator->linkToRoute('core.Preview.getPreviewByFileId', [

@@ -3,10 +3,10 @@
     script("drawio", "settings");
 ?>
 <div id="drawio" class="section section-drawio">
-    <h2>Draw.io</h2>
+    <h2>Diagramming</h2>
 
     <div class="drawio-setting">
-        <label for="drawioUrl"><?php p($l->t("Draw.io URL")) ?></label>
+        <label for="drawioUrl"><?php p($l->t("Editor URL")) ?></label>
         <input id="drawioUrl" value="<?php p($_["drawioUrl"]) ?>" placeholder="https://<drawio-url>" type="text">
         <p class="drawio-hint"><?php p($l->t("Note: To enable realtime collaboration, leave blank or enter (https://embed.diagrams.net)")) ?></p>
     </div>
@@ -37,12 +37,12 @@
     </div>
 
     <div class="drawio-setting">
-        <label for="offlineMode"><?php p($l->t("Activate offline mode in Draw.io?")) ?></label>
+        <label for="offlineMode"><?php p($l->t("Activate offline mode?")) ?></label>
         <select id="offlineMode">
             <option value="yes"<?php if ($_["drawioOfflineMode"] === "yes") echo ' selected'; ?>><?php p($l->t("Yes")) ?></option>
             <option value="no"<?php if ($_["drawioOfflineMode"] === "no") echo ' selected'; ?>><?php p($l->t("No")) ?></option>
         </select>
-        <p class="drawio-hint"><?php p($l->t("When the \"offline mode\" is active, this disables all remote operations and features to protect the users privacy. Draw.io will then also only be in English, even if you set a different language manually.")) ?></p>
+        <p class="drawio-hint"><?php p($l->t("When the \"offline mode\" is active, this disables all remote operations and features to protect the users privacy. The editor will then also only be in English, even if you set a different language manually.")) ?></p>
     </div>
 
     <div class="drawio-setting">
@@ -77,11 +77,11 @@
             <option value="yes"<?php if ($_["drawioWhiteboards"] === "yes") echo ' selected'; ?>><?php p($l->t("Yes")) ?></option>
             <option value="no"<?php if ($_["drawioWhiteboards"] === "no") echo ' selected'; ?>><?php p($l->t("No")) ?></option>
         </select>
-        <p class="drawio-hint"><?php p($l->t("Note: Disabling whiteboards hides the 'New draw.io Whiteboard' option from the file creation menu. Existing whiteboard files can still be opened.")) ?></p>
+        <p class="drawio-hint"><?php p($l->t("Note: Disabling whiteboards hides the 'New Whiteboard' option from the file creation menu. Existing whiteboard files can still be opened.")) ?></p>
     </div>
 
     <div class="drawio-setting">
-        <label for="drawioConfig"><?php p($l->t("draw.io Configuration")) ?></label>
+        <label for="drawioConfig"><?php p($l->t("Editor configuration")) ?></label>
         <textarea id="drawioConfig"><?php p($_["drawioConfig"]) ?></textarea>
     </div>
 

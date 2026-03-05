@@ -2,26 +2,20 @@
 <info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
 	  xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
     <id>drawio</id>
-    <name>Draw.io (Deprecated)</name>
-    <summary>⚠️ DEPRECATED — Do not install. This app is no longer maintained.</summary>
-    <description><![CDATA[## ⚠️ This app is deprecated and will not receive further updates.
+    <name>Diagramming</name>
+    <summary>Create and edit diagrams and whiteboards in Nextcloud</summary>
+    <description><![CDATA[Integrates the diagrams.net diagram editor with Nextcloud. Users can create and edit .drawio diagrams and .dwb whiteboards directly within the Nextcloud file manager.
 
-**Do not install this app.** If you are currently using it, please migrate away.
+**Features:**
 
-This app is no longer maintained and will not be updated for future Nextcloud releases. Existing installations should export their .drawio files and transition to an alternative solution.
-
-**To migrate:**
-
-1. Your .drawio files are standard draw.io XML files — they can be opened directly at [app.diagrams.net](https://app.diagrams.net) or any draw.io-compatible editor
-2. Download your .drawio and .dwb files from Nextcloud
-3. Disable and remove the Draw.io app from your Nextcloud instance
-
-**Alternatives:**
-
-- [app.diagrams.net](https://app.diagrams.net) — the official free draw.io web editor
-- [draw.io Desktop](https://github.com/jgraph/drawio-desktop) — offline desktop application for Windows, macOS, and Linux
-- [Whiteboard](https://apps.nextcloud.com/apps/whiteboard) — Nextcloud's built-in whiteboard app]]></description>
-    <version>4.2.1</version>
+- Create and edit diagrams and whiteboards from the Nextcloud "+" menu
+- Click any .drawio or .dwb file to open the editor inline
+- Autosave with optimistic conflict detection
+- Inline diagram previews in Text, Collectives, Talk, Notes, and Deck
+- Supports public share links (read-only and editable)
+- Offline mode for privacy-sensitive deployments
+- Configurable editor URL for self-hosted diagrams.net instances]]></description>
+    <version>4.2.2</version>
     <licence>agpl</licence>
     <author>draw.io Ltd</author>
     <namespace>Drawio</namespace>
