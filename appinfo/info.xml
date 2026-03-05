@@ -2,22 +2,25 @@
 <info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
 	  xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
     <id>drawio</id>
-    <name>Draw.io</name>
-    <summary>Create and edit diagrams and whiteboards with draw.io</summary>
-    <description><![CDATA[Integrates the draw.io (diagrams.net) editor into Nextcloud, letting users create and edit diagrams and whiteboards directly from the Files app.
+    <name>Draw.io (Deprecated)</name>
+    <summary>⚠️ DEPRECATED — Do not install. This app is no longer maintained.</summary>
+    <description><![CDATA[## ⚠️ This app is deprecated and will not receive further updates.
 
-**Key features:**
+**Do not install this app.** If you are currently using it, please migrate away.
 
-- **Real-time collaboration** — multiple users can edit the same diagram simultaneously (requires Autosave and the official diagrams.net server)
-- **Whiteboards** — freeform .dwb whiteboard files alongside traditional .drawio diagrams
-- **Dark mode** — automatic or manual dark theme support
-- **Diagram previews** — PNG thumbnails shown in the Nextcloud file list
-- **Public sharing** — edit or view diagrams via Nextcloud public share links
-- **File versioning** — access previous diagram revisions through Nextcloud's version history
-- **Self-hosting** — optionally use your own draw.io server instead of the official one
-- **Offline mode** — work without an internet connection using a bundled draw.io instance
-- **Multilingual** — translated into 99 languages
-- **Admin controls** — configure theme, language, autosave, libraries, and more from the admin settings panel]]></description>
+This app is no longer maintained and will not be updated for future Nextcloud releases. Existing installations should export their .drawio files and transition to an alternative solution.
+
+**To migrate:**
+
+1. Your .drawio files are standard draw.io XML files — they can be opened directly at [app.diagrams.net](https://app.diagrams.net) or any draw.io-compatible editor
+2. Download your .drawio and .dwb files from Nextcloud
+3. Disable and remove the Draw.io app from your Nextcloud instance
+
+**Alternatives:**
+
+- [app.diagrams.net](https://app.diagrams.net) — the official free draw.io web editor
+- [draw.io Desktop](https://github.com/jgraph/drawio-desktop) — offline desktop application for Windows, macOS, and Linux
+- [Whiteboard](https://apps.nextcloud.com/apps/whiteboard) — Nextcloud's built-in whiteboard app]]></description>
     <version>4.2.0</version>
     <licence>agpl</licence>
     <author>draw.io Ltd</author>
