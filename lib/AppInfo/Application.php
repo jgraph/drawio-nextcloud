@@ -91,16 +91,7 @@ class Application extends App implements IBootstrap {
         $currentNcVersion = $container->get(\OCP\ServerVersion::class)->getVersionString();
         $storedNcVersion = $appConfig->GetNcVersion();
 
-        $needsRepair = ($storedNcVersion !== $currentNcVersion);
-
-        if (!$needsRepair) {
-            $iconTarget = \OC::$SERVERROOT . '/core/img/filetypes/drawio.svg';
-            if (!file_exists($iconTarget)) {
-                $needsRepair = true;
-            }
-        }
-
-        if (!$needsRepair) {
+        if ($storedNcVersion === $currentNcVersion) {
             return;
         }
 

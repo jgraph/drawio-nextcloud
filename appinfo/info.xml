@@ -21,7 +21,7 @@ This app is no longer maintained and will not be updated for future Nextcloud re
 - [app.diagrams.net](https://app.diagrams.net) — the official free draw.io web editor
 - [draw.io Desktop](https://github.com/jgraph/drawio-desktop) — offline desktop application for Windows, macOS, and Linux
 - [Whiteboard](https://apps.nextcloud.com/apps/whiteboard) — Nextcloud's built-in whiteboard app]]></description>
-    <version>4.2.0</version>
+    <version>4.2.1</version>
     <licence>agpl</licence>
     <author>draw.io Ltd</author>
     <namespace>Drawio</namespace>
