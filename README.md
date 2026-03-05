@@ -6,9 +6,9 @@
 
 Create and edit [draw.io](https://app.diagrams.net) diagrams and whiteboards directly within [Nextcloud](https://nextcloud.com). Note that draw.io is NOT open source software.
 
-**[Install from the Nextcloud App Store](https://apps.nextcloud.com/apps/drawio)**
+Note we inherited this app from another author in 2022, who had developed it since 2017. We don't want to maintain this. We hate Nextcloud, it a PHP turd. Please someone vibe a decent alternative...
 
-![](screenshots/drawio_integration.png)
+**[Install from the Nextcloud App Store](https://apps.nextcloud.com/apps/drawio)**
 
 ## Features
 
