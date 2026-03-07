@@ -15,7 +15,7 @@
 - Supports public share links (read-only and editable)
 - Offline mode for privacy-sensitive deployments
 - Configurable editor URL for self-hosted diagrams.net instances]]></description>
-    <version>4.2.2</version>
+    <version>4.2.3</version>
     <licence>agpl</licence>
     <author>draw.io Ltd</author>
     <namespace>Drawio</namespace>

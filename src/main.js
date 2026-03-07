@@ -83,13 +83,23 @@ $(function ()
 {
     OCA.DrawIO.init();
     
-    // Sometimes the file doesn't open, so we add a delayed attempt as well
-    setTimeout(() => 
+    // On public share pages, auto-open if the shared file is a diagram
+    setTimeout(async () =>
     {
         if (window.location.pathname.startsWith('/s/'))
         {
-            // TODO Add whiteboard support for public shares
-            OCA.DrawIO.OpenEditor(null, false);
+            var shareToken = getSharingToken();
+            if (!shareToken) return;
+
+            try {
+                var url = generateUrl('/apps/' + OCA.DrawIO.AppName + '/ajax/getFileInfo?shareToken={shareToken}', { shareToken: shareToken });
+                var response = await $.get(url);
+                if (response && (response.mime === 'application/x-drawio' || response.mime === 'application/x-drawio-wb')) {
+                    OCA.DrawIO.OpenEditor(null, response.mime === 'application/x-drawio-wb');
+                }
+            } catch (e) {
+                // Not a diagram file or share not accessible — don't redirect
+            }
         }
     }, 10000);
 });
